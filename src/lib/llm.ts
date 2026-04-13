@@ -32,6 +32,26 @@ export function classifyQuery(query: string): RouteKind {
 }
 
 /**
+ * Retry wrapper for Anthropic calls. Retries on 429/529/5xx with 2s/4s backoff.
+ */
+const RETRY_DELAYS = [2000, 4000];
+async function callWithRetry<T>(fn: () => Promise<T>): Promise<T> {
+  let lastErr: unknown;
+  for (let attempt = 0; attempt <= RETRY_DELAYS.length; attempt++) {
+    try {
+      return await fn();
+    } catch (err: any) {
+      lastErr = err;
+      const status = err?.status ?? err?.statusCode ?? 0;
+      const retryable = status === 429 || status === 529 || (status >= 500 && status < 600);
+      if (!retryable || attempt >= RETRY_DELAYS.length) throw err;
+      await new Promise((r) => setTimeout(r, RETRY_DELAYS[attempt]));
+    }
+  }
+  throw lastErr;
+}
+
+/**
  * General-purpose Haiku call. Enforces the monthly budget cap.
  */
 export async function callHaiku(
@@ -43,17 +63,19 @@ export async function callHaiku(
     throw new Error('LLM_BUDGET_EXCEEDED: Monthly Haiku cap hit. Chatbot is in DB-only mode until next month.');
   }
 
-  const resp = await client().messages.create({
-    model: 'claude-haiku-4-5',
-    max_tokens: maxTokens,
-    system,
-    messages: [
-      {
-        role: 'user',
-        content: typeof userContent === 'string' ? userContent : userContent
-      }
-    ]
-  });
+  const resp = await callWithRetry(() =>
+    client().messages.create({
+      model: 'claude-haiku-4-5',
+      max_tokens: maxTokens,
+      system,
+      messages: [
+        {
+          role: 'user',
+          content: typeof userContent === 'string' ? userContent : userContent
+        }
+      ]
+    })
+  );
 
   const text = resp.content.map(c => (c.type === 'text' ? c.text : '')).join('');
   const tokens_in = resp.usage?.input_tokens || 0;

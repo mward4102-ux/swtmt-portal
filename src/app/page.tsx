@@ -18,6 +18,13 @@ export default async function HomePage() {
   for (const s of stages) counts[s] = 0;
   for (const b of bids || []) counts[b.stage] = (counts[b.stage] || 0) + 1;
 
+  // Deadline alerts: bids due within 7 days
+  const now = new Date();
+  const sevenDays = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+  const urgent = (bids || []).filter(
+    (b) => b.due_date && new Date(b.due_date) <= sevenDays && new Date(b.due_date) >= now
+  );
+
   return (
     <div className="space-y-6">
       <div>
@@ -26,6 +33,24 @@ export default async function HomePage() {
           Welcome back. Pipeline summary and recent activity below.
         </p>
       </div>
+
+      {urgent.length > 0 && (
+        <div className="bg-amber-50 border border-amber-300 rounded-lg p-4">
+          <h2 className="font-semibold text-amber-800 text-sm mb-2">
+            Deadline alert — {urgent.length} bid{urgent.length > 1 ? 's' : ''} due within 7 days
+          </h2>
+          <ul className="space-y-1">
+            {urgent.map((b) => (
+              <li key={b.id} className="text-sm text-amber-900">
+                <Link href={`/bids/${b.id}`} className="underline hover:text-amber-700">
+                  {b.title}
+                </Link>{' '}
+                — due {new Date(b.due_date).toLocaleDateString()}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {stages.slice(0,4).map(stage => (

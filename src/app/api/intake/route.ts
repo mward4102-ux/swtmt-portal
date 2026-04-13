@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient, createServiceClient } from '@/lib/supabase';
+import { IntakeSchema, parseOrRespond } from '@/lib/validation';
 
 export async function POST(req: NextRequest) {
   const supabase = createServerClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
 
-  const body = await req.json();
+  const parsed = parseOrRespond(IntakeSchema, await req.json());
+  if ('error' in parsed) return parsed.error;
+  const body = parsed.data;
   const svc = createServiceClient();
 
   // 1. Upsert the company

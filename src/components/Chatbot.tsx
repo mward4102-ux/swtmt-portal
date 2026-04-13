@@ -6,7 +6,7 @@ type Msg = { role: 'user' | 'assistant'; content: string };
 export function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([
-    { role: 'assistant', content: 'Hi Michael. Ask me to draft a capability statement, pull a document, or post a task to Paperclip.' }
+    { role: 'assistant', content: 'Hi Michael. Ask me to draft a capability statement, pull a document, or answer a compliance question.' }
   ]);
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(false);

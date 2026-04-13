@@ -1,11 +1,23 @@
-# SWTMT Portal — Start Here (v2)
+# SWTMT Portal — Start Here (v3)
 
 Two things in this package:
 
 1. **`SWTMT_PORTAL_ARCHITECTURE.md`** — the full architecture doc. Read first.
 2. **`swtmt-portal/`** — the Next.js web app. Deploys to Netlify. That's the whole system.
 
-No Windows installer, no relay service, no Paperclip agent prompt. v2 is a three-service stack: Netlify + Supabase + Claude Haiku.
+No Windows installer, no relay service, no Paperclip agent prompt. Three-service stack: Netlify + Supabase + Claude Haiku.
+
+## What changed in v3 (reliability upgrades)
+
+- **Zod validation** on every API route via `parseOrRespond()` — bad input returns structured 400 errors instead of crashing.
+- **Supabase client split** — `supabase.ts` is server-only (uses `next/headers`), `supabase-browser.ts` is for `'use client'` pages. No more bundler issues.
+- **LLM retry logic** — Haiku calls retry on 429/529/5xx with 2s/4s backoff before failing.
+- **Deadline alerts** — dashboard shows bids due within 7 days in an amber banner.
+- **Field sanitization** — prefill extraction trims strings and caps field length.
+- **Error boundaries** — `error.tsx` (page-level) and `global-error.tsx` (root-level) catch React errors gracefully.
+- **404 pages** — global `not-found.tsx` and bid-specific `bids/[id]/not-found.tsx`.
+- **Loading skeletons** — `loading.tsx` for dashboard, bids, bid detail, and companies.
+- **Supplementary indexes** — `supabase/indexes.sql` adds `documents(company_id)` and `bid_events(actor_id)`.
 
 ---
 
@@ -20,6 +32,7 @@ Go to https://supabase.com → new project → name it `swtmt-portal`. Save thes
 In the SQL editor, run these in order:
 1. `swtmt-portal/supabase/schema.sql`
 2. `swtmt-portal/supabase/functions.sql`
+3. `swtmt-portal/supabase/indexes.sql` (v3 supplementary indexes)
 
 In Storage, create two buckets: `documents` and `uploads`. Make both private.
 
@@ -90,4 +103,4 @@ Every stubbed file has a `TODO:` comment marking where to extend.
 
 ## When something breaks
 
-Paste the error into a new chat with me and reference "swtmt-portal v2". Keep `SWTMT_PORTAL_ARCHITECTURE.md` as your reference for where new features belong.
+Paste the error into a new chat with me and reference "swtmt-portal v3". Keep `SWTMT_PORTAL_ARCHITECTURE.md` as your reference for where new features belong.

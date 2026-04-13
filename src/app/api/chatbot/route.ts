@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient, createServiceClient } from '@/lib/supabase';
 import { classifyQuery, callHaiku } from '@/lib/llm';
+import { ChatbotSchema, parseOrRespond } from '@/lib/validation';
 
 export async function POST(req: NextRequest) {
   const supabase = createServerClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
 
-  const { messages } = await req.json();
+  const parsed = parseOrRespond(ChatbotSchema, await req.json());
+  if ('error' in parsed) return parsed.error;
+  const { messages } = parsed.data;
   const lastUser = [...messages].reverse().find((m: any) => m.role === 'user')?.content || '';
   const kind = classifyQuery(lastUser);
 

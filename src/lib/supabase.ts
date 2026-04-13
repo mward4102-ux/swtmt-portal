@@ -1,5 +1,9 @@
-import { createBrowserClient, createServerClient as createSSRClient } from '@supabase/ssr';
+// Server-only Supabase clients. Never import this file from 'use client' pages.
+// For browser usage, import from '@/lib/supabase-browser' instead.
+
+import { createServerClient as createSSRClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { createClient } from '@supabase/supabase-js';
 
 export function createServerClient() {
   const cookieStore = cookies();
@@ -20,15 +24,7 @@ export function createServerClient() {
   );
 }
 
-export function createBrowserSupabase() {
-  return createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-}
-
 // Service-role client for server-side admin operations (API routes only)
-import { createClient } from '@supabase/supabase-js';
 export function createServiceClient() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

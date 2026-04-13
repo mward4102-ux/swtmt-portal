@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       text: 'Extract the SDVOSB intake fields from the documents above. Return only the JSON object.'
     });
 
-    const out = await callHaiku(EXTRACTION_SYSTEM_PROMPT, blocks, 2000);
+    const out = await callHaiku(EXTRACTION_SYSTEM_PROMPT, blocks as any, 2000);
 
     // Strip any accidental code fences
     let json = out.text.trim();
@@ -69,10 +69,17 @@ export async function POST(req: NextRequest) {
       }, { status: 500 });
     }
 
-    // Strip null values so they don't overwrite user-entered fields
+    // Sanitize: strip nulls, trim strings, cap field length to prevent injection
+    const MAX_FIELD_LEN = 2000;
     const cleaned: Record<string, any> = {};
     for (const [k, v] of Object.entries(extracted)) {
-      if (v !== null && v !== undefined && v !== '') cleaned[k] = v;
+      if (v === null || v === undefined || v === '') continue;
+      if (typeof v === 'string') {
+        const trimmed = v.trim().slice(0, MAX_FIELD_LEN);
+        if (trimmed) cleaned[k] = trimmed;
+      } else {
+        cleaned[k] = v;
+      }
     }
 
     return NextResponse.json({

@@ -8,9 +8,11 @@
 // Returns an array of Anthropic ContentBlockParam ready to pass to callHaiku.
 
 import mammoth from 'mammoth';
-import type Anthropic from '@anthropic-ai/sdk';
 
-type Block = Anthropic.Messages.ContentBlockParam;
+// The installed SDK version pre-dates DocumentBlockParam, but the runtime API
+// accepts document blocks fine. We use a loose type to keep things compiling.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Block = { type: string; [k: string]: any };
 
 export interface UploadedFile {
   name: string;

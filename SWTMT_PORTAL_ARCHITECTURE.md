@@ -1,6 +1,6 @@
-# SWTMT Portal — Architecture & Build Plan (v2)
+# SWTMT Portal — Architecture & Build Plan (v3)
 
-**Version:** 2.0
+**Version:** 3.0
 **Owner:** Michael Ward / SWTMT Strategic Solutions
 **Date:** April 13, 2026
 
@@ -217,6 +217,32 @@ That's the entire deploy. No Windows-side install, no PM2 addition, no tunnel, n
 | Claude Haiku (~30 bids × ~$0.10) | ~$3–$10 |
 | Domain (optional) | ~$1 |
 | **Total** | **~$5–$12** |
+
+---
+
+---
+
+## 13. v3 reliability upgrades
+
+v3 is a hardening pass — no new features, just making the existing stack more resilient for production use during bid deadlines.
+
+**Input validation:** Every API route uses `parseOrRespond()` from `src/lib/validation.ts` with Zod schemas. Malformed requests get a structured 400 with field-level error messages instead of a 500.
+
+**Supabase client split:** `supabase.ts` is server-only (imports `next/headers`). Client components import from `supabase-browser.ts` instead. This prevents Next.js from bundling server code into the browser.
+
+**LLM retry logic:** `callHaiku()` in `llm.ts` retries on 429, 529, and 5xx errors with 2s/4s backoff (two retries max). Anthropic rate limits won't crash the portal.
+
+**Field sanitization:** The intake prefill route trims extracted strings and caps them at 2000 characters to prevent oversized or whitespace-padded values from Haiku extraction.
+
+**Error boundaries:** `error.tsx` catches page-level React errors with a "Try again" button. `global-error.tsx` catches root layout failures with its own `<html>` shell.
+
+**404 pages:** `not-found.tsx` (global) and `bids/[id]/not-found.tsx` (bid-specific, linked from `notFound()` call in bid detail page).
+
+**Loading skeletons:** Pulse-animated skeleton screens for dashboard, bids list, bid detail, and companies. Users see structure instead of a blank page during server component loads.
+
+**Deadline alerts:** Dashboard shows an amber banner listing bids due within 7 days.
+
+**Supplementary indexes:** `supabase/indexes.sql` adds `documents(company_id)` and `bid_events(actor_id)` for query patterns missed in the original schema.
 
 ---
 

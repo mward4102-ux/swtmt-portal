@@ -2,13 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient, createServiceClient } from '@/lib/supabase';
 import { generateCapabilityStatement } from '@/lib/docgen/capability-statement';
 import { generateSF1449 } from '@/lib/docgen/sf1449';
+import { DocGenerateSchema, parseOrRespond } from '@/lib/validation';
 
 export async function POST(req: NextRequest) {
   const supabase = createServerClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
 
-  const { kind, bid_id, company_id, intake, prompt } = await req.json();
+  const parsed = parseOrRespond(DocGenerateSchema, await req.json());
+  if ('error' in parsed) return parsed.error;
+  const { kind, bid_id, company_id, intake, prompt } = parsed.data;
   const svc = createServiceClient();
 
   let buffer: Buffer;
