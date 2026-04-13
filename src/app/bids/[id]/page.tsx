@@ -46,9 +46,18 @@ export default async function BidDetail({ params }: { params: { id: string } }) 
                   <div className="font-medium text-sm text-ink">{d.filename}</div>
                   <div className="text-xs text-slate-500">{d.kind} · {new Date(d.created_at).toLocaleDateString()}</div>
                 </div>
-                <form action={`/api/documents/download?path=${encodeURIComponent(d.storage_path)}`} method="get">
-                  <button className="text-sm text-navy hover:text-gold">Download</button>
-                </form>
+                {d.storage_path ? (
+                  <a
+                    href={`/api/documents/download?path=${encodeURIComponent(d.storage_path)}`}
+                    className="text-sm text-navy hover:text-gold"
+                  >
+                    Download
+                  </a>
+                ) : (
+                  <span className="text-xs text-slate-400" title="Document failed to upload">
+                    unavailable
+                  </span>
+                )}
               </li>
             ))}
             {(!docs || docs.length === 0) && (
