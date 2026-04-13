@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient, createServiceClient } from '@/lib/supabase';
 import { IntakeSchema, parseOrRespond } from '@/lib/validation';
+import { generateCapabilityStatement } from '@/lib/docgen/capability-statement';
+
+export const maxDuration = 60;
 
 export async function POST(req: NextRequest) {
   const supabase = createServerClient();
@@ -12,7 +15,6 @@ export async function POST(req: NextRequest) {
   const body = parsed.data;
   const svc = createServiceClient();
 
-  // 1. Upsert the company
   const naicsArr = typeof body.naics_codes === 'string'
     ? body.naics_codes.split(',').map((s: string) => s.trim()).filter(Boolean)
     : [];
@@ -32,7 +34,6 @@ export async function POST(req: NextRequest) {
     .single();
   if (cErr) return NextResponse.json({ error: cErr.message }, { status: 500 });
 
-  // 2. Store the raw intake
   await svc.from('intakes').insert({
     company_id: company.id,
     submitted_by: user.id,
@@ -40,7 +41,6 @@ export async function POST(req: NextRequest) {
     status: 'processed'
   });
 
-  // 3. Create a placeholder bid record so the pipeline has something to track
   const { data: bid } = await svc
     .from('bids')
     .insert({
@@ -52,17 +52,53 @@ export async function POST(req: NextRequest) {
     .select()
     .single();
 
-  // 4. Kick off document generation (fire and forget)
-  fetch(new URL('/api/documents/generate', req.url), {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', cookie: req.headers.get('cookie') || '' },
-    body: JSON.stringify({
-      kind: 'capability_statement',
+  // Generate capability statement INLINE so it actually runs on Netlify
+  // (fire-and-forget fetch between functions doesn't work reliably)
+  let docResult: { ok: boolean; filename?: string; error?: string } = { ok: false };
+  try {
+    const r = await generateCapabilityStatement(body);
+    const path = `${company.id}/${Date.now()}-${r.filename}`;
+    const up = await svc.storage.from('documents').upload(path, r.buffer, {
+      contentType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      upsert: false
+    });
+    if (up.error) throw up.error;
+
+    await svc.from('documents').insert({
       bid_id: bid?.id,
       company_id: company.id,
-      intake: body
-    })
-  }).catch(() => {});
+      kind: 'capability_statement',
+      filename: r.filename,
+      storage_path: path,
+      generator: 'template',
+      generated_by: user.id
+    });
 
-  return NextResponse.json({ ok: true, company_id: company.id, bid_id: bid?.id });
+    if (bid?.id) {
+      await svc.from('bid_events').insert({
+        bid_id: bid.id,
+        actor_id: user.id,
+        event_type: 'document_generated',
+        payload: { kind: 'capability_statement', filename: r.filename }
+      });
+    }
+    docResult = { ok: true, filename: r.filename };
+  } catch (e: any) {
+    docResult = { ok: false, error: e.message };
+    if (bid?.id) {
+      await svc.from('bid_events').insert({
+        bid_id: bid.id,
+        actor_id: user.id,
+        event_type: 'document_generation_failed',
+        payload: { error: e.message }
+      });
+    }
+  }
+
+  return NextResponse.json({
+    ok: true,
+    company_id: company.id,
+    bid_id: bid?.id,
+    document: docResult
+  });
 }

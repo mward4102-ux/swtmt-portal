@@ -4,6 +4,8 @@ import { generateCapabilityStatement } from '@/lib/docgen/capability-statement';
 import { generateSF1449 } from '@/lib/docgen/sf1449';
 import { DocGenerateSchema, parseOrRespond } from '@/lib/validation';
 
+export const maxDuration = 60;
+
 export async function POST(req: NextRequest) {
   const supabase = createServerClient();
   const { data: { user } } = await supabase.auth.getUser();
