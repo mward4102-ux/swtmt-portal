@@ -1,4 +1,5 @@
 import { createServerClient } from '@/lib/supabase';
+import Link from 'next/link';
 
 export default async function CompaniesPage() {
   const supabase = createServerClient();
@@ -18,6 +19,7 @@ export default async function CompaniesPage() {
               <th className="px-4 py-2">NAICS</th>
               <th className="px-4 py-2">SDVOSB</th>
               <th className="px-4 py-2">SAM Status</th>
+              <th className="px-4 py-2"></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -27,10 +29,15 @@ export default async function CompaniesPage() {
                 <td className="px-4 py-2 text-slate-600">{(c.naics || []).join(', ')}</td>
                 <td className="px-4 py-2">{c.sdvosb_certified ? '✓' : '—'}</td>
                 <td className="px-4 py-2 text-slate-600">{c.sam_status || '—'}</td>
+                <td className="px-4 py-2">
+                  <Link href={`/companies/${c.id}/past-performance`} className="text-xs text-navy hover:text-gold">
+                    Past Performance
+                  </Link>
+                </td>
               </tr>
             ))}
             {(!companies || companies.length === 0) && (
-              <tr><td colSpan={4} className="px-4 py-6 text-center text-slate-500">No companies yet.</td></tr>
+              <tr><td colSpan={5} className="px-4 py-6 text-center text-slate-500">No companies yet.</td></tr>
             )}
           </tbody>
         </table>
