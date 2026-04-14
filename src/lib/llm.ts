@@ -143,7 +143,7 @@ export async function callOpus(
   maxTokens = 4000,
   enableWebSearch = false
 ): Promise<LLMResult> {
-  return callInternal('claude-opus-4-6', system, userContent, maxTokens, enableWebSearch);
+  return callInternal('claude-opus-4-5', system, userContent, maxTokens, enableWebSearch);
 }
 
 // ─────────────────────────────────────────────────────────
