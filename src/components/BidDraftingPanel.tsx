@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 // ─────────────────────────────────────────────────────────
 // Types
@@ -41,6 +41,9 @@ interface Props {
 
 type PipelineStage = 'idle' | 'uploading' | 'researching' | 'pricing' | 'drafting' | 'compliance' | 'assembling';
 
+const POLL_INTERVAL_MS = 5_000;
+const POLL_MAX_MS = 5 * 60 * 1_000; // 5 minute safety cutoff
+
 // ─────────────────────────────────────────────────────────
 // Component
 // ─────────────────────────────────────────────────────────
@@ -58,16 +61,66 @@ export function BidDraftingPanel({
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const [complianceResult, setComplianceResult] = useState<any>(null);
   const [draftingProgress, setDraftingProgress] = useState('');
+  const [agentElapsed, setAgentElapsed] = useState(0);
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // ─── Helpers ───
   const api = useCallback(async (path: string, opts?: RequestInit) => {
     const r = await fetch(path, { method: 'POST', ...opts });
     const j = await r.json();
-    if (!r.ok) throw new Error(j.error || `Request failed (${r.status})`);
-    return j;
+    // 202 is expected for background agents — not an error
+    if (!r.ok && r.status !== 202) throw new Error(j.error || `Request failed (${r.status})`);
+    return { ...j, httpStatus: r.status };
   }, []);
 
-  // ─── Solicitation Upload ───
+  // Stop any active polling loop
+  function stopPolling() {
+    if (pollRef.current) {
+      clearInterval(pollRef.current);
+      pollRef.current = null;
+    }
+  }
+
+  // Poll /api/bids/{id}/agent-status?agent=<name> until success/error or timeout
+  function pollAgentStatus(
+    agentName: string,
+    onSuccess: () => Promise<void>,
+    onError: (msg: string) => void
+  ) {
+    const startTime = Date.now();
+    setAgentElapsed(0);
+
+    pollRef.current = setInterval(async () => {
+      const elapsed = Date.now() - startTime;
+      setAgentElapsed(Math.round(elapsed / 1000));
+
+      // Safety cutoff
+      if (elapsed > POLL_MAX_MS) {
+        stopPolling();
+        onError('Agent timed out after 5 minutes. Check the Netlify function logs for details.');
+        return;
+      }
+
+      try {
+        const r = await fetch(`/api/bids/${bidId}/agent-status?agent=${agentName}`);
+        if (!r.ok) return; // retry next interval
+        const j = await r.json();
+
+        if (j.status === 'success') {
+          stopPolling();
+          await onSuccess();
+        } else if (j.status === 'error') {
+          stopPolling();
+          onError(j.error || 'Agent failed with unknown error');
+        }
+        // 'running' or 'not_started' → keep polling
+      } catch {
+        // Network error — retry next interval
+      }
+    }, POLL_INTERVAL_MS);
+  }
+
+  // ─── Solicitation Upload (sync — fast enough) ───
   async function uploadSolicitation(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -85,35 +138,73 @@ export function BidDraftingPanel({
     }
   }
 
-  // ─── Research ───
+  // ─── Research (background + polling) ───
   async function runResearch() {
     setStage('researching');
     setError(null);
     try {
       const j = await api(`/api/bids/${bidId}/research`);
-      setRB(j.brief);
+
+      if (j.httpStatus === 202) {
+        // Background function launched — poll for completion
+        pollAgentStatus(
+          'research_agent',
+          async () => {
+            // On success: reload research brief from the database via page refresh data
+            const r = await fetch(`/api/bids/${bidId}/agent-status?agent=research_agent`);
+            const status = await r.json();
+            setCost(c => c + (status.cost_usd || 0));
+            // Reload the page to pull fresh research_brief from server
+            window.location.reload();
+          },
+          (msg) => {
+            setError(msg);
+            setStage('idle');
+          }
+        );
+      } else {
+        // Fallback: if the response wasn't 202, treat as synchronous (local dev)
+        setRB(j.brief);
+        setStage('idle');
+      }
     } catch (err: any) {
       setError(err.message);
-    } finally {
       setStage('idle');
     }
   }
 
-  // ─── Pricing ───
+  // ─── Pricing (background + polling) ───
   async function runPricing() {
     setStage('pricing');
     setError(null);
     try {
       const j = await api(`/api/bids/${bidId}/pricing`);
-      setPA(j.analysis);
+
+      if (j.httpStatus === 202) {
+        pollAgentStatus(
+          'pricing_agent',
+          async () => {
+            const r = await fetch(`/api/bids/${bidId}/agent-status?agent=pricing_agent`);
+            const status = await r.json();
+            setCost(c => c + (status.cost_usd || 0));
+            window.location.reload();
+          },
+          (msg) => {
+            setError(msg);
+            setStage('idle');
+          }
+        );
+      } else {
+        setPA(j.analysis);
+        setStage('idle');
+      }
     } catch (err: any) {
       setError(err.message);
-    } finally {
       setStage('idle');
     }
   }
 
-  // ─── Full Drafting (polling pattern) ───
+  // ─── Full Drafting (polling pattern — unchanged) ───
   async function startDrafting() {
     setStage('drafting');
     setError(null);
@@ -181,22 +272,41 @@ export function BidDraftingPanel({
     }
   }
 
-  // ─── Compliance ───
+  // ─── Compliance (background + polling) ───
   async function runCompliance() {
     setStage('compliance');
     setError(null);
     try {
       const j = await api(`/api/bids/${bidId}/final-compliance`);
-      setComplianceResult(j);
-      setCost(c => c + (j.cost_usd || 0));
+
+      if (j.httpStatus === 202) {
+        pollAgentStatus(
+          'compliance_agent',
+          async () => {
+            // Compliance result is stored as a bid_event — reload page to get it
+            const r = await fetch(`/api/bids/${bidId}/agent-status?agent=compliance_agent`);
+            const status = await r.json();
+            setCost(c => c + (status.cost_usd || 0));
+            window.location.reload();
+          },
+          (msg) => {
+            setError(msg);
+            setStage('idle');
+          }
+        );
+      } else {
+        // Synchronous fallback (local dev)
+        setComplianceResult(j);
+        setCost(c => c + (j.cost_usd || 0));
+        setStage('idle');
+      }
     } catch (err: any) {
       setError(err.message);
-    } finally {
       setStage('idle');
     }
   }
 
-  // ─── Assemble ───
+  // ─── Assemble (sync — DOCX generation is fast) ───
   async function assemble() {
     setStage('assembling');
     setError(null);
@@ -233,6 +343,13 @@ export function BidDraftingPanel({
     );
   }
 
+  // Label for the agent running in the background
+  const stageLabels: Record<PipelineStage, string> = {
+    idle: '', uploading: 'Extracting solicitation',
+    researching: 'Research agent', pricing: 'Pricing agent',
+    drafting: 'Drafting', compliance: 'Compliance check', assembling: 'Assembling document'
+  };
+
   // ─── RENDER ───
   return (
     <div className="bg-white rounded-lg border border-slate-200 shadow-sm">
@@ -246,6 +363,17 @@ export function BidDraftingPanel({
           <div className="bg-red-50 border border-red-200 rounded p-3 text-sm text-red-800">
             {error}
             <button onClick={() => setError(null)} className="ml-2 text-red-500 underline text-xs">dismiss</button>
+          </div>
+        )}
+
+        {/* ─── Background agent progress indicator ─── */}
+        {busy && (stage === 'researching' || stage === 'pricing' || stage === 'compliance') && agentElapsed > 0 && (
+          <div className="bg-blue-50 border border-blue-200 rounded p-3 text-sm text-blue-800 flex items-center gap-2">
+            <svg className="animate-spin h-4 w-4 text-blue-600" viewBox="0 0 24 24" fill="none">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            {stageLabels[stage]} running... ({agentElapsed}s elapsed)
           </div>
         )}
 
@@ -290,7 +418,7 @@ export function BidDraftingPanel({
             disabled={busy}
             className="w-full bg-navy hover:bg-ink text-white py-2 rounded text-sm font-medium disabled:opacity-50"
           >
-            {stage === 'researching' ? 'Running Research Agent...' : 'Step 2: Run Research Agent'}
+            {stage === 'researching' ? `Running Research Agent... (${agentElapsed}s)` : 'Step 2: Run Research Agent'}
           </button>
         )}
 
@@ -314,7 +442,7 @@ export function BidDraftingPanel({
             disabled={busy}
             className="w-full bg-navy hover:bg-ink text-white py-2 rounded text-sm font-medium disabled:opacity-50"
           >
-            {stage === 'pricing' ? 'Running Pricing Agent...' : 'Step 3: Run Pricing Agent'}
+            {stage === 'pricing' ? `Running Pricing Agent... (${agentElapsed}s)` : 'Step 3: Run Pricing Agent'}
           </button>
         )}
 
@@ -415,7 +543,7 @@ export function BidDraftingPanel({
                 disabled={busy}
                 className="flex-1 bg-navy hover:bg-ink text-white py-2 rounded text-sm font-medium disabled:opacity-50"
               >
-                {stage === 'compliance' ? 'Running Compliance Check...' : 'Run Final Compliance Check'}
+                {stage === 'compliance' ? `Running Compliance... (${agentElapsed}s)` : 'Run Final Compliance Check'}
               </button>
               <button
                 onClick={assemble}
