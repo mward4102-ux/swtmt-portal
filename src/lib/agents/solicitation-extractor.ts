@@ -6,6 +6,7 @@
 import { callHaiku } from '../llm';
 import { filesToContentBlocks, type UploadedFile } from '../extract';
 import { createServiceClient } from '../supabase';
+import { parseJsonOrThrow } from './json-utils';
 
 const SOLICITATION_EXTRACTION_PROMPT = `You are a federal contracting solicitation parser. You receive one or more documents that together constitute a government solicitation (RFP, RFQ, Sources Sought, Combined Synopsis/Solicitation, or similar procurement document).
 
@@ -118,15 +119,7 @@ export async function extractSolicitation(
     cost_usd = out.cost_usd;
 
     // Parse JSON — strip code fences if present
-    let json = out.text.trim();
-    json = json.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '');
-
-    let extraction: SolicitationExtraction;
-    try {
-      extraction = JSON.parse(json);
-    } catch {
-      throw new Error(`Failed to parse solicitation extraction JSON. Raw output: ${out.text.slice(0, 500)}`);
-    }
+    let extraction: SolicitationExtraction = parseJsonOrThrow(out.text, 'solicitation extraction');
 
     // Normalize arrays that might be null
     extraction.extracted_requirements = extraction.extracted_requirements || [];

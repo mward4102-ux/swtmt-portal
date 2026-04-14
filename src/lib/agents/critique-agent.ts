@@ -5,6 +5,7 @@
 import { callOpus } from '../llm';
 import { createServiceClient } from '../supabase';
 import type { DraftingContext } from './drafting-agent';
+import { parseJsonOrThrow } from './json-utils';
 
 const CRITIQUE_PROMPT = `You are a senior federal contracting Source Selection Evaluation Board (SSEB) member scoring a proposal section. You have evaluated hundreds of proposals. You are thorough, fair, and constructive — but you do not tolerate generic language, missing requirement responses, or weak differentiators.
 
@@ -94,10 +95,7 @@ export async function critiqueSection(
     const out = await callOpus(CRITIQUE_PROMPT, userContent, 2000);
     cost_usd = out.cost_usd;
 
-    let json = out.text.trim();
-    json = json.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '');
-
-    const parsed = JSON.parse(json);
+    const parsed = parseJsonOrThrow(out.text, 'critique evaluation');
 
     return {
       scores: parsed.scores,

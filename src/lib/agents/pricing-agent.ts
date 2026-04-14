@@ -6,6 +6,7 @@
 import { callOpus } from '../llm';
 import { createServiceClient } from '../supabase';
 import { fetchBLSLaborRates } from '../research/bls-labor';
+import { parseJsonOrThrow } from './json-utils';
 
 const PRICING_PROMPT = `You are a federal contracting pricing analyst preparing a competitive price analysis for an SDVOSB small business. You have been given:
 1. The solicitation requirements (scope, period of performance, contract type)
@@ -163,15 +164,7 @@ export async function runPricingAgent(bidId: string): Promise<PricingAnalysis> {
     );
     totalCost += out.cost_usd;
 
-    let json = out.text.trim();
-    json = json.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '');
-
-    let analysis: PricingAnalysis;
-    try {
-      analysis = JSON.parse(json);
-    } catch {
-      throw new Error(`Failed to parse pricing analysis JSON. Raw: ${out.text.slice(0, 500)}`);
-    }
+    const analysis: PricingAnalysis = parseJsonOrThrow(out.text, 'pricing analysis');
 
     // Store in database
     await svc.from('pricing_analyses').upsert({

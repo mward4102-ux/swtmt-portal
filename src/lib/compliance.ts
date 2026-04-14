@@ -5,6 +5,7 @@
 
 import { callOpus } from './llm';
 import { createServiceClient } from './supabase';
+import { parseJsonOrThrow } from './agents/json-utils';
 
 export const COMPLIANCE_SYSTEM_PROMPT = `You are a senior federal contracting compliance reviewer conducting a final pre-submission audit of an SDVOSB proposal. You have deep expertise in FAR, DFARS, and VA-specific acquisition regulations (VAAR).
 
@@ -150,10 +151,7 @@ export async function runFinalComplianceCheck(bidId: string): Promise<Compliance
     );
     cost_usd = out.cost_usd;
 
-    let json = out.text.trim();
-    json = json.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '');
-
-    const result = JSON.parse(json);
+    const result = parseJsonOrThrow(out.text, 'compliance review');
 
     // Store as bid event
     await svc.from('bid_events').insert({

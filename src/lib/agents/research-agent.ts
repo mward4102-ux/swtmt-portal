@@ -8,6 +8,7 @@ import { createServiceClient } from '../supabase';
 import { searchUSASpending } from '../research/usaspending';
 import { searchSAMOpportunities } from '../research/sam-gov';
 import { fetchAgencyContext } from '../research/agency-intel';
+import { parseJsonOrThrow } from './json-utils';
 
 const SYNTHESIS_PROMPT = `You are a federal contracting competitive intelligence analyst. You have been given raw research data from USAspending.gov (historical awards), SAM.gov (recent opportunities), and agency strategic context for a specific procurement.
 
@@ -144,15 +145,7 @@ export async function runResearchAgent(bidId: string): Promise<ResearchBrief> {
     );
     totalCost += out.cost_usd;
 
-    let json = out.text.trim();
-    json = json.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/, '');
-
-    let brief: ResearchBrief;
-    try {
-      brief = JSON.parse(json);
-    } catch {
-      throw new Error(`Failed to parse research brief JSON. Raw: ${out.text.slice(0, 500)}`);
-    }
+    const brief: ResearchBrief = parseJsonOrThrow(out.text, 'research synthesis');
 
     // Store in database
     await svc.from('research_briefs').upsert({
