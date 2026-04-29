@@ -37,6 +37,7 @@ interface Props {
   pricingAnalysis: any | null;
   sections: BidSection[];
   totalBidCost: number;
+  complianceResult?: any | null;
 }
 
 type PipelineStage = 'idle' | 'uploading' | 'researching' | 'pricing' | 'drafting' | 'compliance' | 'assembling';
@@ -49,7 +50,8 @@ const POLL_MAX_MS = 5 * 60 * 1_000; // 5 minute safety cutoff
 // ─────────────────────────────────────────────────────────
 export function BidDraftingPanel({
   bidId, companyId, solicitation: initSol, researchBrief: initRB,
-  pricingAnalysis: initPA, sections: initSections, totalBidCost: initCost
+  pricingAnalysis: initPA, sections: initSections, totalBidCost: initCost,
+  complianceResult: initCompliance = null
 }: Props) {
   const [sol, setSol] = useState<Solicitation | null>(initSol);
   const [rb, setRB] = useState<any>(initRB);
@@ -59,7 +61,7 @@ export function BidDraftingPanel({
   const [stage, setStage] = useState<PipelineStage>('idle');
   const [error, setError] = useState<string | null>(null);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
-  const [complianceResult, setComplianceResult] = useState<any>(null);
+  const [complianceResult, setComplianceResult] = useState<any>(initCompliance);
   const [draftingProgress, setDraftingProgress] = useState('');
   const [agentElapsed, setAgentElapsed] = useState(0);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);

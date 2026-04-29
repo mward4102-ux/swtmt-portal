@@ -24,10 +24,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {user && (
               <nav className="flex gap-5 text-sm">
                 <Link href="/bids" className="hover:text-gold">Bids</Link>
-                <Link href="/opportunities" className="hover:text-gold">Opportunities</Link>
                 <Link href="/intake" className="hover:text-gold">Intake</Link>
                 <Link href="/companies" className="hover:text-gold">Companies</Link>
-                <Link href="/admin" className="hover:text-gold">Admin</Link>
                 <Link href="/api/auth/signout" className="hover:text-gold">Sign out</Link>
               </nav>
             )}

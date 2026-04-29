@@ -33,7 +33,7 @@ export default async function BidDetail({ params }: { params: { id: string } }) 
   const events = eventsResult.data;
 
   // Load Phase A data (may not exist yet)
-  const [solResult, rbResult, paResult, sectionsResult, agentRunsResult] = await Promise.all([
+  const [solResult, rbResult, paResult, sectionsResult, agentRunsResult, complianceEventResult] = await Promise.all([
     svc.from('solicitations').select('*').eq('bid_id', params.id).single(),
     svc.from('research_briefs').select('*').eq('bid_id', params.id).single(),
     svc.from('pricing_analyses').select('*').eq('bid_id', params.id).single(),
@@ -45,7 +45,15 @@ export default async function BidDetail({ params }: { params: { id: string } }) 
     svc
       .from('bid_agent_runs')
       .select('cost_usd')
+      .eq('bid_id', params.id),
+    svc
+      .from('bid_events')
+      .select('payload, created_at')
       .eq('bid_id', params.id)
+      .eq('event_type', 'final_compliance_check')
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .maybeSingle()
   ]);
 
   const solicitation = solResult.data;
@@ -56,6 +64,7 @@ export default async function BidDetail({ params }: { params: { id: string } }) 
     (sum: number, r: { cost_usd: number | null }) => sum + (r.cost_usd || 0),
     0
   );
+  const complianceResult = complianceEventResult.data?.payload || null;
 
   return (
     <div className="space-y-6">
@@ -80,6 +89,7 @@ export default async function BidDetail({ params }: { params: { id: string } }) 
         pricingAnalysis={pricingAnalysis}
         sections={sections}
         totalBidCost={totalBidCost}
+        complianceResult={complianceResult}
       />
 
       <div className="grid md:grid-cols-2 gap-4">

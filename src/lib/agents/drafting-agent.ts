@@ -3,7 +3,7 @@
 // and a target word count. The prompts are highly specific to federal contracting voice,
 // SDVOSB positioning, and evaluator expectations.
 
-import { callModel, type ModelChoice, type LLMResult } from '../llm';
+import { callModel, OPUS_MODEL, HAIKU_MODEL, type ModelChoice, type LLMResult } from '../llm';
 
 // ─────────────────────────────────────────────────────────
 // Section definitions — order, model routing, target length
@@ -218,7 +218,7 @@ export async function draftSection(
   // Count words
   const word_count = content.split(/\s+/).filter(w => w.length > 0).length;
 
-  const modelString = def.model === 'opus' ? 'claude-opus-4-6' : 'claude-haiku-4-5';
+  const modelString = def.model === 'opus' ? OPUS_MODEL : HAIKU_MODEL;
 
   return {
     content,

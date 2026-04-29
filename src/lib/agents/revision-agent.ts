@@ -2,7 +2,7 @@
 // Takes a drafted section and a critique, revises the section to address weaknesses.
 // Uses the same model that generated the original section (Opus or Haiku).
 
-import { callModel, type LLMResult } from '../llm';
+import { callModel, OPUS_MODEL, HAIKU_MODEL, type LLMResult } from '../llm';
 import { createServiceClient } from '../supabase';
 import { SECTION_DEFINITIONS, type DraftingContext } from './drafting-agent';
 
@@ -77,7 +77,7 @@ export async function reviseSection(
     content = content.replace(/^```[a-z]*\s*/i, '').replace(/\s*```$/, '');
 
     const word_count = content.split(/\s+/).filter(w => w.length > 0).length;
-    const modelString = def.model === 'opus' ? 'claude-opus-4-6' : 'claude-haiku-4-5';
+    const modelString = def.model === 'opus' ? OPUS_MODEL : HAIKU_MODEL;
 
     return { content, word_count, model_used: modelString, cost_usd };
   } catch (e: any) {

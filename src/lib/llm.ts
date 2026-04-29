@@ -9,6 +9,11 @@ import { createServiceClient } from './supabase';
 // Michael updates the actual Netlify env var; this default is just a fallback.
 const CAP = parseFloat(process.env.LLM_MONTHLY_CAP_USD || '200');
 
+// Model identifiers — single source of truth. Update here when bumping models;
+// drafting-agent / revision-agent / DB labels all derive from these.
+export const OPUS_MODEL = 'claude-opus-4-5';
+export const HAIKU_MODEL = 'claude-haiku-4-5';
+
 // ─────────────────────────────────────────────────────────
 // Pricing per million tokens (update if Anthropic changes rates)
 // ─────────────────────────────────────────────────────────
@@ -131,7 +136,7 @@ export async function callHaiku(
   maxTokens = 1500,
   enableWebSearch = false
 ): Promise<LLMResult> {
-  return callInternal('claude-haiku-4-5', system, userContent, maxTokens, enableWebSearch);
+  return callInternal(HAIKU_MODEL, system, userContent, maxTokens, enableWebSearch);
 }
 
 // ─────────────────────────────────────────────────────────
@@ -143,7 +148,7 @@ export async function callOpus(
   maxTokens = 4000,
   enableWebSearch = false
 ): Promise<LLMResult> {
-  return callInternal('claude-opus-4-5', system, userContent, maxTokens, enableWebSearch);
+  return callInternal(OPUS_MODEL, system, userContent, maxTokens, enableWebSearch);
 }
 
 // ─────────────────────────────────────────────────────────
