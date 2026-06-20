@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import type { ComponentType } from "react";
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { StatTile } from "@/components/ui/Cards";
 import { StatusChip } from "@/components/ui/chips";
 import {
-  IconAlert, IconBell, IconBriefcase, IconCalendar, IconDoc, IconSparkles, IconUser,
+  IconAlert, IconBell, IconBriefcase, IconCalendar, IconChevronRight, IconDoc, IconSparkles, IconUser,
 } from "@/components/ui/icons";
 import { requireAgent } from "@/lib/auth";
+import { recordSubject } from "@/lib/canonical";
 import { getDb } from "@/lib/db";
-import { LEAD_STATUSES, type InboxItem } from "@/lib/types";
-import { cn, timeAgo } from "@/lib/utils";
+import { LEAD_STATUSES, QUOTE_LINES } from "@/lib/types";
+import { cn, formatDateTime, timeAgo } from "@/lib/utils";
 
 export const metadata: Metadata = { title: "Dashboard" };
 export const dynamic = "force-dynamic";
@@ -18,47 +20,50 @@ const COLUMN_LABELS: Record<string, string> = {
   new: "New", in_progress: "In progress", quoted: "Quoted", closed: "Closed",
 };
 
-const INBOX_ICON = { document: IconDoc, quote: IconSparkles, appointment: IconCalendar };
-
 export default async function DashboardPage() {
   await requireAgent();
   const db = getDb();
   const leads = db.listLeads();
   const stats = db.getStats();
-  const inbox = db.getInbox().slice(0, 8);
   const outbox = db.listOutbox(6);
 
+  const toReview = db.listDocuments().filter((d) => !d.reviewed);
+  const openQuotes = db.listQuotes().filter((q) => q.status === "submitted" || q.status === "in_progress");
+  const upcoming = db
+    .listAppointments()
+    .filter((a) => a.status === "booked" && new Date(a.startsAt).getTime() > Date.now())
+    .sort((a, b) => (a.startsAt < b.startsAt ? -1 : 1));
+
+  const leadName = (id: string | null) => (id ? db.getLead(id)?.displayName ?? "Lead" : "Lead");
   const leadMeta = (id: string) => {
     const docs = db.getDocumentsByLead(id);
-    return {
-      docs: docs.length,
-      review: docs.filter((d) => !d.reviewed).length,
-      quotes: db.getQuotesByLead(id).length,
-    };
+    return { docs: docs.length, review: docs.filter((d) => !d.reviewed).length, quotes: db.getQuotesByLead(id).length };
   };
 
   return (
     <div>
       <PageHeader title="Dashboard" subtitle="Incoming quotes, uploads and bookings — every customer, ready to action." />
 
+      {/* Tiles — each links to the matching items */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-        <StatTile label="Leads" value={stats.totalLeads} icon={IconUser} accent />
-        <StatTile label="New" value={stats.newLeads} icon={IconBell} />
-        <StatTile label="Open quotes" value={stats.openQuotes} icon={IconSparkles} />
-        <StatTile label="Upcoming" value={stats.upcomingAppointments} icon={IconCalendar} />
-        <StatTile label="To review" value={stats.docsToReview} icon={IconAlert} />
+        <StatTile label="Leads" value={stats.totalLeads} icon={IconUser} accent href="#pipeline" />
+        <StatTile label="New" value={stats.newLeads} icon={IconBell} href="#pipeline" />
+        <StatTile label="Open quotes" value={stats.openQuotes} icon={IconSparkles} href="#quotes" />
+        <StatTile label="To review" value={stats.docsToReview} icon={IconAlert} href="#review" />
+        <StatTile label="Upcoming" value={stats.upcomingAppointments} icon={IconCalendar} href="#appointments" />
       </div>
 
       {stats.docsToReview > 0 && (
-        <div className="mt-4 flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+        <Link href="#review" className="mt-4 flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 transition hover:bg-amber-100">
           <IconAlert className="h-4 w-4" />
           {stats.docsToReview} extracted document{stats.docsToReview > 1 ? "s have" : " has"} low-confidence fields awaiting review.
-        </div>
+          <IconChevronRight className="ml-auto h-4 w-4" />
+        </Link>
       )}
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
         {/* Pipeline */}
-        <section>
+        <section id="pipeline" className="scroll-mt-24">
           <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">Pipeline</h2>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             {LEAD_STATUSES.map((status) => {
@@ -97,34 +102,32 @@ export default async function DashboardPage() {
           </div>
         </section>
 
-        {/* Activity + notifications */}
+        {/* Action lists + notifications */}
         <div className="space-y-6">
-          <section>
-            <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">Recent activity</h2>
-            <div className="card divide-y divide-slate-100">
-              {inbox.map((item: InboxItem) => {
-                const Icon = INBOX_ICON[item.type];
-                const inner = (
-                  <div className="flex items-center gap-3 p-3.5">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600"><Icon className="h-4.5 w-4.5" /></div>
-                    <div className="min-w-0 flex-1">
-                      <div className="truncate text-sm font-semibold text-brand-900">{item.title}</div>
-                      <div className="truncate text-xs text-slate-500">{item.subtitle}</div>
-                    </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <StatusChip status={item.status} />
-                      <span className="text-[11px] text-slate-400">{timeAgo(item.at)}</span>
-                    </div>
-                  </div>
-                );
-                return item.leadId ? (
-                  <Link key={item.id} href={`/lead/${item.leadId}`} className="block transition hover:bg-slate-50">{inner}</Link>
-                ) : (
-                  <div key={item.id}>{inner}</div>
-                );
-              })}
-            </div>
-          </section>
+          <ActionCard id="review" title="Documents to review" empty="Nothing to review — all extractions confirmed.">
+            {toReview.map((d) => (
+              <ActionRow key={d.id} href={`/lead/${d.leadId}`} icon={IconDoc} title={recordSubject(d.record)} subtitle={d.fileName} right={<StatusChip status="needs review" />} />
+            ))}
+          </ActionCard>
+
+          <ActionCard id="quotes" title="Open quotes" empty="No open quotes right now.">
+            {openQuotes.map((q) => (
+              <ActionRow
+                key={q.id}
+                href={`/lead/${q.leadId}`}
+                icon={IconSparkles}
+                title={leadName(q.leadId)}
+                subtitle={q.lines.map((l) => QUOTE_LINES.find((x) => x.id === l.line)?.label ?? l.line).join(", ")}
+                right={<StatusChip status={q.status} />}
+              />
+            ))}
+          </ActionCard>
+
+          <ActionCard id="appointments" title="Upcoming appointments" empty="No upcoming appointments.">
+            {upcoming.map((a) => (
+              <ActionRow key={a.id} href={a.leadId ? `/lead/${a.leadId}` : undefined} icon={IconCalendar} title={a.name} subtitle={a.eventType} right={<span className="text-[11px] font-medium text-slate-500">{formatDateTime(a.startsAt)}</span>} />
+            ))}
+          </ActionCard>
 
           <section>
             <h2 className="mb-3 flex items-center gap-1.5 text-sm font-bold uppercase tracking-wide text-slate-500"><IconBell className="h-4 w-4" /> Notifications sent</h2>
@@ -146,4 +149,30 @@ export default async function DashboardPage() {
       </div>
     </div>
   );
+}
+
+function ActionCard({ id, title, empty, children }: { id: string; title: string; empty: string; children: React.ReactNode[] }) {
+  const has = Array.isArray(children) && children.length > 0;
+  return (
+    <section id={id} className="scroll-mt-24">
+      <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">{title}</h2>
+      <div className="card divide-y divide-slate-100">
+        {has ? children : <p className="p-4 text-sm text-slate-400">{empty}</p>}
+      </div>
+    </section>
+  );
+}
+
+function ActionRow({ href, icon: Icon, title, subtitle, right }: { href?: string; icon: ComponentType<{ className?: string }>; title: string; subtitle: string; right?: React.ReactNode }) {
+  const inner = (
+    <div className="flex items-center gap-3 p-3.5">
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600"><Icon className="h-4 w-4" /></div>
+      <div className="min-w-0 flex-1">
+        <div className="truncate text-sm font-semibold text-brand-900">{title}</div>
+        <div className="truncate text-xs text-slate-500">{subtitle}</div>
+      </div>
+      {right}
+    </div>
+  );
+  return href ? <Link href={href} className="block transition hover:bg-slate-50">{inner}</Link> : <div>{inner}</div>;
 }

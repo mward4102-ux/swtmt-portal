@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 
 type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 
-export function StatTile({ label, value, icon: Icon, accent }: { label: string; value: string | number; icon: IconType; accent?: boolean }) {
-  return (
-    <div className={cn("card flex items-center gap-3 p-4", accent && "border-brand-200 bg-brand-50/50")}>
+export function StatTile({ label, value, icon: Icon, accent, href }: { label: string; value: string | number; icon: IconType; accent?: boolean; href?: string }) {
+  const inner = (
+    <>
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
         <Icon className="h-5 w-5" />
       </div>
@@ -14,8 +14,17 @@ export function StatTile({ label, value, icon: Icon, accent }: { label: string; 
         <div className="text-xl font-extrabold leading-none text-brand-950">{value}</div>
         <div className="mt-1 text-xs font-medium text-slate-500">{label}</div>
       </div>
-    </div>
+    </>
   );
+  const base = cn("card flex items-center gap-3 p-4", accent && "border-brand-200 bg-brand-50/50");
+  if (href) {
+    return (
+      <Link href={href} className={cn(base, "transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg")}>
+        {inner}
+      </Link>
+    );
+  }
+  return <div className={base}>{inner}</div>;
 }
 
 export function DataRow({ label, value }: { label: string; value: React.ReactNode }) {
@@ -27,9 +36,9 @@ export function DataRow({ label, value }: { label: string; value: React.ReactNod
   );
 }
 
-export function SectionCard({ title, action, children, className }: { title: string; action?: React.ReactNode; children: React.ReactNode; className?: string }) {
+export function SectionCard({ title, action, children, className, id }: { title: string; action?: React.ReactNode; children: React.ReactNode; className?: string; id?: string }) {
   return (
-    <div className={cn("card p-5", className)}>
+    <div id={id} className={cn("card p-5 scroll-mt-24", className)}>
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">{title}</h2>
         {action}

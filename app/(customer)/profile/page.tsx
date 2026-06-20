@@ -28,10 +28,10 @@ export default async function ProfilePage() {
       <PageHeader title={`Hi, ${user.fullName.split(" ")[0]}`} subtitle="Your profile vault — everything we've learned from your documents, ready to reuse." />
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <StatTile label="Documents" value={docs.length} icon={IconDoc} accent />
-        <StatTile label="Quotes" value={quotes.length} icon={IconSparkles} />
-        <StatTile label="Upcoming" value={appts.length} icon={IconCalendar} />
-        <StatTile label="Vehicles" value={profile.vehicles.length} icon={IconCar} />
+        <StatTile label="Documents" value={docs.length} icon={IconDoc} accent href="/documents" />
+        <StatTile label="Quotes" value={quotes.length} icon={IconSparkles} href={quotes.length ? "#quotes" : "/quote"} />
+        <StatTile label="Upcoming" value={appts.length} icon={IconCalendar} href={appts.length ? "#appointments" : "/schedule"} />
+        <StatTile label="Vehicles" value={profile.vehicles.length} icon={IconCar} href={profile.vehicles.length ? "#vehicles" : "/documents"} />
       </div>
 
       {docs.length === 0 ? (
@@ -72,7 +72,7 @@ export default async function ProfilePage() {
           )}
 
           {profile.vehicles.length > 0 && (
-            <SectionCard title="Vehicles" action={<IconCar className="h-4 w-4 text-slate-300" />}>
+            <SectionCard id="vehicles" title="Vehicles" action={<IconCar className="h-4 w-4 text-slate-300" />}>
               <div className="space-y-2">
                 {profile.vehicles.map((v, i) => (
                   <div key={i} className="flex items-center justify-between text-sm">
@@ -119,7 +119,7 @@ export default async function ProfilePage() {
       )}
 
       {quotes.length > 0 && (
-        <section className="mt-8">
+        <section id="quotes" className="mt-8 scroll-mt-24">
           <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">Your quotes</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {quotes.map((q) => (
@@ -139,7 +139,7 @@ export default async function ProfilePage() {
       )}
 
       {appts.length > 0 && (
-        <section className="mt-8">
+        <section id="appointments" className="mt-8 scroll-mt-24">
           <h2 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">Upcoming appointments</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {appts.map((a) => (
