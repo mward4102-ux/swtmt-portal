@@ -27,6 +27,7 @@ export default async function LeadPage({ params }: { params: { id: string } }) {
   const { lead, documents, quotes, appointments } = summary;
   const profile = buildProfile(documents);
   const toReview = documents.filter((d) => !d.reviewed).length;
+  const firstUnreviewed = documents.find((d) => !d.reviewed);
 
   return (
     <div>
@@ -57,19 +58,21 @@ export default async function LeadPage({ params }: { params: { id: string } }) {
         </div>
 
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <StatTile label="Documents" value={documents.length} icon={IconDoc} />
-          <StatTile label="To review" value={toReview} icon={IconSparkles} accent={toReview > 0} />
-          <StatTile label="Quotes" value={quotes.length} icon={IconSparkles} />
-          <StatTile label="Appointments" value={appointments.length} icon={IconCalendar} />
+          <StatTile label="Documents" value={documents.length} icon={IconDoc} href={documents.length ? "#documents" : undefined} />
+          <StatTile label="To review" value={toReview} icon={IconSparkles} accent={toReview > 0} href={firstUnreviewed ? `#doc-${firstUnreviewed.id}` : documents.length ? "#documents" : undefined} />
+          <StatTile label="Quotes" value={quotes.length} icon={IconSparkles} href={quotes.length ? "#quotes" : undefined} />
+          <StatTile label="Appointments" value={appointments.length} icon={IconCalendar} href={appointments.length ? "#appointments" : undefined} />
         </div>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
         {/* Left: documents */}
-        <section className="space-y-4">
+        <section id="documents" className="space-y-4 scroll-mt-24">
           <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">Extracted documents ({documents.length})</h2>
           {documents.map((doc) => (
-            <DocumentReview key={doc.id} doc={doc} />
+            <div key={doc.id} id={`doc-${doc.id}`} className="scroll-mt-24">
+              <DocumentReview doc={doc} />
+            </div>
           ))}
           {!documents.length && <p className="text-sm text-slate-400">No documents uploaded yet.</p>}
         </section>
@@ -79,7 +82,7 @@ export default async function LeadPage({ params }: { params: { id: string } }) {
           <GenerateForms leadId={lead.id} />
 
           {quotes.length > 0 && (
-            <SectionCard title="Quotes">
+            <SectionCard id="quotes" title="Quotes">
               <div className="space-y-3">
                 {quotes.map((q) => (
                   <div key={q.id} className="rounded-xl border border-slate-200 p-3">
@@ -98,7 +101,7 @@ export default async function LeadPage({ params }: { params: { id: string } }) {
           )}
 
           {appointments.length > 0 && (
-            <SectionCard title="Appointments">
+            <SectionCard id="appointments" title="Appointments">
               <div className="space-y-2">
                 {appointments.map((a) => (
                   <div key={a.id} className="flex items-center justify-between gap-2 text-sm">
