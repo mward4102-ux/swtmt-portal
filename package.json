@@ -1,19 +1,21 @@
 {
-  "name": "swtmt-portal",
-  "version": "0.2.0",
+  "name": "beachstanton-app",
+  "version": "1.0.0",
   "private": true,
+  "description": "Beach Stanton Insurance — customer PWA with AI document intake, multi-line quotes, scheduling, and an agent dashboard that fills ACORD paperwork.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "gen:icons": "node scripts/gen-icons.mjs",
+    "test:extraction": "node --import tsx scripts/test-extraction.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
-    "@supabase/ssr": "^0.5.1",
-    "@supabase/supabase-js": "^2.45.0",
-    "docx": "^8.5.0",
-    "mammoth": "^1.8.0",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.45.4",
     "next": "14.2.5",
     "pdf-lib": "^1.17.1",
     "react": "^18.3.1",
@@ -28,7 +30,9 @@
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.5",
     "postcss": "^8.4.39",
-    "tailwindcss": "^3.4.6",
-    "typescript": "^5.5.3"
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.10",
+    "tsx": "^4.19.1",
+    "typescript": "^5.5.4"
   }
 }

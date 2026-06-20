@@ -1,0 +1,18 @@
+{
+  "form_id": "ACORD_125",
+  "title": "ACORD 125 — Commercial Insurance Application",
+  "applies_to": { "lines": ["commercial"], "states": ["*"] },
+  "pdf_template": "forms/ACORD_125.pdf",
+  "fields": {
+    "NamedInsured": "business.name.value",
+    "MailingAddress": "mailing_address.value",
+    "EntityType": "business.entity_type.value",
+    "BusinessDescription": "business.description.value",
+    "Carrier": "carrier_name.value",
+    "PolicyNumber": "policy_number.value",
+    "PolicyEffective": "policy_period.start.value",
+    "PolicyExpiration": "policy_period.end.value",
+    "GL_EachOccurrence": "business.each_occurrence.value",
+    "GL_GeneralAggregate": "business.general_aggregate.value"
+  }
+}

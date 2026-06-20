@@ -1,238 +1,116 @@
--- SWTMT Portal — Supabase schema
--- Run this in the Supabase SQL editor after creating the project.
+-- Beach Stanton Insurance — Postgres schema (BUILD_SPEC §2, §6, §13).
+--
+-- The app runs in demo mode against an in-memory store with NONE of this. This
+-- schema is the "flip the switch" target: create these tables, implement a
+-- SupabaseStore mirroring lib/db/store.ts, and set the Supabase env vars.
+--
+-- PII columns exist now but are gated behind PII_STORAGE_ENABLED at the app
+-- layer: when false, binaries are dropped post-extraction and license #/DOB/full
+-- address are not persisted beyond the active session.
 
--- ─────────────────────────────────────────────────────────────
--- ENUMS
--- ─────────────────────────────────────────────────────────────
-create type user_role as enum ('admin', 'mentor', 'operator');
-create type bid_stage as enum (
-  'opportunity','intake','drafting','review','submitted',
-  'awarded','lost','fulfillment','closeout'
-);
-create type intake_status as enum ('draft','submitted','processed','rejected');
-create type doc_kind as enum (
-  'capability_statement','sf1449','sf33','sf18','sf30',
-  'past_performance','pricing','technical_volume','other'
-);
-create type doc_generator as enum ('template','haiku','manual');
+create extension if not exists "pgcrypto";
 
--- ─────────────────────────────────────────────────────────────
--- COMPANIES
--- ─────────────────────────────────────────────────────────────
-create table companies (
-  id uuid primary key default gen_random_uuid(),
-  name text not null,
-  ein text,
-  cage_code text,
-  uei text,
-  sam_status text,
-  naics text[] default '{}',
-  sdvosb_certified boolean default false,
-  mentor_id uuid references companies(id),
-  owner_user_id uuid,
-  created_at timestamptz default now()
-);
-create index on companies (mentor_id);
-
--- ─────────────────────────────────────────────────────────────
--- USERS (extends auth.users)
--- ─────────────────────────────────────────────────────────────
-create table users (
-  id uuid primary key references auth.users(id) on delete cascade,
-  email text not null unique,
-  role user_role not null default 'operator',
-  company_id uuid references companies(id),
-  full_name text,
-  is_veteran boolean default false,
-  created_at timestamptz default now()
+-- ── Profiles (mirrors auth.users) ────────────────────────────────────────────
+create table if not exists profiles (
+  id          uuid primary key references auth.users(id) on delete cascade,
+  email       text not null,
+  full_name   text not null default '',
+  role        text not null default 'customer' check (role in ('customer','agent')),
+  phone       text,
+  created_at  timestamptz not null default now()
 );
 
--- Helper function used in policies
-create or replace function auth_role() returns user_role
-  language sql stable as $$
-    select role from users where id = auth.uid()
-  $$;
-
-create or replace function auth_company() returns uuid
-  language sql stable as $$
-    select company_id from users where id = auth.uid()
-  $$;
-
--- ─────────────────────────────────────────────────────────────
--- INTAKES
--- ─────────────────────────────────────────────────────────────
-create table intakes (
-  id uuid primary key default gen_random_uuid(),
-  company_id uuid references companies(id),
-  submitted_by uuid references users(id),
-  raw_json jsonb not null,
-  status intake_status default 'submitted',
-  created_at timestamptz default now()
+-- ── Leads (one per resolved person/business) ─────────────────────────────────
+create table if not exists leads (
+  id              uuid primary key default gen_random_uuid(),
+  kind            text not null default 'person' check (kind in ('person','business')),
+  display_name    text not null,
+  normalized_name text not null default '',
+  owner_user_id   uuid references profiles(id) on delete set null,
+  status          text not null default 'new' check (status in ('new','in_progress','quoted','closed')),
+  primary_address text,
+  email           text,
+  phone           text,
+  created_at      timestamptz not null default now(),
+  updated_at      timestamptz not null default now()
 );
 
--- ─────────────────────────────────────────────────────────────
--- BIDS
--- ─────────────────────────────────────────────────────────────
-create table bids (
-  id uuid primary key default gen_random_uuid(),
-  company_id uuid references companies(id) not null,
-  solicitation_number text,
-  agency text,
-  title text not null,
-  naics text,
-  due_date timestamptz,
-  stage bid_stage default 'opportunity',
-  assigned_to uuid references users(id),
-  created_at timestamptz default now(),
-  updated_at timestamptz default now()
-);
-create index on bids (company_id, stage);
-create index on bids (due_date);
-
--- ─────────────────────────────────────────────────────────────
--- DOCUMENTS
--- ─────────────────────────────────────────────────────────────
-create table documents (
-  id uuid primary key default gen_random_uuid(),
-  bid_id uuid references bids(id) on delete cascade,
-  company_id uuid references companies(id) not null,
-  kind doc_kind not null,
-  filename text not null,
-  storage_path text not null,
-  generator doc_generator not null,
-  generated_by uuid references users(id),
-  version int default 1,
-  created_at timestamptz default now()
-);
-create index on documents (bid_id);
-
--- ─────────────────────────────────────────────────────────────
--- BID EVENTS (audit trail)
--- ─────────────────────────────────────────────────────────────
-create table bid_events (
-  id uuid primary key default gen_random_uuid(),
-  bid_id uuid references bids(id) on delete cascade,
-  actor_id uuid references users(id),
-  event_type text not null,
-  payload jsonb,
-  created_at timestamptz default now()
-);
-create index on bid_events (bid_id, created_at desc);
-
--- ─────────────────────────────────────────────────────────────
--- CHAT
--- ─────────────────────────────────────────────────────────────
-create table chat_sessions (
-  id uuid primary key default gen_random_uuid(),
-  user_id uuid references users(id) not null,
-  company_id uuid references companies(id),
-  title text,
-  created_at timestamptz default now()
+-- ── Documents (canonical record stored as jsonb) ─────────────────────────────
+create table if not exists documents (
+  id                 uuid primary key default gen_random_uuid(),
+  lead_id            uuid not null references leads(id) on delete cascade,
+  owner_user_id      uuid references profiles(id) on delete set null,
+  file_name          text not null,
+  doc_type           text not null,
+  mime               text not null default 'application/pdf',
+  size_bytes         integer not null default 0,
+  record             jsonb not null,            -- the CanonicalRecord
+  binary_path        text,                      -- Supabase Storage object (signed access only)
+  binary_retained    boolean not null default false,
+  sample_id          text,
+  source             text not null default 'upload',
+  reviewed           boolean not null default false,
+  overall_confidence numeric not null default 0,
+  needs_review       boolean not null default true,
+  created_at         timestamptz not null default now()
 );
 
-create table chat_messages (
-  id uuid primary key default gen_random_uuid(),
-  session_id uuid references chat_sessions(id) on delete cascade,
-  role text not null,
-  content text not null,
-  model text,
-  tokens int,
-  created_at timestamptz default now()
-);
-create index on chat_messages (session_id, created_at);
-
--- ─────────────────────────────────────────────────────────────
--- LLM USAGE (budget enforcement)
--- ─────────────────────────────────────────────────────────────
-create table llm_usage (
-  id uuid primary key default gen_random_uuid(),
-  month text not null,
-  model text not null,
-  tokens_in int default 0,
-  tokens_out int default 0,
-  cost_usd numeric(10,4) default 0,
-  updated_at timestamptz default now()
-);
-create unique index on llm_usage (month, model);
-
--- ─────────────────────────────────────────────────────────────
--- TEMPLATES
--- ─────────────────────────────────────────────────────────────
-create table templates (
-  id uuid primary key default gen_random_uuid(),
-  kind doc_kind not null,
-  name text not null,
-  schema_json jsonb not null,
-  body text not null,
-  created_by uuid references users(id),
-  created_at timestamptz default now()
+-- ── Quotes + lines ───────────────────────────────────────────────────────────
+create table if not exists quotes (
+  id            uuid primary key default gen_random_uuid(),
+  lead_id       uuid not null references leads(id) on delete cascade,
+  owner_user_id uuid references profiles(id) on delete set null,
+  status        text not null default 'submitted',
+  notes         text,
+  created_at    timestamptz not null default now(),
+  updated_at    timestamptz not null default now()
 );
 
--- ─────────────────────────────────────────────────────────────
--- RLS POLICIES
--- ─────────────────────────────────────────────────────────────
-alter table companies     enable row level security;
-alter table users         enable row level security;
-alter table intakes       enable row level security;
-alter table bids          enable row level security;
-alter table documents     enable row level security;
-alter table bid_events    enable row level security;
-alter table chat_sessions enable row level security;
-alter table chat_messages enable row level security;
-alter table llm_usage     enable row level security;
-alter table templates     enable row level security;
+create table if not exists quote_lines (
+  id         uuid primary key default gen_random_uuid(),
+  quote_id   uuid not null references quotes(id) on delete cascade,
+  line       text not null check (line in ('personal_auto','homeowners','commercial','life_health')),
+  data       jsonb not null default '{}',
+  created_at timestamptz not null default now()
+);
 
--- Admin sees all, everywhere
-create policy "admin_all_companies"     on companies     for all using (auth_role() = 'admin');
-create policy "admin_all_users"         on users         for all using (auth_role() = 'admin');
-create policy "admin_all_intakes"       on intakes       for all using (auth_role() = 'admin');
-create policy "admin_all_bids"          on bids          for all using (auth_role() = 'admin');
-create policy "admin_all_documents"     on documents     for all using (auth_role() = 'admin');
-create policy "admin_all_bid_events"    on bid_events    for all using (auth_role() = 'admin');
-create policy "admin_all_chat_sessions" on chat_sessions for all using (auth_role() = 'admin');
-create policy "admin_all_chat_messages" on chat_messages for all using (auth_role() = 'admin');
-create policy "admin_all_llm_usage"     on llm_usage     for all using (auth_role() = 'admin');
-create policy "admin_all_templates"     on templates     for all using (auth_role() = 'admin');
+-- ── Appointments ─────────────────────────────────────────────────────────────
+create table if not exists appointments (
+  id            uuid primary key default gen_random_uuid(),
+  lead_id       uuid references leads(id) on delete set null,
+  owner_user_id uuid references profiles(id) on delete set null,
+  event_type    text not null,
+  name          text not null,
+  email         text not null,
+  phone         text,
+  starts_at     timestamptz not null,
+  ends_at       timestamptz not null,
+  notes         text,
+  source        text not null default 'demo',
+  status        text not null default 'booked' check (status in ('booked','completed','canceled')),
+  created_at    timestamptz not null default now()
+);
 
--- Operators: only their own company's data
-create policy "operator_own_company_bids" on bids
-  for select using (company_id = auth_company());
-create policy "operator_own_company_docs" on documents
-  for select using (company_id = auth_company());
-create policy "operator_own_company_intakes" on intakes
-  for all using (company_id = auth_company());
-create policy "operator_own_chat" on chat_sessions
-  for all using (user_id = auth.uid());
-create policy "operator_own_messages" on chat_messages
-  for all using (
-    session_id in (select id from chat_sessions where user_id = auth.uid())
-  );
-create policy "everyone_sees_self" on users
-  for select using (id = auth.uid() or auth_role() = 'admin');
+-- ── Audit log (write on every extraction, form gen, status change) ───────────
+create table if not exists audit_log (
+  id          uuid primary key default gen_random_uuid(),
+  actor_id    uuid references profiles(id) on delete set null,
+  actor_email text not null default '',
+  action      text not null,
+  entity      text not null,
+  entity_id   text not null,
+  meta        jsonb,
+  at          timestamptz not null default now()
+);
 
--- Mentors: their own company + any protégé whose mentor_id points to them
-create policy "mentor_protege_bids" on bids
-  for select using (
-    auth_role() = 'mentor'
-    and company_id in (
-      select id from companies
-      where id = auth_company() or mentor_id = auth_company()
-    )
-  );
-create policy "mentor_protege_docs" on documents
-  for select using (
-    auth_role() = 'mentor'
-    and company_id in (
-      select id from companies
-      where id = auth_company() or mentor_id = auth_company()
-    )
-  );
-create policy "mentor_protege_companies" on companies
-  for select using (
-    auth_role() = 'mentor'
-    and (id = auth_company() or mentor_id = auth_company())
-  );
-
--- Templates: readable by everyone logged in
-create policy "all_read_templates" on templates
-  for select using (auth.uid() is not null);
+-- ── Indexes ──────────────────────────────────────────────────────────────────
+create index if not exists idx_leads_owner    on leads(owner_user_id);
+create index if not exists idx_leads_status    on leads(status);
+create index if not exists idx_documents_lead  on documents(lead_id);
+create index if not exists idx_documents_owner on documents(owner_user_id);
+create index if not exists idx_quotes_lead     on quotes(lead_id);
+create index if not exists idx_quotes_owner    on quotes(owner_user_id);
+create index if not exists idx_quote_lines_q   on quote_lines(quote_id);
+create index if not exists idx_appts_owner     on appointments(owner_user_id);
+create index if not exists idx_appts_lead      on appointments(lead_id);
+create index if not exists idx_audit_entity    on audit_log(entity, entity_id);

@@ -1,0 +1,16 @@
+{
+  "form_id": "ACORD_25",
+  "title": "ACORD 25 — Certificate of Liability Insurance",
+  "applies_to": { "lines": ["commercial"], "states": ["*"] },
+  "pdf_template": "forms/ACORD_25.pdf",
+  "fields": {
+    "Insured": "business.name.value",
+    "InsuredAddress": "mailing_address.value",
+    "Carrier": "carrier_name.value",
+    "PolicyNumber": "policy_number.value",
+    "EffectiveDate": "policy_period.start.value",
+    "ExpirationDate": "policy_period.end.value",
+    "GL_EachOccurrence": "business.each_occurrence.value",
+    "GL_GeneralAggregate": "business.general_aggregate.value"
+  }
+}
