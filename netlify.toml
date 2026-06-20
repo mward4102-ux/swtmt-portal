@@ -3,7 +3,11 @@
   publish = ".next"
 
 [build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY"
+  NODE_VERSION = "20"
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,NEXT_PUBLIC_CAL_LINK"
 
+# @netlify/plugin-nextjs runs the Next.js App Router (including every route
+# handler in app/api/**) as Netlify Functions on Node 20 — satisfying the
+# "all AI/extraction/fill/notify logic server-side" rule from the build spec.
 [[plugins]]
   package = "@netlify/plugin-nextjs"

@@ -1,0 +1,19 @@
+{
+  "form_id": "ACORD_80_Homeowners",
+  "title": "ACORD 80 — Homeowner Application",
+  "applies_to": { "lines": ["homeowners"], "states": ["*"] },
+  "pdf_template": "forms/ACORD_80_Homeowners.pdf",
+  "fields": {
+    "ApplicantName": "named_insured.value",
+    "PropertyAddress": "property.address.value",
+    "YearBuilt": "property.year_built.value",
+    "Construction": "property.construction.value",
+    "CoverageA": "property.coverage_a.value",
+    "CoverageC": "property.coverage_c.value",
+    "PersonalLiability": "property.liability.value",
+    "Deductible": "property.deductible.value",
+    "Mortgagee": "property.mortgagee.value",
+    "CurrentCarrier": "carrier_name.value",
+    "PolicyNumber": "policy_number.value"
+  }
+}

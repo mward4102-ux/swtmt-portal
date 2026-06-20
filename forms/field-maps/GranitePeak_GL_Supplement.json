@@ -1,0 +1,17 @@
+{
+  "form_id": "GranitePeak_GL_Supplement",
+  "title": "Granite Peak — Contractor GL Supplement",
+  "applies_to": {
+    "lines": ["commercial"],
+    "states": ["*"],
+    "carriers": ["Granite Peak Commercial Insurance Company", "Granite Peak Commercial Ins Co", "Granite Peak"]
+  },
+  "pdf_template": "forms/GranitePeak_GL_Supplement.pdf",
+  "fields": {
+    "NamedInsured": "business.name.value",
+    "OperationsDescription": "business.description.value",
+    "EntityType": "business.entity_type.value",
+    "EachOccurrence": "business.each_occurrence.value",
+    "GeneralAggregate": "business.general_aggregate.value"
+  }
+}

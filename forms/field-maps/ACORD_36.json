@@ -1,0 +1,13 @@
+{
+  "form_id": "ACORD_36",
+  "title": "ACORD 36 — Agent/Broker of Record Change",
+  "applies_to": { "lines": ["personal_auto", "homeowners", "commercial", "life_health"], "states": ["*"] },
+  "pdf_template": "forms/ACORD_36.pdf",
+  "fields": {
+    "NamedInsured": "named_insured.value",
+    "PolicyNumber": "policy_number.value",
+    "InsuranceCompany": "carrier_name.value",
+    "EffectiveDate": "policy_period.start.value",
+    "ExpirationDate": "policy_period.end.value"
+  }
+}

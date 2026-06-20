@@ -1,0 +1,22 @@
+{
+  "name": "Beach Stanton Insurance",
+  "short_name": "Beach Stanton",
+  "description": "AI policy review, multi-line quotes, and scheduling with your independent insurance agent.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a223c",
+  "theme_color": "#125a9e",
+  "categories": ["finance", "business", "productivity"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Upload a policy", "url": "/documents" },
+    { "name": "Start a quote", "url": "/quote" },
+    { "name": "Book a time", "url": "/schedule" }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "form_id": "ACORD_90_PersonalAuto",
+  "title": "ACORD 90 — Personal Auto Application",
+  "applies_to": { "lines": ["personal_auto"], "states": ["*"] },
+  "pdf_template": "forms/ACORD_90_PersonalAuto.pdf",
+  "fields": {
+    "ApplicantName": "named_insured.value",
+    "MailingAddress": "mailing_address.value",
+    "CurrentCarrier": "carrier_name.value",
+    "PolicyNumber": "policy_number.value",
+    "PolicyEffective": "policy_period.start.value",
+    "PolicyExpiration": "policy_period.end.value",
+    "Driver1Name": "drivers.0.name.value",
+    "Driver1License": "drivers.0.license_number.value",
+    "Driver1DOB": "drivers.0.dob.value",
+    "Driver2Name": "drivers.1.name.value",
+    "Driver2License": "drivers.1.license_number.value",
+    "Driver2DOB": "drivers.1.dob.value",
+    "Vehicle1Year": "vehicles.0.year.value",
+    "Vehicle1Make": "vehicles.0.make.value",
+    "Vehicle1Model": "vehicles.0.model.value",
+    "Vehicle1VIN": "vehicles.0.vin.value",
+    "Vehicle2Year": "vehicles.1.year.value",
+    "Vehicle2Make": "vehicles.1.make.value",
+    "Vehicle2Model": "vehicles.1.model.value",
+    "Vehicle2VIN": "vehicles.1.vin.value",
+    "TotalPremium": "premium_total.value"
+  }
+}
