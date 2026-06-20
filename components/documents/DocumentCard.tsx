@@ -29,7 +29,6 @@ export function DocumentCard({ doc, href }: { doc: StoredDocument; href?: string
             href={`/api/documents/${doc.id}/file`}
             target="_blank"
             className="inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-800"
-            onClick={(e) => e.stopPropagation()}
           >
             <IconDownload className="h-3.5 w-3.5" /> View
           </Link>

@@ -80,7 +80,7 @@ export function GenerateForms({ leadId }: { leadId: string }) {
           ))}
           {totalForms > 0 && (
             <p className="text-xs text-slate-400">
-              Forms fill from the official PDF when present in <code>forms/</code>, otherwise a labelled stub — see forms/README.md.
+              Filled on the real ACORD layout. Drop the official fillable PDF into <code>forms/</code> to fill that instead — see forms/README.md.
             </p>
           )}
         </div>

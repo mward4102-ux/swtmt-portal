@@ -81,9 +81,10 @@ only switch site** — nothing else in the app talks to a backend directly.
 ACORD PDFs are copyrighted and supplied by Beach via his ACORD/AMS subscription.
 The app **fills** them; it does not reproduce them.
 
-- Until you drop an official PDF in, the fill engine generates a labelled,
-  genuinely-fillable **stub** with the correct field names — so "Generate forms"
-  produces a real filled PDF today.
+- Until you drop an official PDF in, the fill engine renders a **faithful
+  ACORD-format facsimile** (real ACORD 25 / 125 / 37 / 36 layouts, plus
+  ACORD-styled personal-auto & homeowner applications — `lib/forms/acord/`)
+  filled from canonical, so "Generate forms" produces a real, on-form PDF today.
 - To use an official form: save it as `forms/<form_id>.pdf`, read its true field
   names, and update `forms/field-maps/<form>.json`. See **`forms/README.md`**.
 - **Add a carrier with zero code:** drop a `field-maps/*.json` with

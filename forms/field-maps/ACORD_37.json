@@ -1,0 +1,12 @@
+{
+  "form_id": "ACORD_37",
+  "title": "ACORD 37 — Statement of No Loss",
+  "applies_to": { "lines": ["personal_auto", "homeowners", "commercial", "life_health"], "states": ["*"] },
+  "pdf_template": "forms/ACORD_37.pdf",
+  "fields": {
+    "Insured": "named_insured.value",
+    "PolicyNumber": "policy_number.value",
+    "Company": "carrier_name.value",
+    "CancellationDate": "policy_period.end.value"
+  }
+}

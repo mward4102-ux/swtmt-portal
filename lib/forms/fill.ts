@@ -1,13 +1,14 @@
-// Canonical → ACORD PDF fill (BUILD_SPEC §7c). Loads the official PDF when
-// present, otherwise a generated stub, then writes each mapped field from the
-// canonical record. The fill layer reads ONLY from canonical.
+// Canonical → ACORD PDF (BUILD_SPEC §7c). If the official fillable PDF has been
+// dropped into forms/<form_id>.pdf, fill its AcroForm via the field-map.
+// Otherwise render a faithful ACORD-format facsimile from canonical. Either way,
+// the fill layer reads ONLY from canonical.
 
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { PDFDocument } from "pdf-lib";
 import { type CanonicalRecord, getPath } from "../canonical";
+import { renderForm } from "./acord";
 import type { FormMap } from "./maps";
-import { stubPdfForMap } from "./stub-pdf";
 
 export interface FilledForm {
   form_id: string;
@@ -16,7 +17,7 @@ export interface FilledForm {
   bytes: Uint8Array;
   fieldCount: number;
   filledCount: number;
-  usedTemplate: "official" | "stub";
+  usedTemplate: "official" | "rendered";
 }
 
 async function exists(p: string): Promise<boolean> {
@@ -28,60 +29,62 @@ async function exists(p: string): Promise<boolean> {
   }
 }
 
-async function loadTemplate(map: FormMap): Promise<{ bytes: Uint8Array; usedTemplate: "official" | "stub" }> {
-  const p = path.join(process.cwd(), map.pdf_template);
-  if (await exists(p)) return { bytes: await readFile(p), usedTemplate: "official" };
-  return { bytes: await stubPdfForMap(map), usedTemplate: "stub" };
-}
-
 function isTruthy(s: string): boolean {
   return /^(y|yes|true|x|1|checked)$/i.test(s.trim());
 }
 
-export async function fillForm(map: FormMap, canonical: CanonicalRecord): Promise<FilledForm> {
-  const { bytes, usedTemplate } = await loadTemplate(map);
-  const pdf = await PDFDocument.load(bytes);
-  const form = pdf.getForm();
+function countFilled(map: FormMap, canonical: CanonicalRecord): number {
+  let n = 0;
+  for (const p of Object.values(map.fields)) {
+    const raw = getPath(canonical, p);
+    if (raw != null && String(raw) !== "") n++;
+  }
+  return n;
+}
 
+export async function fillForm(map: FormMap, canonical: CanonicalRecord): Promise<FilledForm> {
   const entries = Object.entries(map.fields);
-  let filled = 0;
-  for (const [pdfField, canonicalPath] of entries) {
-    const raw = getPath(canonical, canonicalPath);
-    const val = raw == null ? "" : String(raw);
-    try {
-      const tf = form.getTextField(pdfField);
-      tf.setText(val);
-      if (val) filled++;
-    } catch {
-      // Not a text field — try checkbox, else skip (BUILD_SPEC §7c).
+  const officialPath = path.join(process.cwd(), map.pdf_template);
+
+  // Official fillable PDF present → fill its AcroForm.
+  if (await exists(officialPath)) {
+    const pdf = await PDFDocument.load(await readFile(officialPath));
+    const form = pdf.getForm();
+    let filled = 0;
+    for (const [pdfField, canonicalPath] of entries) {
+      const raw = getPath(canonical, canonicalPath);
+      const val = raw == null ? "" : String(raw);
       try {
-        const cb = form.getCheckBox(pdfField);
-        if (isTruthy(val)) {
-          cb.check();
-          filled++;
-        }
+        form.getTextField(pdfField).setText(val);
+        if (val) filled++;
       } catch {
-        /* field absent in this template — ignore */
+        try {
+          const cb = form.getCheckBox(pdfField);
+          if (isTruthy(val)) { cb.check(); filled++; }
+        } catch {
+          /* field absent in this template */
+        }
       }
     }
+    return {
+      form_id: map.form_id, title: map.title, fileName: `${map.form_id}.pdf`,
+      bytes: await pdf.save(), fieldCount: entries.length, filledCount: filled, usedTemplate: "official",
+    };
   }
 
-  const out = await pdf.save();
+  // Otherwise render a faithful ACORD facsimile from canonical.
+  const bytes = await renderForm(map, canonical);
   return {
-    form_id: map.form_id,
-    title: map.title,
-    fileName: `${map.form_id}.pdf`,
-    bytes: out,
-    fieldCount: entries.length,
-    filledCount: filled,
-    usedTemplate,
+    form_id: map.form_id, title: map.title, fileName: `${map.form_id}.pdf`,
+    bytes, fieldCount: entries.length, filledCount: countFilled(map, canonical), usedTemplate: "rendered",
   };
 }
 
-/** List the real field names in an (official) template — used when wiring in
- *  official ACORD PDFs (BUILD_SPEC §7c). */
+/** List the real field names in an official template (used when wiring in
+ *  official ACORD PDFs — BUILD_SPEC §7c). */
 export async function readTemplateFieldNames(map: FormMap): Promise<string[]> {
-  const { bytes } = await loadTemplate(map);
-  const pdf = await PDFDocument.load(bytes);
+  const officialPath = path.join(process.cwd(), map.pdf_template);
+  if (!(await exists(officialPath))) return [];
+  const pdf = await PDFDocument.load(await readFile(officialPath));
   return pdf.getForm().getFields().map((field) => field.getName());
 }

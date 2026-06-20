@@ -9,9 +9,11 @@ it does not reproduce them (BUILD_SPEC §1, §7c).
 - `field-maps/<form>.json` maps **PDF field name → canonical path** for each form,
   plus which line(s)/state(s)/carrier(s) the form applies to.
 - The fill engine (`lib/forms/fill.ts`) loads `forms/<form_id>.pdf` if present.
-  **Until you drop the official PDF in, it generates a labelled stub** with the
-  exact field names from the map, so "Generate Forms" produces a real, filled,
-  downloadable PDF today.
+  **Until you drop the official PDF in, it renders a faithful ACORD-format
+  facsimile** (`lib/forms/acord/` — real ACORD 25, 125, 37, 36 layouts, plus
+  ACORD-styled personal-auto/homeowner applications) filled from the canonical
+  record, so "Generate Forms" produces a real, on-form, downloadable PDF today.
+- Regenerate them for visual QA with `node --import tsx scripts/render-acord.mjs`.
 
 ## Dropping in an official ACORD PDF
 
