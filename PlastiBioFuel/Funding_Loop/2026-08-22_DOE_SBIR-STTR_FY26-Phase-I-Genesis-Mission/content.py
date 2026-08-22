@@ -38,14 +38,13 @@ import re as _re
 _wc = lambda t: len(_re.findall(r"\S+", t))
 
 Q1 = [(None,
-  "PlastiBioFuel runs two loops: a structured wet lab converting post-consumer "
-  "PET into fuel-grade ethanol, and a fast simulation loop that decides what the lab runs next. "
-  "The chemistry is a PET hydrolase immobilized in a custom covalent organic framework inside a "
-  "continuous spiral-flow reactor. Scale-up is limited by design search, not enzyme performance. "
-  "Phase I hardens the physics-informed machine learning model we already run against our own "
-  "continuous-operation data and closes the loop: the model proposes conditions, the reactor "
-  "tests them, results retrain the model. That is AI for bioreactor design and biomanufacturing, "
-  "Topic 1.")]
+  "PlastiBioFuel converts post-consumer PET into fuel-grade ethanol using a PET hydrolase "
+  "immobilized in a custom covalent organic framework. The continuous spiral-flow reactor that "
+  "runs it was designed in simulation: flow, channel geometry, and enzyme reusability modeled "
+  "across more than a million runs. Wet-lab work confirms the immobilization and enzyme chemistry "
+  "that design depends on. Phase I closes the gap between the model and hardware, turning it into "
+  "a reactor design tool with quantified error. That is AI applied to bioreactor design and "
+  "biomanufacturing, which is Topic 1.")]
 
 Q2 = [
  ("Significance.",
@@ -55,19 +54,20 @@ Q2 = [
  ("Innovation.",
   "FAST-PETase was reported by the Alper group at UT Austin in 2022, itself produced by machine "
   "learning. PlastiBioFuel did not invent the enzyme. Our contributions, covered by USPTO "
-  "provisional 63/848,456, are the framework immobilization system, the spiral-flow geometry, and "
-  "the integrated depolymerization-to-ethanol process. Phase I moves machine learning up one "
-  "level, from residue selection to reactor operation: the surrogate predicts conversion and "
-  "turnover frequency from temperature, residence time, crystallinity, and loading, and an "
-  "active-learning loop selects the next run."),
+  "provisional 63/848,456, are the framework immobilization system, the spiral-flow geometry "
+  "arrived at computationally rather than by iterating hardware, and the integrated "
+  "depolymerization-to-ethanol process. Phase I moves machine learning up one level, from "
+  "residue selection to reactor operation: the surrogate predicts conversion and turnover "
+  "frequency from temperature, residence time, crystallinity, and loading, and ranks the next "
+  "experiment."),
  ("Feasibility.",
-  "Both halves already exist. On the bench we have depolymerized high-crystallinity "
-  "post-consumer bottle PET to terephthalic acid, MHET, and ethylene glycol, confirmed by HPLC, "
-  "loaded the framework to near-complete occupancy with activity retained, held product formation "
-  "linear through 24 hours, and shown turnover-frequency decline tracking substrate depletion, "
-  "not enzyme deactivation. In parallel we have run a coupled multi-scale reactor model across "
-  "more than a million simulations and checked its predictions against that "
-  "measured output. Phase I hardens it into an active-learning loop and tests it on held-out runs."),
+  "Chemistry confirmed, reactor designed. We have depolymerized "
+  "high-crystallinity post-consumer bottle PET to terephthalic acid, MHET, and ethylene glycol, "
+  "confirmed by HPLC, loaded the framework to near-complete occupancy with activity retained, and "
+  "shown turnover-frequency decline tracking substrate depletion, not enzyme deactivation. The "
+  "reactor has been modeled end to end across more than a million runs: flow, channel geometry, "
+  "reusability. It exists in simulation, not hardware. Phase I is that gap: quantify where "
+  "the model is trustworthy and rank the experiments that close it."),
 ]
 
 Q3 = [
@@ -78,12 +78,13 @@ Q3 = [
   "firmer part of the value case. Federal renewable identification number eligibility remains "
   "subject to final renewable-fuel pathway qualification, and we do not assume it."),
  ("Competitive advantage.",
-  "Pyrolysis carries high energy cost per gallon; mechanical recycling degrades polymer on every "
-  "cycle. Enzymatic recyclers that return monomer to virgin-equivalent resin sell into the resin "
-  "market, so our offtake channel does not overlap theirs. AI-for-bioprocess software vendors "
-  "have to contract for the asset we own: a working reactor generating the training data. "
-  "Wet-lab groups search one condition at a time; we search at software speed. Owning both loops "
-  "is what shortens the bench-to-plant step, where enzymatic routes usually stall."),
+  "Pyrolysis carries high energy cost; mechanical recycling degrades polymer every cycle. "
+  "Enzymatic recyclers returning monomer to virgin-equivalent resin sell into the resin "
+  "market, so our offtake channel does not overlap theirs. Software vendors modeling bioprocess do "
+  "not hold the chemistry; we have wet-lab confirmation of the immobilization and enzyme behavior "
+  "our design depends on. Wet-lab groups iterate hardware one build at a time; our geometry was "
+  "searched in simulation first. Holding both shortens the bench-to-plant step, where enzymatic "
+  "routes stall."),
  ("Go to market.",
   "We are in offtake discussions with ARG Petro, a regional fuel distributor, and have their "
   "interest. Texas puts PET waste aggregation, refining infrastructure, and fuel blending demand "
@@ -115,7 +116,7 @@ Q4 = [
 ]
 
 ADDON = {
- "Q2": "Phase I will produce a model whose predictions are tested against held-out reactor runs, so the go or no-go evidence at the end of Phase I is a measured prediction error, not a claim.",
+ "Q2": "Phase I ends with a measured number rather than a claim: quantified uncertainty on the model's reactor-scale predictions, and a ranked experiment sequence to close it.",
  "Q3": "A first modular unit sited near a Texas PET aggregation point is the specific commercial target that Phase I is meant to de-risk.",
  "Q4": "Marshall Nadel is a seed investor in PlastiBioFuel, and Patrick Tarlton of the Texas Concrete Association supports business development.",
 }

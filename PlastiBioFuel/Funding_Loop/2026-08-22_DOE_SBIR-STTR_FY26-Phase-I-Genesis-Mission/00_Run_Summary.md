@@ -13,13 +13,17 @@
 
 Two items. Both are one-line fills. Neither blocks submission.
 
-**1. Which scales the coupled model spans.** Question 2 now says "a coupled multi-scale reactor
-model," which is accurate but generic, and a reviewer on an AI topic will want to know what is
-coupled to what. Naming them is a one-clause fix, not a rewrite. Replace "a coupled multi-scale
-reactor model" with, for example, "a model coupling `[SCALE A]` to `[SCALE B]`" (reactor transport,
-enzyme kinetics and framework diffusion, process mass balance, or whichever two or three you
-actually run). Question 2 sits at 199 words, so swapping in a longer clause means trimming an equal
-number elsewhere; the Significance paragraph is the place to take it from.
+**1. What the 24-hour linearity result actually was.** The company file records "product formation
+linear through 24 hours of continuous operation." With no physical reactor, "continuous operation"
+cannot mean the spiral reactor. I have removed that result from the pitch rather than describe a
+vessel I cannot name. If it was a benchtop flow rig or a stirred assay, tell me which and I will
+put it back correctly: it is a genuine feasibility result and worth having.
+
+**1b. The 3.6x temperature lever.** Same question. The company file lists temperature as the
+highest-impact process lever at roughly 3.6x rate increase. That figure is not currently in the
+pitch. If it is experimental it belongs in Feasibility; if it came out of the model it belongs in
+Innovation as a modeling result. Those are different claims and a reviewer will read them
+differently.
 
 **2. The simulation count you will stand behind.** You said a couple million. I wrote "more than a
 million," which is conservative and defensible under questioning. If you want the higher figure,
@@ -50,8 +54,10 @@ answers plus an optional bibliography. Being invited costs almost nothing and bu
 $250,000 Phase I and a staged path DOE values at up to $44,000,000 cumulative across a project
 lifecycle.
 
-The topic fits without stretching. DOE named "accelerate bioreactor design and biomanufacturing" as
-an area of interest under Topic 1, for biochemicals and bioproducts applications.
+The topic fits without stretching. DOE named "accelerate bioreactor design and biomanufacturing"
+as an area of interest under Topic 1, for biochemicals and bioproducts applications. The reactor
+here was designed computationally before any hardware existed, which is the thing the topic is
+actually asking for.
 
 ## How the pitch is positioned
 
@@ -79,8 +85,9 @@ beyond what the company file establishes.
 
 | | NSF SBIR Phase I, proposal 328095 | DOE Genesis Mission Phase I pitch |
 |---|---|---|
-| Scope | COF-enzyme reusability, monomer-to-ethanol pathway, integrated lab-scale spiral reactor module | Physics-informed machine learning surrogate model of the immobilized-enzyme reactor, validated against held-out reactor runs |
+| Scope | COF-enzyme reusability, monomer-to-ethanol pathway, **building** the integrated lab-scale spiral reactor module | Hardening the **existing** physics-informed model of that reactor into a design tool with quantified uncertainty |
 | Nature of work | Wet chemistry and reactor hardware | Computational design layer |
+| Dependency | None on DOE | None on NSF. If NSF lands, the hardware it builds is what eventually tests this model. If it does not, the DOE deliverable still stands on its own |
 | Shared tasks | None | None |
 | Shared budget lines | None | None |
 

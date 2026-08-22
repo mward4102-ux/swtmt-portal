@@ -77,8 +77,12 @@ Read this file first on every run. Do not rebuild a package for anything already
   - **Who does it.** Michael Ward built the simulation and modeling capability and runs it himself.
     Name him in that role in any team-qualifications answer: it keeps the computational work inside
     the small business, which is also what the SBIR two-thirds performance requirement wants to
-    see. As of 2026-08-22 the model is coupled multi-scale and its predictions have been checked
-    against HPLC-measured reactor output, which is a feasibility asset, not a Phase I promise.
+    see. As of 2026-08-22 the spiral-flow reactor is modeled end to end (flow, channel geometry,
+    reusability) across more than a million runs, and wet-lab HPLC data confirms the COF
+    immobilization and enzyme feasibility the design depends on. **No physical reactor has been
+    built.** Never write or imply reactor runs, reactor output, continuous operation of the
+    reactor, or model validation against reactor measurements. The honest and still-strong claim
+    is that the reactor was designed computationally and the chemistry it depends on is confirmed.
   - **Never overstate it.** Claim the capability the company file and Michael establish, and no
     tooling, benchmark, model, or personnel beyond that. Prefer the conservative figure over the
     impressive one wherever a reviewer could ask how it was counted.
