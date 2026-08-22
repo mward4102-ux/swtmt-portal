@@ -49,23 +49,24 @@ Q1 = [(None,
 
 Q2 = [
  ("Significance.",
-  "Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery. Conditions are "
-  "chosen one factor at a time, so little of the design space gets searched."),
+  "Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery, and conditions "
+  "are still chosen one factor at a time."),
  ("Innovation.",
   "FAST-PETase was reported by the Alper group at UT Austin in 2022, itself produced by machine "
-  "learning. PlastiBioFuel did not invent the enzyme. Our contributions, covered by USPTO "
-  "provisional 63/848,456, are the framework immobilization system, the spiral-flow geometry "
-  "arrived at computationally, and the integrated process. Phase I moves machine learning up one "
-  "level, from residue selection to reactor operation."),
+  "learning. PlastiBioFuel did not invent it. Our contributions, under USPTO provisional "
+  "63/848,456, are the framework immobilization system, the computationally derived spiral-flow "
+  "geometry, and the integrated process. Phase I moves machine learning from residue selection to "
+  "reactor operation."),
  ("Feasibility.",
-  "Three UNT milestones completed ahead of schedule, in a final report signed by Prof. Shengqian "
-  "Ma. Free FAST-PETase breaks PET to terephthalic acid, confirmed by HPLC against standards. It "
-  "loads into TAPB-BPDA-COF with no protein detectable in supernatant at 280 nm. Immobilized it "
-  "stays active at a diminished rate: 122 \u00b5mol/h/mg turnover at 24 hours against a 246 to 348 "
-  "literature range for free enzyme. UNT attributes the gap to mass transfer, substrate reaching "
-  "the active site down the COF channel, and to insufficient pre-treatment. Transport is a geometry "
-  "and flow problem, which is what the model covers. Phase I quantifies where it is trustworthy and "
-  "ranks the experiments that close the gap."),
+  "Three UNT milestones closed ahead of schedule in a report signed by Prof. Shengqian Ma. Free "
+  "FAST-PETase breaks real post-consumer water bottle PET to terephthalic acid, confirmed by "
+  "HPLC against standards. It loads into TAPB-BPDA-COF with no protein detectable at 280 nm. "
+  "Immobilized turnover measured 122 \u00b5mol/h/mg at 24 hours against a 246 to 348 "
+  "literature range for free enzyme, which UNT attributes to mass transfer down the COF channel "
+  "and poor pre-treatment. A run at 80 \u00b0C gave 3.6 times the standard rate, though water loss "
+  "leaves it confounded, and the lab reads the gain as substrate access rather "
+  "than kinetics. Two independent observations, one cause: transport. Phase I quantifies where the "
+  "model is trustworthy and ranks the experiments that separate transport from kinetics."),
 ]
 
 Q3 = [

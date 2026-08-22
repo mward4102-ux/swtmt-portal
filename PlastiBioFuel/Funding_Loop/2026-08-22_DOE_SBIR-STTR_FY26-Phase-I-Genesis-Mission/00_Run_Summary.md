@@ -11,22 +11,24 @@
 
 ## Michael must supply
 
-Two items. Both are one-line fills. Neither blocks submission.
+Three items. None of them blocks submission.
 
-**1. Feedstock provenance.** The final report says only "PET" and "PET flake" at 100 mg per
-reaction. The company file says real high-crystallinity post-consumer bottle PET. Those are
-different claims and I have written the weaker one. If the flake is post-consumer bottle stock,
-say so and it goes back in: on a DOE topic about real waste streams it matters.
-
-**2. Whether to cite the 3.6x at all.** It is experimental, you confirmed that, but it is not in
-the signed final report, Dr. Phipps noted water evaporated at 80 degrees C, and he suspects PET
-accessibility rather than enzyme kinetics. I have left it out and used the report's documented
-numbers instead, which are stronger because they are signed. Say the word if you want it in with
-the caveat attached.
-
-**3. The SOW timeline needs Dr. Ma.** Dr. Phipps drafted the scope of work for the SRA extension
+**1. The SOW timeline needs Dr. Ma.** Dr. Phipps drafted the scope of work for the SRA extension
 and flagged that he may have over-committed on parameters versus time, pending Dr. Ma's review.
 Nothing in this package depends on it, but the $250,000 extension does.
+
+**2. Whether DOE Phase I stays purely computational.** Written that way now: model hardening,
+uncertainty quantification, and a ranked experiment protocol, no hardware. That keeps zero overlap
+with NSF 328095, which builds the reactor, fits the $250,000 ceiling, and stands alone if NSF does
+not land. Adding a build would change both the budget and the overlap story.
+
+**3. Your call on disclosure posture.** DOE states that pitches should not contain proprietary or
+business sensitive information. Question 2 now cites the report's specific numbers: 122 micromol
+per hour per mg turnover, the 246 to 348 literature comparison, the 280 nm loading result, and the
+80 degrees C run. Those numbers are what make the pitch credible to a technical reviewer, and
+USPTO provisional 63/848,456 already covers the immobilization system, reactor geometry, and
+integrated process. My read is that the disclosure is worth it and the exposure is limited. It is
+your call, not a legal defect either way.
 
 **Not a blocker, but decide it before the full application.** The pitch describes what the model
 does and what it predicts. It does not name the tools used to build it, the same way it does not
@@ -119,13 +121,28 @@ All four categories were checked. Full results with rejection reasons are in `..
 
 Every experimental statement in this package traces to the UNT **Final Project Report for Phase-I**,
 prepared by Prof. Shengqian Ma, dated August 7, 2026, covering January 1 to June 30, 2026. The
-report is marked confidential and prepared exclusively for PlastiBioFuel, so it is **not committed
-to this repository**. What it establishes and what it does not is recorded in
-`../FUNDING_REGISTRY.md` so later runs cannot drift from it.
+report is marked confidential; it is committed at your direction under `source/`, with provenance
+notes beside it, and it is not reachable from the deployed site (Netlify publishes `.next` built
+from `src/`, and no site code references anything under `PlastiBioFuel/`). What the report
+establishes and what it does not is recorded in `../FUNDING_REGISTRY.md` so later runs cannot
+drift from it.
 
-The one place the record conflicts with itself: a June 30 email from Dr. Phipps reports linearity
-through 24 hours and a 3.6x rate at 80 degrees C. The final report contains neither, and instead
-shows reaction rate declining as PET is consumed. The final report wins.
+Two claims sit outside the report and are handled deliberately.
+
+The **80 degrees C run at roughly 3.6 times the standard rate** comes from a June 30 email and is
+now cited, always with its caveat: water evaporated at that temperature, so the figure is
+confounded, and Dr. Phipps reads the gain as substrate access rather than enzyme kinetics. That
+reading is exactly why it earns its place. It points at the same transport bottleneck the report
+identifies, from a second and independent direction, and neither observation can be resolved at
+the bench without controlling evaporation and substrate access. That is a reactor design problem,
+which is the Phase I ask. Never cite the number bare.
+
+The same email's claim of **linearity through 24 hours** is not cited. The final report shows
+reaction rate declining as PET is consumed, and the report governs.
+
+**Feedstock** is real post-consumer water bottles, confirmed by you on August 22. The report says
+only PET and PET flake, so that provenance is cited from you rather than from the report. High
+crystallinity is not characterized anywhere and is not claimed.
 
 ## Files in this package
 

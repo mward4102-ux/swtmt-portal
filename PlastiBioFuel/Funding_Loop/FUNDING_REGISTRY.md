@@ -84,8 +84,10 @@ Read this file first on every run. Do not rebuild a package for anything already
 
 - **Experimental record, as of 2026-08-22.** The authoritative source is the UNT *Final Project
   Report for Phase-I*, prepared by Prof. Shengqian Ma, dated 2026-08-07, period of performance
-  2026-01-01 to 2026-06-30. It is marked confidential and is deliberately **not** committed to this
-  repository. Standard conditions throughout: pH 8, 100 mM phosphate buffer, 1 mL, 100 mg PET,
+  2026-01-01 to 2026-06-30. It is marked confidential and is committed at Michael's direction at
+  `2026-08-22_DOE_SBIR-STTR_FY26-Phase-I-Genesis-Mission/source/`, with provenance notes
+  beside it. It is not reachable from the deployed site: Netlify publishes `.next` built from
+  `src/`, and no site code references anything under `PlastiBioFuel/`. Standard conditions throughout: pH 8, 100 mM phosphate buffer, 1 mL, 100 mg PET,
   0.05 percent Tween-20, 65 degrees C.
 
   **Established, and safe to cite:**
@@ -101,6 +103,8 @@ Read this file first on every run. Do not rebuild a package for anything already
     pre-treatment. **This is the strongest asset in the package**: the bottleneck the wet lab
     identified is a transport problem, and transport is what reactor geometry and flow decide.
   - Three milestones completed ahead of schedule (planned 06/30/2026, completed 05/11 and 05/15).
+  - Feedstock is real post-consumer water bottles, confirmed by Michael on 2026-08-22. The report
+    itself says only PET and PET flake, so cite the provenance from him, not from the report.
 
   **Not established. Do not write these:**
   - Ethanol has never been produced. Ethylene glycol appears in the report only "by extrapolation,"
@@ -109,14 +113,19 @@ Read this file first on every run. Do not rebuild a package for anything already
     as future work.
   - Longer polymeric chains were observed in HPLC but remain unquantified.
   - The initial turnover frequency of 350 is stated as expected, not measured.
-  - Feedstock is described only as PET and PET flake. The report does not establish post-consumer
-    bottle origin or high crystallinity.
+  - High crystallinity is not established. The report does not characterize the polymer.
 
-  **Superseded.** A 2026-06-30 email from Dr. Phipps reports product formation appearing linear
-  through 24 hours and roughly 3.6x rate at 80 degrees C. Neither appears in the final report, the
-  report instead shows rate declining over time, and Phipps himself notes water evaporated at
-  80 degrees C and that he suspects PET accessibility rather than enzyme kinetics. Treat the final
-  report as authoritative and do not cite either claim.
+  **From the 2026-06-30 Phipps email, not the report. Handle with care:**
+  - **The 80 degrees C run, roughly 3.6x the standard rate.** Cited in the pitch at Michael's
+    direction, always with its caveat attached: water evaporated at that temperature, so the
+    figure is confounded, and Phipps reads the gain as substrate access rather than enzyme
+    kinetics. That reading is what makes it worth citing. It is a second independent signal
+    pointing at the same transport bottleneck the report identifies, and neither can be resolved
+    at the bench without controlling evaporation and substrate access, which is a reactor design
+    problem. Never cite the number bare.
+  - **Superseded, do not cite.** The same email reports product formation appearing linear through
+    24 hours. The final report instead shows reaction rate declining as PET is consumed. The
+    report governs.
 
 - **ARG Petro** is described as discussions and interest. Never as a signed LOI or executed offtake agreement.
 - **RIN eligibility** stays hedged as subject to final renewable-fuel pathway qualification. LCFS value can be stated more directly.
