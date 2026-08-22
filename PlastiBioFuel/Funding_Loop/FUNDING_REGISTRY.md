@@ -74,9 +74,14 @@ Read this file first on every run. Do not rebuild a package for anything already
   - **Do not force it** where the program does not reward it. A straight feedstock-logistics, TEA,
     construction, or state incentive program scores other things. There the two loops are context
     in one clause, not the pitch.
+  - **Who does it.** Michael Ward built the simulation and modeling capability and runs it himself.
+    Name him in that role in any team-qualifications answer: it keeps the computational work inside
+    the small business, which is also what the SBIR two-thirds performance requirement wants to
+    see. As of 2026-08-22 the model is coupled multi-scale and its predictions have been checked
+    against HPLC-measured reactor output, which is a feasibility asset, not a Phase I promise.
   - **Never overstate it.** Claim the capability the company file and Michael establish, and no
-    tooling, benchmark, model, or personnel beyond that. Naming the person who does the model
-    development strengthens any team-qualifications answer and is the standing ask of Michael.
+    tooling, benchmark, model, or personnel beyond that. Prefer the conservative figure over the
+    impressive one wherever a reviewer could ask how it was counted.
 
 - **Do not duplicate NSF 328095.** Its scope is COF-enzyme reusability, the monomer-to-ethanol pathway, and the integrated lab-scale spiral reactor module. Adjacent scopes are fine and often better: process scale-up, techno-economic and life-cycle analysis, feedstock logistics, monomer purification, defense fuel logistics, other polyesters, textile waste.
 - **Novelty scoping.** FAST-PETase was published by the Alper group at UT Austin in Nature in 2022. PlastiBioFuel did not invent the enzyme. Novelty is the COF immobilization system, the spiral-flow reactor architecture, and the integrated depolymerization-to-ethanol process, covered by USPTO provisional 63/848,456.

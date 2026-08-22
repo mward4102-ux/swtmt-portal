@@ -13,18 +13,33 @@
 
 Two items. Both are one-line fills. Neither blocks submission.
 
-**1. Name of the person doing the model development.** Question 4 now states plainly that
-PlastiBioFuel runs both the laboratory program and the simulation and model development in house,
-which is the correct claim and is scored under Team Qualifications. It is complete and submittable
-as written. Putting a name on the modeling work makes it stronger. If that is you, or a consultant,
-or a UNT computational chemist, insert this sentence into Question 4 immediately after the sentence
-ending "runs day-to-day wet lab work":
+**1. Which scales the coupled model spans.** Question 2 now says "a coupled multi-scale reactor
+model," which is accurate but generic, and a reviewer on an AI topic will want to know what is
+coupled to what. Naming them is a one-clause fix, not a rewrite. Replace "a coupled multi-scale
+reactor model" with, for example, "a model coupling `[SCALE A]` to `[SCALE B]`" (reactor transport,
+enzyme kinetics and framework diffusion, process mass balance, or whichever two or three you
+actually run). Question 2 sits at 199 words, so swapping in a longer clause means trimming an equal
+number elsewhere; the Significance paragraph is the place to take it from.
 
-> `[NAME]`, `[one-line credential]`, leads model development.
+**2. The simulation count you will stand behind.** You said a couple million. I wrote "more than a
+million," which is conservative and defensible under questioning. If you want the higher figure,
+it is a one-word change and I will make it. Pick the number you can substantiate if DOE asks how it
+was counted, because on an AI topic they may.
 
-That adds roughly 8 to 12 words. Question 4 sits at 196 and has room.
+**3. Your call on disclosure posture.** DOE states that pitches should not contain proprietary or business sensitive information. Question 2 cites four specific preliminary results: HPLC-confirmed depolymerization of real post-consumer bottle PET, near-complete framework loading with retained activity, product formation linear through 24 hours, and turnover-frequency decline tracking substrate depletion. Those data are what make the pitch credible, and USPTO provisional 63/848,456 (July 2025) already covers the immobilization system, reactor geometry, and integrated process. My read is that the disclosure is worth it and the exposure is limited. It is your call, not a legal defect either way. If you want it removed, delete the Feasibility paragraph from Question 2 and the answer still stands at 122 words.
 
-**2. Your call on disclosure posture.** DOE states that pitches should not contain proprietary or business sensitive information. Question 2 cites four specific preliminary results: HPLC-confirmed depolymerization of real post-consumer bottle PET, near-complete framework loading with retained activity, product formation linear through 24 hours, and turnover-frequency decline tracking substrate depletion. Those data are what make the pitch credible, and USPTO provisional 63/848,456 (July 2025) already covers the immobilization system, reactor geometry, and integrated process. My read is that the disclosure is worth it and the exposure is limited. It is your call, not a legal defect either way. If you want it removed, delete the Feasibility paragraph from Question 2 and the answer still stands at 122 words.
+**Not a blocker, but decide it before the full application.** The pitch describes what the model
+does and what it predicts. It does not name the tools used to build it, the same way it does not
+name the HPLC instrument or the editor the code was written in. That is normal and it is not
+concealment. Two places the provenance does matter, both at award stage:
+
+- **Inventorship and data rights.** If model output or method developed with a commercial AI tool
+  ends up in a patent claim or is delivered as SBIR data, the provenance and that tool's terms of
+  service are worth one conversation with patent counsel. Cheaper to answer now than during award
+  negotiation.
+- **The SBIR performance requirement is fine.** The small business must perform at least
+  two-thirds of Phase I R&D. Work you do yourself counts fully, and using a commercial tool to do
+  it no more changes that than using MATLAB would. Nothing to fix here.
 
 ---
 

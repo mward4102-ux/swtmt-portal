@@ -42,34 +42,32 @@ Q1 = [(None,
   "PET into fuel-grade ethanol, and a fast simulation loop that decides what the lab runs next. "
   "The chemistry is a PET hydrolase immobilized in a custom covalent organic framework inside a "
   "continuous spiral-flow reactor. Scale-up is limited by design search, not enzyme performance. "
-  "Phase I builds a physics-informed machine learning model of that reactor, trains it on our own "
-  "continuous-operation data, and closes the loop: the model proposes conditions, the reactor "
+  "Phase I hardens the physics-informed machine learning model we already run against our own "
+  "continuous-operation data and closes the loop: the model proposes conditions, the reactor "
   "tests them, results retrain the model. That is AI for bioreactor design and biomanufacturing, "
   "Topic 1.")]
 
 Q2 = [
  ("Significance.",
-  "Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery. "
-  "Operating conditions for continuous immobilized-enzyme reactors are still chosen by "
-  "one-factor-at-a-time bench runs that take days each, so only a small part of the design space "
-  "is ever searched."),
+  "Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery. Conditions "
+  "are still chosen one factor at a time, days per run, so almost none of the design space gets "
+  "searched."),
  ("Innovation.",
-  "FAST-PETase was reported by the Alper group at UT Austin in 2022, "
-  "itself produced by a machine learning method. PlastiBioFuel did not invent the enzyme. Our "
-  "contributions, covered by USPTO provisional 63/848,456, are the covalent organic framework "
-  "immobilization system, the spiral-flow reactor geometry, and the integrated "
-  "depolymerization-to-ethanol process. Phase I moves machine learning up one level, from residue "
-  "selection to reactor operation: a physics-informed surrogate predicts conversion and turnover "
-  "frequency from temperature, residence time, crystallinity, and enzyme loading, and an "
+  "FAST-PETase was reported by the Alper group at UT Austin in 2022, itself produced by machine "
+  "learning. PlastiBioFuel did not invent the enzyme. Our contributions, covered by USPTO "
+  "provisional 63/848,456, are the framework immobilization system, the spiral-flow geometry, and "
+  "the integrated depolymerization-to-ethanol process. Phase I moves machine learning up one "
+  "level, from residue selection to reactor operation: the surrogate predicts conversion and "
+  "turnover frequency from temperature, residence time, crystallinity, and loading, and an "
   "active-learning loop selects the next run."),
  ("Feasibility.",
-  "The training data already exists. We have depolymerized real high-crystallinity post-consumer "
-  "bottle PET to terephthalic acid, MHET, and ethylene glycol, confirmed by HPLC, loaded the "
-  "framework to near-complete occupancy with activity retained, held "
-  "product formation linear through 24 hours of continuous operation, and shown that "
-  "turnover-frequency decline tracks substrate depletion rather than enzyme deactivation. "
-  "Identifiable kinetics and a reactor that answers in hours make the active-learning loop "
-  "tractable on a Phase I budget."),
+  "Both halves already exist. On the bench we have depolymerized high-crystallinity "
+  "post-consumer bottle PET to terephthalic acid, MHET, and ethylene glycol, confirmed by HPLC, "
+  "loaded the framework to near-complete occupancy with activity retained, held product formation "
+  "linear through 24 hours, and shown turnover-frequency decline tracking substrate depletion, "
+  "not enzyme deactivation. In parallel we have run a coupled multi-scale reactor model across "
+  "more than a million simulations and checked its predictions against that "
+  "measured output. Phase I hardens it into an active-learning loop and tests it on held-out runs."),
 ]
 
 Q3 = [
@@ -96,17 +94,17 @@ Q3 = [
 Q4 = [
  ("Company.",
   "Michael David Ward, Founder and CEO, is the principal investigator and is primarily employed "
-  "by PlastiBioFuel. The company is a service-disabled veteran-owned small business verified "
-  "through SBA VetCert and holds USPTO provisional 63/848,456. PlastiBioFuel runs both sides of "
-  "this project in house: the structured laboratory program that produced the data cited here, "
-  "and the simulation and model development that Phase I extends. All work will be performed in "
-  "the United States."),
+  "by PlastiBioFuel. He built the project's simulation and modeling capability and runs it "
+  "himself, so the computational work Phase I extends stays inside the company rather than "
+  "moving to a subcontractor. PlastiBioFuel is a service-disabled veteran-owned small business "
+  "verified through SBA VetCert and holds USPTO provisional 63/848,456. Its laboratory program "
+  "produced the preliminary data cited here. All work will be performed in the United States."),
  ("Partnerships.",
   "The University of North Texas is our research partner under executed Sponsored Research "
   "Agreement SRA1016, with a $250,000 extension under negotiation. Dr. Shengqian Ma, Department "
   "of Chemistry, leads covalent organic framework and immobilization chemistry; his group has "
-  "published on enzyme immobilization in covalent organic frameworks and on framework host "
-  "materials for enzymes. Dr. Joshua Phipps, postdoctoral researcher, runs day-to-day wet lab "
+  "published on enzyme immobilization in covalent organic frameworks. Dr. Joshua Phipps, "
+  "postdoctoral researcher, runs day-to-day wet lab "
   "work. The partnership gives Phase I reactor access, HPLC analytics, and materials "
   "characterization with no capital spending."),
  ("Follow-on funding.",

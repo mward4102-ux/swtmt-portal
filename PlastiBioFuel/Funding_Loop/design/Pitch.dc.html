@@ -56,9 +56,9 @@
     <div style="flex-grow: 1;">
       <div class="qhead">
         <div class="disp" style="font-size: 19px; font-weight: 600; color: #045AA9;">Summary, Topic, and Mission Alignment</div>
-        <div class="disp num pill">97 WORDS</div>
+        <div class="disp num pill">95 WORDS</div>
       </div>
-      <p class="ans">PlastiBioFuel runs two loops: a structured wet lab converting post-consumer PET into fuel-grade ethanol, and a fast simulation loop that decides what the lab runs next. The chemistry is a PET hydrolase immobilized in a custom covalent organic framework inside a continuous spiral-flow reactor. Scale-up is limited by design search, not enzyme performance. Phase I builds a physics-informed machine learning model of that reactor, trains it on our own continuous-operation data, and closes the loop: the model proposes conditions, the reactor tests them, results retrain the model. That is AI for bioreactor design and biomanufacturing, Topic 1.</p>
+      <p class="ans">PlastiBioFuel runs two loops: a structured wet lab converting post-consumer PET into fuel-grade ethanol, and a fast simulation loop that decides what the lab runs next. The chemistry is a PET hydrolase immobilized in a custom covalent organic framework inside a continuous spiral-flow reactor. Scale-up is limited by design search, not enzyme performance. Phase I hardens the physics-informed machine learning model we already run against our own continuous-operation data and closes the loop: the model proposes conditions, the reactor tests them, results retrain the model. That is AI for bioreactor design and biomanufacturing, Topic 1.</p>
     </div>
   </div>
 
@@ -69,9 +69,9 @@
         <div class="disp" style="font-size: 19px; font-weight: 600; color: #045AA9;">Technical Promise</div>
         <div class="disp num pill">199 WORDS</div>
       </div>
-      <p class="ans"><span class="lead">Significance.</span> Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery. Operating conditions for continuous immobilized-enzyme reactors are still chosen by one-factor-at-a-time bench runs that take days each, so only a small part of the design space is ever searched.</p>
-      <p class="ans"><span class="lead">Innovation.</span> FAST-PETase was reported by the Alper group at UT Austin in 2022, itself produced by a machine learning method. PlastiBioFuel did not invent the enzyme. Our contributions, covered by USPTO provisional 63/848,456, are the covalent organic framework immobilization system, the spiral-flow reactor geometry, and the integrated depolymerization-to-ethanol process. Phase I moves machine learning up one level, from residue selection to reactor operation: a physics-informed surrogate predicts conversion and turnover frequency from temperature, residence time, crystallinity, and enzyme loading, and an active-learning loop selects the next run.</p>
-      <p class="ans"><span class="lead">Feasibility.</span> The training data already exists. We have depolymerized real high-crystallinity post-consumer bottle PET to terephthalic acid, MHET, and ethylene glycol, confirmed by HPLC, loaded the framework to near-complete occupancy with activity retained, held product formation linear through 24 hours of continuous operation, and shown that turnover-frequency decline tracks substrate depletion rather than enzyme deactivation. Identifiable kinetics and a reactor that answers in hours make the active-learning loop tractable on a Phase I budget.</p>
+      <p class="ans"><span class="lead">Significance.</span> Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery. Conditions are still chosen one factor at a time, days per run, so almost none of the design space gets searched.</p>
+      <p class="ans"><span class="lead">Innovation.</span> FAST-PETase was reported by the Alper group at UT Austin in 2022, itself produced by machine learning. PlastiBioFuel did not invent the enzyme. Our contributions, covered by USPTO provisional 63/848,456, are the framework immobilization system, the spiral-flow geometry, and the integrated depolymerization-to-ethanol process. Phase I moves machine learning up one level, from residue selection to reactor operation: the surrogate predicts conversion and turnover frequency from temperature, residence time, crystallinity, and loading, and an active-learning loop selects the next run.</p>
+      <p class="ans"><span class="lead">Feasibility.</span> Both halves already exist. On the bench we have depolymerized high-crystallinity post-consumer bottle PET to terephthalic acid, MHET, and ethylene glycol, confirmed by HPLC, loaded the framework to near-complete occupancy with activity retained, held product formation linear through 24 hours, and shown turnover-frequency decline tracking substrate depletion, not enzyme deactivation. In parallel we have run a coupled multi-scale reactor model across more than a million simulations and checked its predictions against that measured output. Phase I hardens it into an active-learning loop and tests it on held-out runs.</p>
       <div class="addon">
         <div class="disp addonl">OPTIONAL ADD-ON, ONLY IF THE GUIDE ALLOWS MORE WORDS &middot; 34 WORDS</div>
         <div style="font-size: 14px; line-height: 1.55; color: #4A5561;">Phase I will produce a model whose predictions are tested against held-out reactor runs, so the go or no-go evidence at the end of Phase I is a measured prediction error, not a claim.</div>
@@ -101,10 +101,10 @@
     <div style="flex-grow: 1;">
       <div class="qhead">
         <div class="disp" style="font-size: 19px; font-weight: 600; color: #045AA9;">Team Qualifications</div>
-        <div class="disp num pill">196 WORDS</div>
+        <div class="disp num pill">197 WORDS</div>
       </div>
-      <p class="ans"><span class="lead">Company.</span> Michael David Ward, Founder and CEO, is the principal investigator and is primarily employed by PlastiBioFuel. The company is a service-disabled veteran-owned small business verified through SBA VetCert and holds USPTO provisional 63/848,456. PlastiBioFuel runs both sides of this project in house: the structured laboratory program that produced the data cited here, and the simulation and model development that Phase I extends. All work will be performed in the United States.</p>
-      <p class="ans"><span class="lead">Partnerships.</span> The University of North Texas is our research partner under executed Sponsored Research Agreement SRA1016, with a $250,000 extension under negotiation. Dr. Shengqian Ma, Department of Chemistry, leads covalent organic framework and immobilization chemistry; his group has published on enzyme immobilization in covalent organic frameworks and on framework host materials for enzymes. Dr. Joshua Phipps, postdoctoral researcher, runs day-to-day wet lab work. The partnership gives Phase I reactor access, HPLC analytics, and materials characterization with no capital spending.</p>
+      <p class="ans"><span class="lead">Company.</span> Michael David Ward, Founder and CEO, is the principal investigator and is primarily employed by PlastiBioFuel. He built the project's simulation and modeling capability and runs it himself, so the computational work Phase I extends stays inside the company rather than moving to a subcontractor. PlastiBioFuel is a service-disabled veteran-owned small business verified through SBA VetCert and holds USPTO provisional 63/848,456. Its laboratory program produced the preliminary data cited here. All work will be performed in the United States.</p>
+      <p class="ans"><span class="lead">Partnerships.</span> The University of North Texas is our research partner under executed Sponsored Research Agreement SRA1016, with a $250,000 extension under negotiation. Dr. Shengqian Ma, Department of Chemistry, leads covalent organic framework and immobilization chemistry; his group has published on enzyme immobilization in covalent organic frameworks. Dr. Joshua Phipps, postdoctoral researcher, runs day-to-day wet lab work. The partnership gives Phase I reactor access, HPLC analytics, and materials characterization with no capital spending.</p>
       <p class="ans"><span class="lead">Follow-on funding.</span> PlastiBioFuel has a separate NSF SBIR Phase I proposal, Research.gov 328095, submitting against the November 4, 2026 window. That proposal covers wet chemistry and reactor hardware and does not overlap the computational scope proposed here. We disclose it so DOE can confirm there is no duplicate funding.</p>
       <div class="addon">
         <div class="disp addonl">OPTIONAL ADD-ON, ONLY IF THE GUIDE ALLOWS MORE WORDS &middot; 19 WORDS</div>
@@ -122,8 +122,8 @@
     </div>
     <div class="srow">
       <div style="font-size: 14px;">01. Summary, Topic, and Mission Alignment</div>
-      <div class="num" style="font-size: 14px; text-align: right;">97</div>
-      <div class="num" style="font-size: 14px; text-align: right; color: #6B7684;">97</div>
+      <div class="num" style="font-size: 14px; text-align: right;">95</div>
+      <div class="num" style="font-size: 14px; text-align: right; color: #6B7684;">95</div>
     </div>
     <div class="srow">
       <div style="font-size: 14px;">02. Technical Promise</div>
@@ -137,13 +137,13 @@
     </div>
     <div class="srow">
       <div style="font-size: 14px;">04. Team Qualifications</div>
-      <div class="num" style="font-size: 14px; text-align: right;">196</div>
-      <div class="num" style="font-size: 14px; text-align: right; color: #6B7684;">215</div>
+      <div class="num" style="font-size: 14px; text-align: right;">197</div>
+      <div class="num" style="font-size: 14px; text-align: right; color: #6B7684;">216</div>
     </div>
     <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 10px 0 0 0; border-top: 2px solid #045AA9;">
       <div class="disp" style="font-size: 15px; font-weight: 700; color: #045AA9;">Total</div>
-      <div class="disp num" style="font-size: 20px; font-weight: 700; text-align: right; color: #045AA9;">691</div>
-      <div class="disp num" style="font-size: 20px; font-weight: 700; text-align: right; color: #6B7684;">767</div>
+      <div class="disp num" style="font-size: 20px; font-weight: 700; text-align: right; color: #045AA9;">690</div>
+      <div class="disp num" style="font-size: 20px; font-weight: 700; text-align: right; color: #6B7684;">766</div>
     </div>
     <div style="font-size: 13.5px; line-height: 1.55; color: #4A5561; margin-top: 16px;">Question 1 is held under 100 words. If the Pitch Development Guide sets higher limits, append the add-on sentences. If it sets lower limits, the answers cut cleanly at paragraph boundaries. Drop the Feasibility paragraph from Question 2 last, since it carries the preliminary data that makes the pitch credible.</div>
   </div>
