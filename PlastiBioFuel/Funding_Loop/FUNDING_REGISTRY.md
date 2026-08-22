@@ -61,6 +61,23 @@ Read this file first on every run. Do not rebuild a package for anything already
 
 ## Standing constraints
 
+- **AI development focus, where it scores.** PlastiBioFuel is a two-loop company: a structured
+  laboratory program and a fast-iteration simulation and model-development program that feed each
+  other. The lab generates real data on real post-consumer feedstock; the simulation loop decides
+  what the lab runs next. Almost nobody has both, and that is the differentiator to lead with.
+  - **Lead with it** wherever the solicitation names AI, machine learning, modeling, digital twins,
+    simulation, autonomous experimentation, active learning, or data-driven design in its topic
+    language or its scoring criteria. There it is a scored asset and belongs in the first sentence
+    of the summary, in the innovation claim, in the competitive-advantage argument (software vendors
+    have to contract for the reactor we own; wet-lab groups search one condition at a time), and in
+    team qualifications.
+  - **Do not force it** where the program does not reward it. A straight feedstock-logistics, TEA,
+    construction, or state incentive program scores other things. There the two loops are context
+    in one clause, not the pitch.
+  - **Never overstate it.** Claim the capability the company file and Michael establish, and no
+    tooling, benchmark, model, or personnel beyond that. Naming the person who does the model
+    development strengthens any team-qualifications answer and is the standing ask of Michael.
+
 - **Do not duplicate NSF 328095.** Its scope is COF-enzyme reusability, the monomer-to-ethanol pathway, and the integrated lab-scale spiral reactor module. Adjacent scopes are fine and often better: process scale-up, techno-economic and life-cycle analysis, feedstock logistics, monomer purification, defense fuel logistics, other polyesters, textile waste.
 - **Novelty scoping.** FAST-PETase was published by the Alper group at UT Austin in Nature in 2022. PlastiBioFuel did not invent the enzyme. Novelty is the COF immobilization system, the spiral-flow reactor architecture, and the integrated depolymerization-to-ethanol process, covered by USPTO provisional 63/848,456.
 - **ARG Petro** is described as discussions and interest. Never as a signed LOI or executed offtake agreement.

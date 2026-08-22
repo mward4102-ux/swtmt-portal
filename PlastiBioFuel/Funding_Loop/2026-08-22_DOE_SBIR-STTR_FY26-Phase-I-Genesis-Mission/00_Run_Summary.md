@@ -13,23 +13,52 @@
 
 Two items. Both are one-line fills. Neither blocks submission.
 
-**1. Name of the computational lead.** The pitch is scored in part on Team Qualifications and the proposed work is computational. PlastiBioFuel has no machine learning lead on file. Question 4 as written is complete and submittable without one. If you have a name (a modeling consultant, a UNT computational chemist, or yourself if you will do the modeling), insert this sentence into Question 4 immediately after the sentence ending "runs day-to-day wet lab work":
+**1. Name of the person doing the model development.** Question 4 now states plainly that
+PlastiBioFuel runs both the laboratory program and the simulation and model development in house,
+which is the correct claim and is scored under Team Qualifications. It is complete and submittable
+as written. Putting a name on the modeling work makes it stronger. If that is you, or a consultant,
+or a UNT computational chemist, insert this sentence into Question 4 immediately after the sentence
+ending "runs day-to-day wet lab work":
 
 > `[NAME]`, `[one-line credential]`, leads model development.
 
-That adds roughly 8 to 12 words, which Question 4 has room for at 181 words.
+That adds roughly 8 to 12 words. Question 4 sits at 196 and has room.
 
-**2. Your call on disclosure posture.** DOE states that pitches should not contain proprietary or business sensitive information. Question 2 cites four specific preliminary results: HPLC-confirmed depolymerization of real post-consumer bottle PET, near-complete framework loading with retained activity, product formation linear through 24 hours, and turnover-frequency decline tracking substrate depletion. Those data are what make the pitch credible, and USPTO provisional 63/848,456 (July 2025) already covers the immobilization system, reactor geometry, and integrated process. My read is that the disclosure is worth it and the exposure is limited. It is your call, not a legal defect either way. If you want it removed, delete the Feasibility paragraph from Question 2 and the answer still stands at 128 words.
+**2. Your call on disclosure posture.** DOE states that pitches should not contain proprietary or business sensitive information. Question 2 cites four specific preliminary results: HPLC-confirmed depolymerization of real post-consumer bottle PET, near-complete framework loading with retained activity, product formation linear through 24 hours, and turnover-frequency decline tracking substrate depletion. Those data are what make the pitch credible, and USPTO provisional 63/848,456 (July 2025) already covers the immobilization system, reactor geometry, and integrated process. My read is that the disclosure is worth it and the exposure is limited. It is your call, not a legal defect either way. If you want it removed, delete the Feasibility paragraph from Question 2 and the answer still stands at 122 words.
 
 ---
 
 ## Why this one won
 
-Nineteen days of runway, a two-hour first stage, and no cost share. The pitch is four open-text answers plus an optional bibliography. Being invited costs almost nothing and buys access to a $250,000 Phase I and a staged path DOE values at up to $44,000,000 cumulative across a project lifecycle.
+Nineteen days of runway, a two-hour first stage, and no cost share. The pitch is four open-text
+answers plus an optional bibliography. Being invited costs almost nothing and buys access to a
+$250,000 Phase I and a staged path DOE values at up to $44,000,000 cumulative across a project
+lifecycle.
 
-The topic fits without stretching. DOE named "accelerate bioreactor design and biomanufacturing" as an area of interest under Topic 1, for biochemicals and bioproducts applications. PlastiBioFuel holds the thing most AI-for-bioreactor applicants will not have: real continuous-operation data from a working immobilized-enzyme reactor running real high-crystallinity post-consumer PET.
+The topic fits without stretching. DOE named "accelerate bioreactor design and biomanufacturing" as
+an area of interest under Topic 1, for biochemicals and bioproducts applications.
 
-One more point in favor. FAST-PETase was itself produced by a machine learning method (Lu et al., Nature 2022). Proposing to move that method up a level, from residue selection to reactor operating conditions, is a natural next step in the same lineage, and it reads that way to a reviewer.
+## How the pitch is positioned
+
+This opportunity sits under the Genesis Mission, so every topic is an AI topic and the AI
+development work is directly scored. The pitch leads with the two-loop identity: a structured wet
+lab and a fast simulation loop that decides what the lab runs next. That framing does work in three
+of the four scored areas.
+
+| Scored area | What the two-loop framing buys |
+|---|---|
+| Topic and Mission Alignment | Question 1 opens on the loop rather than on the chemistry, so the reviewer reads a Genesis Mission project in the first sentence. |
+| Technical Promise | The innovation is machine learning moved up a level, from residue selection to reactor operation, with an active-learning loop selecting the next run. FAST-PETase was itself produced by a machine learning method, so this is the next step in the same lineage rather than a bolt-on. |
+| Commercialization Potential | Competitive advantage now names both flanks: AI-for-bioprocess software vendors have to contract for the reactor we own, and wet-lab groups search one condition at a time. |
+| Team Qualifications | Question 4 states that both sides run in house instead of implying the modeling would be contracted out. |
+
+Word counts held: 97, 199, 199, 196, for 691 total, with Question 1 under 100. Every count on
+every page is computed from the answers themselves, so trimming an answer cannot leave a stale
+number behind.
+
+The standing rule for future runs is in the registry: lead with the AI development work wherever
+the solicitation scores it, keep it to a clause where it does not, and never claim capability
+beyond what the company file establishes.
 
 ## Scope separation from NSF 328095
 

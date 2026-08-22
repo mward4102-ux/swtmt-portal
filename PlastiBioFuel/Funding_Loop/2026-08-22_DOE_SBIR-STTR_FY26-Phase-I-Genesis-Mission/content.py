@@ -32,46 +32,126 @@ brief = [
 ]
 
 # ------------------------------------------------------------------ PITCH
+# Answers are the source of truth; every word count on the page is computed
+# from them, so edits here cannot leave a stale number anywhere else.
+import re as _re
+_wc = lambda t: len(_re.findall(r"\S+", t))
+
+Q1 = [(None,
+  "PlastiBioFuel runs two loops: a structured wet lab converting post-consumer "
+  "PET into fuel-grade ethanol, and a fast simulation loop that decides what the lab runs next. "
+  "The chemistry is a PET hydrolase immobilized in a custom covalent organic framework inside a "
+  "continuous spiral-flow reactor. Scale-up is limited by design search, not enzyme performance. "
+  "Phase I builds a physics-informed machine learning model of that reactor, trains it on our own "
+  "continuous-operation data, and closes the loop: the model proposes conditions, the reactor "
+  "tests them, results retrain the model. That is AI for bioreactor design and biomanufacturing, "
+  "Topic 1.")]
+
+Q2 = [
+ ("Significance.",
+  "Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery. "
+  "Operating conditions for continuous immobilized-enzyme reactors are still chosen by "
+  "one-factor-at-a-time bench runs that take days each, so only a small part of the design space "
+  "is ever searched."),
+ ("Innovation.",
+  "FAST-PETase was reported by the Alper group at UT Austin in 2022, "
+  "itself produced by a machine learning method. PlastiBioFuel did not invent the enzyme. Our "
+  "contributions, covered by USPTO provisional 63/848,456, are the covalent organic framework "
+  "immobilization system, the spiral-flow reactor geometry, and the integrated "
+  "depolymerization-to-ethanol process. Phase I moves machine learning up one level, from residue "
+  "selection to reactor operation: a physics-informed surrogate predicts conversion and turnover "
+  "frequency from temperature, residence time, crystallinity, and enzyme loading, and an "
+  "active-learning loop selects the next run."),
+ ("Feasibility.",
+  "The training data already exists. We have depolymerized real high-crystallinity post-consumer "
+  "bottle PET to terephthalic acid, MHET, and ethylene glycol, confirmed by HPLC, loaded the "
+  "framework to near-complete occupancy with activity retained, held "
+  "product formation linear through 24 hours of continuous operation, and shown that "
+  "turnover-frequency decline tracks substrate depletion rather than enzyme deactivation. "
+  "Identifiable kinetics and a reactor that answers in hours make the active-learning loop "
+  "tractable on a Phase I budget."),
+]
+
+Q3 = [
+ ("Value proposition.",
+  "The product is fuel-grade ethanol made from a waste feedstock. Post-consumer PET is abundant, "
+  "domestically sourced, priced well below agricultural feedstock, and it does not compete with "
+  "food production. Low carbon fuel standard credit value applies to the finished fuel and is the "
+  "firmer part of the value case. Federal renewable identification number eligibility remains "
+  "subject to final renewable-fuel pathway qualification, and we do not assume it."),
+ ("Competitive advantage.",
+  "Pyrolysis carries high energy cost per gallon; mechanical recycling degrades polymer on every "
+  "cycle. Enzymatic recyclers that return monomer to virgin-equivalent resin sell into the resin "
+  "market, so our offtake channel does not overlap theirs. AI-for-bioprocess software vendors "
+  "have to contract for the asset we own: a working reactor generating the training data. "
+  "Wet-lab groups search one condition at a time; we search at software speed. Owning both loops "
+  "is what shortens the bench-to-plant step, where enzymatic routes usually stall."),
+ ("Go to market.",
+  "We are in offtake discussions with ARG Petro, a regional fuel distributor, and have their "
+  "interest. Texas puts PET waste aggregation, refining infrastructure, and fuel blending demand "
+  "in one region. The Phase I output is a sizing and operating envelope for the first modular "
+  "unit, so the model feeds a capital decision."),
+]
+
+Q4 = [
+ ("Company.",
+  "Michael David Ward, Founder and CEO, is the principal investigator and is primarily employed "
+  "by PlastiBioFuel. The company is a service-disabled veteran-owned small business verified "
+  "through SBA VetCert and holds USPTO provisional 63/848,456. PlastiBioFuel runs both sides of "
+  "this project in house: the structured laboratory program that produced the data cited here, "
+  "and the simulation and model development that Phase I extends. All work will be performed in "
+  "the United States."),
+ ("Partnerships.",
+  "The University of North Texas is our research partner under executed Sponsored Research "
+  "Agreement SRA1016, with a $250,000 extension under negotiation. Dr. Shengqian Ma, Department "
+  "of Chemistry, leads covalent organic framework and immobilization chemistry; his group has "
+  "published on enzyme immobilization in covalent organic frameworks and on framework host "
+  "materials for enzymes. Dr. Joshua Phipps, postdoctoral researcher, runs day-to-day wet lab "
+  "work. The partnership gives Phase I reactor access, HPLC analytics, and materials "
+  "characterization with no capital spending."),
+ ("Follow-on funding.",
+  "PlastiBioFuel has a separate NSF SBIR Phase I proposal, Research.gov 328095, submitting "
+  "against the November 4, 2026 window. That proposal covers wet chemistry and reactor hardware "
+  "and does not overlap the computational scope proposed here. We disclose it so DOE can confirm "
+  "there is no duplicate funding."),
+]
+
+ADDON = {
+ "Q2": "Phase I will produce a model whose predictions are tested against held-out reactor runs, so the go or no-go evidence at the end of Phase I is a measured prediction error, not a claim.",
+ "Q3": "A first modular unit sited near a Texas PET aggregation point is the specific commercial target that Phase I is meant to de-risk.",
+ "Q4": "Marshall Nadel is a seed investor in PlastiBioFuel, and Patrick Tarlton of the Texas Concrete Association supports business development.",
+}
+
+_QS = [("01", "Summary, Topic, and Mission Alignment", Q1, None),
+       ("02", "Technical Promise", Q2, "Q2"),
+       ("03", "Commercialization Potential", Q3, "Q3"),
+       ("04", "Team Qualifications", Q4, "Q4")]
+_COUNT = {n: sum(_wc(t) for _, t in q) for n, _, q, _k in _QS}
+_TOTAL = sum(_COUNT.values())
+_WITH = {n: _COUNT[n] + (_wc(ADDON[k]) if k else 0) for n, _, _q, k in _QS}
+_TOTAL_WITH = sum(_WITH.values())
+
 pitch = [
  ("masthead", "PITCH RESPONSES"),
  ("hero", EYE, "Topic 1, Scaling the\nBiotechnology Revolution",
   "Copy each answer into the matching open-text field in AMP. Word counts are shown so you can check them against the Pitch Development Guide before pasting. Images and video are not enabled, so all four answers are plain text."),
- ("stats", [("TOTAL WORDS", "671", "across four answers"),
-            ("QUESTION 1", "97", "held under 100"),
+ ("stats", [("TOTAL WORDS", str(_TOTAL), "across four answers"),
+            ("QUESTION 1", str(_COUNT["01"]), "held under 100"),
             ("TOPIC", "Locked", "after the pitch is submitted")]),
  ("factwide", "PROJECT TITLE TO ENTER IN AMP",
   '<font name="Helvetica-Bold">Physics-Informed Machine Learning for Design of Continuous Immobilized-Enzyme '
   'Reactors Converting Post-Consumer PET to Fuel-Grade Ethanol</font>'),
- ("qblock", "01", "Summary, Topic, and Mission Alignment", "97 WORDS", [
-   (None, "PlastiBioFuel converts post-consumer PET plastic waste into fuel-grade ethanol. A PET hydrolase is immobilized inside a custom covalent organic framework and run in a continuous spiral-flow reactor, and the recovered monomers are biologically converted to ethanol. Scale-up of this reactor class is limited by design search, not by enzyme performance. We will build a physics-informed machine learning model of the immobilized-enzyme reactor, train it on our own continuous-operation data, and use it to predict operating conditions that we then confirm experimentally. This is AI applied to bioreactor design and biomanufacturing for a bioproduct, which is Topic 1."),
- ]),
- ("qblock", "02", "Technical Promise", "202 WORDS", [
-   ("Significance.", "Enzymatic PET recycling is now limited by reactor engineering rather than enzyme discovery. Operating conditions for continuous immobilized-enzyme reactors are still chosen by one-factor-at-a-time bench runs that take days each, so only a small part of the design space is ever searched, and scale-up decisions rest on thin evidence."),
-   ("Innovation.", "FAST-PETase was reported by the Alper group at the University of Texas at Austin in 2022. PlastiBioFuel did not invent the enzyme. Our contributions, covered by USPTO provisional 63/848,456, are the covalent organic framework immobilization system, the spiral-flow reactor geometry, and the integrated depolymerization-to-ethanol process. Phase I adds a surrogate model that predicts conversion and turnover frequency from temperature, residence time, feedstock crystallinity, and enzyme loading density, then proposes the next conditions for the reactor to run."),
-   ("Feasibility.", "The training data already exists. We have depolymerized real high-crystallinity post-consumer bottle PET to terephthalic acid, MHET, and ethylene glycol with HPLC confirmation, loaded the framework to near-complete enzyme occupancy with full retention of catalytic activity, held product formation linear through 24 hours of continuous operation, and shown that turnover-frequency decline tracks substrate depletion rather than enzyme deactivation. Identifiable kinetics are what make this model tractable on a Phase I budget and schedule."),
- ], ("OPTIONAL ADD-ON, ONLY IF THE GUIDE ALLOWS MORE WORDS  ·  34 WORDS",
-     "Phase I will produce a model whose predictions are tested against held-out reactor runs, so the go or no-go evidence at the end of Phase I is a measured prediction error, not a claim.")),
- ("qblock", "03", "Commercialization Potential", "191 WORDS", [
-   ("Value proposition.", "The product is fuel-grade ethanol made from a waste feedstock. Post-consumer PET is abundant, domestically sourced, priced well below agricultural feedstock, and it does not compete with food production. Low carbon fuel standard credit value applies to the finished fuel and is the firmer part of the value case. Federal renewable identification number eligibility remains subject to final renewable-fuel pathway qualification, and we do not assume it."),
-   ("Competitive advantage.", "Pyrolysis routes to fuel carry high energy cost per gallon. Mechanical recycling degrades polymer quality on every cycle. Enzymatic recyclers that return monomer to virgin-equivalent resin compete for the same feedstock but sell into the resin market, so our offtake channel does not overlap theirs. The design model shortens the bench-to-plant step, which is where enzymatic routes usually stall."),
-   ("Go to market.", "We are in offtake discussions with ARG Petro, a regional fuel distributor, and have their interest. Texas puts PET waste aggregation, refining infrastructure, and fuel blending demand in one region. The Phase I output is a sizing and operating envelope for the first modular unit, so the model feeds a capital decision rather than sitting on a shelf."),
- ], ("OPTIONAL ADD-ON, ONLY IF THE GUIDE ALLOWS MORE WORDS  ·  23 WORDS",
-     "A first modular unit sited near a Texas PET aggregation point is the specific commercial target that Phase I is meant to de-risk.")),
- ("qblock", "04", "Team Qualifications", "181 WORDS", [
-   ("Company.", "Michael David Ward, Founder and CEO, is the principal investigator and is primarily employed by PlastiBioFuel. The company is a service-disabled veteran-owned small business verified through SBA VetCert, holds USPTO provisional 63/848,456, and generated the preliminary data cited here with its research partner. All work will be performed in the United States."),
-   ("Partnerships.", "The University of North Texas is our research partner under executed Sponsored Research Agreement SRA1016, with a $250,000 extension under negotiation. Dr. Shengqian Ma, Department of Chemistry, leads covalent organic framework and immobilization chemistry; his group has published on enzyme immobilization in covalent organic frameworks and on framework host materials for enzymes. Dr. Joshua Phipps, postdoctoral researcher, runs day-to-day wet lab work. The partnership gives Phase I reactor access, HPLC analytics, and materials characterization with no capital spending."),
-   ("Follow-on funding.", "PlastiBioFuel has a separate NSF SBIR Phase I proposal, Research.gov 328095, submitting against the November 4, 2026 window. That proposal covers wet chemistry and reactor hardware and does not overlap the computational scope proposed here. We disclose it so DOE can confirm there is no duplicate funding."),
- ], ("OPTIONAL ADD-ON, ONLY IF THE GUIDE ALLOWS MORE WORDS  ·  19 WORDS",
-     "Marshall Nadel is a seed investor in PlastiBioFuel, and Patrick Tarlton of the Texas Concrete Association supports business development.")),
+]
+for _n, _t, _q, _k in _QS:
+    _addon = ((f"OPTIONAL ADD-ON, ONLY IF THE GUIDE ALLOWS MORE WORDS  ·  {_wc(ADDON[_k])} WORDS", ADDON[_k])
+              if _k else None)
+    pitch.append(("qblock", _n, _t, f"{_COUNT[_n]} WORDS", _q, _addon))
+
+pitch += [
  ("chip", "WORD COUNT SUMMARY", "As written  ·  With add-on"),
- ("kvrows", [
-   ("1. Summary, Topic, and Mission Alignment", "97 words as written  ·  97 with add-on"),
-   ("2. Technical Promise", "202 words as written  ·  236 with add-on"),
-   ("3. Commercialization Potential", "191 words as written  ·  214 with add-on"),
-   ("4. Team Qualifications", "181 words as written  ·  200 with add-on"),
-   ("Total", "671 words as written  ·  747 with add-on"),
- ]),
- ("p", "Question 1 is held under 100 words. If the Pitch Development Guide sets higher limits, append the add-on sentences. If it sets lower limits, the answers cut cleanly at paragraph boundaries. Drop the Feasibility paragraph from Question 2 last, since it carries the preliminary data that makes the pitch credible."),
+ ("kvrows", [(f"{_n}. {_t}", f"{_COUNT[_n]} words as written  ·  {_WITH[_n]} with add-on") for _n, _t, _q, _k in _QS]
+            + [("Total", f"{_TOTAL} words as written  ·  {_TOTAL_WITH} with add-on")]),
+ ("p", f"Question 1 is held under 100 words. If the Pitch Development Guide sets higher limits, append the add-on sentences. If it sets lower limits, the answers cut cleanly at paragraph boundaries. Drop the Feasibility paragraph from Question 2 last, since it carries the preliminary data that makes the pitch credible."),
  ("tint", "OPTIONAL UPLOAD: BIBLIOGRAPHY AND REFERENCES CITED", None,
   "Prepared and included in this package. Worth uploading: it substantiates the statement that PlastiBioFuel did not invent the enzyme, and it shows the UNT partner's published record in enzyme immobilization in covalent organic frameworks."),
  ("footer", "PlastiBioFuel LLC  ·  Michael David Ward, Founder and CEO  ·  michael@plastibiofuel.com  ·  817-319-7383", CONTACT_R),
@@ -87,7 +167,9 @@ submit = [
  ("step", 1, '<font name="Helvetica-Bold">Confirm the SAM.gov registration is active</font> and not within 60 days of expiry. Log in at sam.gov and check the entity record for PlastiBioFuel LLC, UEI KQAWZ54RDUM8. DOE warns SAM renewal can take up to 8 weeks, which makes an expiring registration the single biggest schedule risk in this package. The pitch itself does not require SAM, but the full application does and an invitation can arrive quickly.'),
  ("step", 2, '<font name="Helvetica-Bold">Confirm the SBA Company Registry record</font> is current and retrieve the SBC Control ID at app.www.sbir.gov/company-registration/overview. Under 10 minutes with the UEI in hand. Needed at full application, not at pitch.'),
  ("step", 3, '<font name="Helvetica-Bold">Request an AMP account</font> at register.ati.org using michael@plastibiofuel.com. Never a university student address. Allow one to two business days for approval, which is why this is step 3 and not step 9.'),
- ("step", 4, '<font name="Helvetica-Bold">Read the Pitch Development Guide</font> and note the word limit printed for each of the four questions. The answers are written to 97, 202, 191, and 181 words, 671 total, with Question 1 held under 100. If the Guide allows more, append the optional add-on sentences supplied with each answer. If it allows less, trim at the paragraph boundaries marked in the Pitch Responses document.'),
+ ("step", 4, '<font name="Helvetica-Bold">Read the Pitch Development Guide</font> and note the word limit printed for each of the four questions. The answers are written to '
+  + ", ".join(str(_COUNT[_n]) for _n in ("01", "02", "03")) + f", and {_COUNT['04']} words, {_TOTAL} total, with Question 1 held under 100."
+  + ' If the Guide allows more, append the optional add-on sentences supplied with each answer. If it allows less, trim at the paragraph boundaries marked in the Pitch Responses document.'),
  ("chip", "SUBMISSION", "About 30 minutes"),
  ("step", 5, "Log in to AMP at sbirsttr-amp.ati.org/dashboard."),
  ("step", 6, "In the Open Solicitations section, find FY26 Phase I, Genesis Mission, click Respond, then click Proceed in the pop-up box."),
