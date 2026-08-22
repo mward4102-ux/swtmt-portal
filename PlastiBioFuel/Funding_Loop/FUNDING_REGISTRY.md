@@ -77,18 +77,47 @@ Read this file first on every run. Do not rebuild a package for anything already
   - **Who does it.** Michael Ward built the simulation and modeling capability and runs it himself.
     Name him in that role in any team-qualifications answer: it keeps the computational work inside
     the small business, which is also what the SBIR two-thirds performance requirement wants to
-    see. As of 2026-08-22 the spiral-flow reactor is modeled end to end (flow, channel geometry,
-    reusability) across more than a million runs, and wet-lab HPLC data confirms the COF
-    immobilization and enzyme feasibility the design depends on. **No physical reactor has been
-    built.** Never write or imply reactor runs, reactor output, continuous operation of the
-    reactor, or model validation against reactor measurements. The honest and still-strong claim
-    is that the reactor was designed computationally and the chemistry it depends on is confirmed.
-  - **Never overstate it.** Claim the capability the company file and Michael establish, and no
+    see.
+  - **Never overstate it.** Claim the capability the authoritative sources establish and no
     tooling, benchmark, model, or personnel beyond that. Prefer the conservative figure over the
     impressive one wherever a reviewer could ask how it was counted.
 
-- **Do not duplicate NSF 328095.** Its scope is COF-enzyme reusability, the monomer-to-ethanol pathway, and the integrated lab-scale spiral reactor module. Adjacent scopes are fine and often better: process scale-up, techno-economic and life-cycle analysis, feedstock logistics, monomer purification, defense fuel logistics, other polyesters, textile waste.
-- **Novelty scoping.** FAST-PETase was published by the Alper group at UT Austin in Nature in 2022. PlastiBioFuel did not invent the enzyme. Novelty is the COF immobilization system, the spiral-flow reactor architecture, and the integrated depolymerization-to-ethanol process, covered by USPTO provisional 63/848,456.
+- **Experimental record, as of 2026-08-22.** The authoritative source is the UNT *Final Project
+  Report for Phase-I*, prepared by Prof. Shengqian Ma, dated 2026-08-07, period of performance
+  2026-01-01 to 2026-06-30. It is marked confidential and is deliberately **not** committed to this
+  repository. Standard conditions throughout: pH 8, 100 mM phosphate buffer, 1 mL, 100 mg PET,
+  0.05 percent Tween-20, 65 degrees C.
+
+  **Established, and safe to cite:**
+  - Free FAST-PETase breaks PET down to terephthalic acid, confirmed by HPLC against standards.
+  - Enzyme loads into TAPB-BPDA-COF with no protein detectable in the supernatant at 280 nm.
+    The report notes COF was used in excess, so near-complete loading is real but not
+    scarcity-limited.
+  - Immobilized enzyme stays active at a somewhat diminished rate versus free enzyme.
+  - Turnover frequency measured at 122 micromol per hour per mg at 24 hours, against a 246 to 348
+    literature range for free enzyme.
+  - Reaction rate declines as PET is consumed, which the report attributes to substrate depletion.
+  - UNT attributes the activity gap to mass transfer down the COF channel plus insufficient PET
+    pre-treatment. **This is the strongest asset in the package**: the bottleneck the wet lab
+    identified is a transport problem, and transport is what reactor geometry and flow decide.
+  - Three milestones completed ahead of schedule (planned 06/30/2026, completed 05/11 and 05/15).
+
+  **Not established. Do not write these:**
+  - Ethanol has never been produced. Ethylene glycol appears in the report only "by extrapolation,"
+    not by direct confirmation. MHET is not named in the report.
+  - No spiral reactor exists. The report's own recommendations list reaction vessel shape and size
+    as future work.
+  - Longer polymeric chains were observed in HPLC but remain unquantified.
+  - The initial turnover frequency of 350 is stated as expected, not measured.
+  - Feedstock is described only as PET and PET flake. The report does not establish post-consumer
+    bottle origin or high crystallinity.
+
+  **Superseded.** A 2026-06-30 email from Dr. Phipps reports product formation appearing linear
+  through 24 hours and roughly 3.6x rate at 80 degrees C. Neither appears in the final report, the
+  report instead shows rate declining over time, and Phipps himself notes water evaporated at
+  80 degrees C and that he suspects PET accessibility rather than enzyme kinetics. Treat the final
+  report as authoritative and do not cite either claim.
+
 - **ARG Petro** is described as discussions and interest. Never as a signed LOI or executed offtake agreement.
 - **RIN eligibility** stays hedged as subject to final renewable-fuel pathway qualification. LCFS value can be stated more directly.
 - **Dr. Ma** is Other Personnel on NSF-style forms, not Senior or Key Personnel.

@@ -13,24 +13,20 @@
 
 Two items. Both are one-line fills. Neither blocks submission.
 
-**1. What the 24-hour linearity result actually was.** The company file records "product formation
-linear through 24 hours of continuous operation." With no physical reactor, "continuous operation"
-cannot mean the spiral reactor. I have removed that result from the pitch rather than describe a
-vessel I cannot name. If it was a benchtop flow rig or a stirred assay, tell me which and I will
-put it back correctly: it is a genuine feasibility result and worth having.
+**1. Feedstock provenance.** The final report says only "PET" and "PET flake" at 100 mg per
+reaction. The company file says real high-crystallinity post-consumer bottle PET. Those are
+different claims and I have written the weaker one. If the flake is post-consumer bottle stock,
+say so and it goes back in: on a DOE topic about real waste streams it matters.
 
-**1b. The 3.6x temperature lever.** Same question. The company file lists temperature as the
-highest-impact process lever at roughly 3.6x rate increase. That figure is not currently in the
-pitch. If it is experimental it belongs in Feasibility; if it came out of the model it belongs in
-Innovation as a modeling result. Those are different claims and a reviewer will read them
-differently.
+**2. Whether to cite the 3.6x at all.** It is experimental, you confirmed that, but it is not in
+the signed final report, Dr. Phipps noted water evaporated at 80 degrees C, and he suspects PET
+accessibility rather than enzyme kinetics. I have left it out and used the report's documented
+numbers instead, which are stronger because they are signed. Say the word if you want it in with
+the caveat attached.
 
-**2. The simulation count you will stand behind.** You said a couple million. I wrote "more than a
-million," which is conservative and defensible under questioning. If you want the higher figure,
-it is a one-word change and I will make it. Pick the number you can substantiate if DOE asks how it
-was counted, because on an AI topic they may.
-
-**3. Your call on disclosure posture.** DOE states that pitches should not contain proprietary or business sensitive information. Question 2 cites four specific preliminary results: HPLC-confirmed depolymerization of real post-consumer bottle PET, near-complete framework loading with retained activity, product formation linear through 24 hours, and turnover-frequency decline tracking substrate depletion. Those data are what make the pitch credible, and USPTO provisional 63/848,456 (July 2025) already covers the immobilization system, reactor geometry, and integrated process. My read is that the disclosure is worth it and the exposure is limited. It is your call, not a legal defect either way. If you want it removed, delete the Feasibility paragraph from Question 2 and the answer still stands at 122 words.
+**3. The SOW timeline needs Dr. Ma.** Dr. Phipps drafted the scope of work for the SRA extension
+and flagged that he may have over-committed on parameters versus time, pending Dr. Ma's review.
+Nothing in this package depends on it, but the $250,000 extension does.
 
 **Not a blocker, but decide it before the full application.** The pitch describes what the model
 does and what it predicts. It does not name the tools used to build it, the same way it does not
@@ -118,6 +114,18 @@ All four categories were checked. Full results with rejection reasons are in `..
 **Next windows worth holding.**
 - **Activate Fellowship, Cohort 2027:** applications open **September 15, 2026** (confirmed on activate.org/apply). Non-dilutive, hardware and hard-tech, and the eligibility screen fits a first-time hard-tech founder. Build this on the first run after September 15.
 - **DOE broader Phase I:** DOE has stated on its own site that a Phase I opportunity covering additional technology topics opens in fall 2026. That one is a better fit for the reactor hardware work than the Genesis Mission AI framing.
+
+## Source of record for the experimental claims
+
+Every experimental statement in this package traces to the UNT **Final Project Report for Phase-I**,
+prepared by Prof. Shengqian Ma, dated August 7, 2026, covering January 1 to June 30, 2026. The
+report is marked confidential and prepared exclusively for PlastiBioFuel, so it is **not committed
+to this repository**. What it establishes and what it does not is recorded in
+`../FUNDING_REGISTRY.md` so later runs cannot drift from it.
+
+The one place the record conflicts with itself: a June 30 email from Dr. Phipps reports linearity
+through 24 hours and a 3.6x rate at 80 degrees C. The final report contains neither, and instead
+shows reaction rate declining as PET is consumed. The final report wins.
 
 ## Files in this package
 

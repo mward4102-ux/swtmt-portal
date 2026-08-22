@@ -38,41 +38,39 @@ import re as _re
 _wc = lambda t: len(_re.findall(r"\S+", t))
 
 Q1 = [(None,
-  "PlastiBioFuel converts post-consumer PET into fuel-grade ethanol using a PET hydrolase "
-  "immobilized in a custom covalent organic framework. The continuous spiral-flow reactor that "
-  "runs it was designed in simulation: flow, channel geometry, and enzyme reusability modeled "
-  "across more than a million runs. Wet-lab work confirms the immobilization and enzyme chemistry "
-  "that design depends on. Phase I closes the gap between the model and hardware, turning it into "
-  "a reactor design tool with quantified error. That is AI applied to bioreactor design and "
-  "biomanufacturing, which is Topic 1.")]
+  "PlastiBioFuel is building a route from post-consumer PET to fuel-grade ethanol using a PET "
+  "hydrolase immobilized in a covalent organic framework. The continuous spiral-flow reactor was "
+  "designed in simulation: flow, channel geometry, and reusability modeled across more than a "
+  "million runs. Wet-lab work at UNT confirms the enzyme and "
+  "immobilization chemistry the design depends on, and identifies mass transfer as the limit. "
+  "Transport is what reactor geometry decides. Phase I closes the gap between the model and "
+  "hardware, turning it into a design tool with quantified error. That is AI applied to "
+  "bioreactor design and biomanufacturing, Topic 1.")]
 
 Q2 = [
  ("Significance.",
-  "Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery. Conditions "
-  "are still chosen one factor at a time, days per run, so almost none of the design space gets "
-  "searched."),
+  "Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery. Conditions are "
+  "chosen one factor at a time, so little of the design space gets searched."),
  ("Innovation.",
   "FAST-PETase was reported by the Alper group at UT Austin in 2022, itself produced by machine "
   "learning. PlastiBioFuel did not invent the enzyme. Our contributions, covered by USPTO "
   "provisional 63/848,456, are the framework immobilization system, the spiral-flow geometry "
-  "arrived at computationally rather than by iterating hardware, and the integrated "
-  "depolymerization-to-ethanol process. Phase I moves machine learning up one level, from "
-  "residue selection to reactor operation: the surrogate predicts conversion and turnover "
-  "frequency from temperature, residence time, crystallinity, and loading, and ranks the next "
-  "experiment."),
+  "arrived at computationally, and the integrated process. Phase I moves machine learning up one "
+  "level, from residue selection to reactor operation."),
  ("Feasibility.",
-  "Chemistry confirmed, reactor designed. We have depolymerized "
-  "high-crystallinity post-consumer bottle PET to terephthalic acid, MHET, and ethylene glycol, "
-  "confirmed by HPLC, loaded the framework to near-complete occupancy with activity retained, and "
-  "shown turnover-frequency decline tracking substrate depletion, not enzyme deactivation. The "
-  "reactor has been modeled end to end across more than a million runs: flow, channel geometry, "
-  "reusability. It exists in simulation, not hardware. Phase I is that gap: quantify where "
-  "the model is trustworthy and rank the experiments that close it."),
+  "Three UNT milestones completed ahead of schedule, in a final report signed by Prof. Shengqian "
+  "Ma. Free FAST-PETase breaks PET to terephthalic acid, confirmed by HPLC against standards. It "
+  "loads into TAPB-BPDA-COF with no protein detectable in supernatant at 280 nm. Immobilized it "
+  "stays active at a diminished rate: 122 \u00b5mol/h/mg turnover at 24 hours against a 246 to 348 "
+  "literature range for free enzyme. UNT attributes the gap to mass transfer, substrate reaching "
+  "the active site down the COF channel, and to insufficient pre-treatment. Transport is a geometry "
+  "and flow problem, which is what the model covers. Phase I quantifies where it is trustworthy and "
+  "ranks the experiments that close the gap."),
 ]
 
 Q3 = [
  ("Value proposition.",
-  "The product is fuel-grade ethanol made from a waste feedstock. Post-consumer PET is abundant, "
+  "The intended product is fuel-grade ethanol from a waste feedstock. Post-consumer PET is abundant, "
   "domestically sourced, priced well below agricultural feedstock, and it does not compete with "
   "food production. Low carbon fuel standard credit value applies to the finished fuel and is the "
   "firmer part of the value case. Federal renewable identification number eligibility remains "
@@ -262,7 +260,7 @@ biblio = [
   "Kimura, Y.; Oda, K. " + B + "A bacterium that degrades and assimilates poly(ethylene terephthalate).</font> "
   "<i>Science</i> 2016, 351 (6278), 1196-1199.",
   "DOI 10.1126/science.aad6359  ·  PMID 26965627",
-  "Origin of the PETase and MHETase system, and the source of the terephthalic acid and ethylene glycol product pair that PlastiBioFuel routes to ethanol."),
+  "Origin of the PETase and MHETase system, and the source of the terephthalic acid and ethylene glycol product pair that PlastiBioFuel intends to route to ethanol."),
  ("chip", "ENZYME IMMOBILIZATION IN COVALENT ORGANIC FRAMEWORKS", ""),
  ("ref", 4, 'Wang, X.; Lan, P. C.; <font name="Helvetica-Bold" color="#045AA9">Ma, S.</font> ' + B +
   "Metal-Organic Frameworks for Enzyme Immobilization: Beyond Host Matrix Materials.</font> "
