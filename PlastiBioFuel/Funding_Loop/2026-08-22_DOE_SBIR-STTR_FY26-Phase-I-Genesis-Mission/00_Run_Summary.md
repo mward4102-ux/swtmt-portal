@@ -78,5 +78,27 @@ All four categories were checked. Full results with rejection reasons are in `..
 | `PlastiBioFuelBibliography.pdf` | The same file renamed for upload. Letters only in the filename, per the solicitation's file-naming rule. |
 | `04_Forms_and_Certifications_Checklist` | Stage 1 and Stage 2, with each Stage 2 row marked Confirmed or Anticipated. Includes ready-to-use duplicate-funding language. |
 | `05_Submission_Checklist` | Fourteen numbered steps from prerequisites to confirmation, and the answer to where Michael signs. |
+| `content.py` | Every document above, written once as a block list. `../generator/build.py` renders it to both formats. |
 
-Every narrative document is provided as `.docx` with a `.pdf` companion.
+Every narrative document is provided as `.docx` with a `.pdf` companion. Both come
+from the one content model in `content.py`, so the Word file and the PDF cannot
+drift apart.
+
+## Design
+
+The documents are set in the PlastiBioFuel house style: deep blue `#045AA9`, white
+ground, `#D50057` used only for urgency and warnings, `#2A2A2A` body text, hairline
+rules, no heavy borders. Headings are Aptos Display with Calibri and Segoe UI
+Semibold as fallbacks; body is Aptos falling back to Calibri. The PDF companion
+sets in Helvetica.
+
+The layout was drawn on a design canvas first. Those artboards live in
+`../design/` as `.dc.html` files with `canvas.json`, and the block vocabulary that
+reproduces them in Word and PDF is documented in `../generator/README.md`.
+
+To rebuild after editing `content.py`:
+
+```
+python3 PlastiBioFuel/Funding_Loop/generator/build.py \
+        PlastiBioFuel/Funding_Loop/2026-08-22_DOE_SBIR-STTR_FY26-Phase-I-Genesis-Mission
+```
