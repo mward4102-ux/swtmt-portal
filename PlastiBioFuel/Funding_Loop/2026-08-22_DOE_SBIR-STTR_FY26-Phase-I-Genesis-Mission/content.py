@@ -235,7 +235,7 @@ forms = [
   DISCLOSURE),
  ("callout", "TWO STANDING RULES FOR THIS PACKAGE",
   "1.  Dr. Shengqian Ma is Other Personnel on NSF-style forms, not Senior or Key Personnel. DOE has not published its personnel categories for this opportunity, so apply the same treatment unless the DOE form defines categories differently.\n2.  ARG Petro is offtake discussions and interest. There is no signed letter of intent and no executed offtake agreement. No document in this package may say otherwise."),
- ("footer", "PlastiBioFuel LLC  ·  SDVOSB, SBA VetCert verified  ·  NAICS 325199, 325193, 541715", CONTACT_R),
+ ("footer", "PlastiBioFuel LLC  ·  michael@plastibiofuel.com  ·  SDVOSB, SBA VetCert verified  ·  NAICS 325199, 325193, 541715", CONTACT_R),
 ]
 
 # --------------------------------------------------------- BIBLIOGRAPHY
@@ -293,4 +293,11 @@ DOCS = {
  "03_Bibliography_and_References_Cited": biblio,
  "04_Forms_and_Certifications_Checklist": forms,
  "05_Submission_Checklist": submit,
+}
+
+# The solicitation restricts upload filenames to letters only, so the
+# bibliography also ships under an alias. Rendered from the same blocks as its
+# source document, so the file the portal receives can never go stale.
+UPLOADS = {
+ "PlastiBioFuelBibliography": "03_Bibliography_and_References_Cited",
 }

@@ -151,7 +151,7 @@ crystallinity is not characterized anywhere and is not claimed.
 | `01_Opportunity_Brief` | One-page brief. Every required field plus the verification timestamp. |
 | `02_Pitch_Responses` | The four pitch answers with word counts, plus optional add-on sentences. Copy and paste into AMP. |
 | `03_Bibliography_and_References_Cited` | Optional PDF upload. Six peer-reviewed references verified against PubMed, plus the provisional patent. |
-| `PlastiBioFuelBibliography.pdf` | The same file renamed for upload. Letters only in the filename, per the solicitation's file-naming rule. |
+| `PlastiBioFuelBibliography.pdf` | The same document under the upload alias step 10 asks for. Rendered by the build from the bibliography's own blocks, so the file the portal receives cannot go stale. Letters only in the filename, per the solicitation's file-naming rule. |
 | `04_Forms_and_Certifications_Checklist` | Stage 1 and Stage 2, with each Stage 2 row marked Confirmed or Anticipated. Includes ready-to-use duplicate-funding language. |
 | `05_Submission_Checklist` | Fourteen numbered steps from prerequisites to confirmation, and the answer to where Michael signs. |
 | `content.py` | Every document above, written once as a block list. `../generator/build.py` renders it to both formats. |
@@ -178,3 +178,16 @@ To rebuild after editing `content.py`:
 python3 PlastiBioFuel/Funding_Loop/generator/build.py \
         PlastiBioFuel/Funding_Loop/2026-08-22_DOE_SBIR-STTR_FY26-Phase-I-Genesis-Mission
 ```
+
+Then check it before shipping. The audit exits non-zero on any failure, so a stale
+build cannot go out:
+
+```
+python3 PlastiBioFuel/Funding_Loop/generator/audit.py \
+        PlastiBioFuel/Funding_Loop/2026-08-22_DOE_SBIR-STTR_FY26-Phase-I-Genesis-Mission
+```
+
+It checks the four pitch word limits, house style across every document and prose
+file, the contact of record on each document, that every word in each `.docx`
+also reaches its `.pdf`, that the upload alias still mirrors its source, and that
+the brief is still one page.
