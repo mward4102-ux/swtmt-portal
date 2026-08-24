@@ -203,6 +203,34 @@ DISCLOSURE = ("“PlastiBioFuel LLC has one other federal proposal pending: NSF 
   "experimental validation. The two efforts share no tasks, no personnel effort months, and no budget lines. This is not "
   "essentially equivalent work, and no duplicate funding would result from award of both.”")
 
+AI_DISCLOSURE = (
+  "Generative AI was used in two distinct ways, and they should be read separately.\n\n"
+  "1. In the research itself. Michael David Ward, Founder and CEO and the proposed principal "
+  "investigator, used a commercial large language model (Grok, xAI) as a modeling and design "
+  "environment to derive and test the continuous spiral-flow reactor this proposal describes. "
+  "Channel geometry, flow behavior, and enzyme reusability were explored across more than one "
+  "million simulation runs. He built that capability and operates it himself. This is the subject "
+  "of the proposal rather than an aid to writing it, and the Phase I work proposed here is the "
+  "work of quantifying where that model is trustworthy against physical measurement. The model has "
+  "not been validated against a physical reactor, and the proposal says so.\n\n"
+  "2. In preparing the written submission. A commercial generative AI assistant (Claude, "
+  "Anthropic) was used to draft, organize, and format the narrative text of this submission from "
+  "source material supplied by the applicant: the company technical file, the University of North "
+  "Texas Final Project Report for Phase-I signed by Prof. Shengqian Ma and dated August 7, 2026, "
+  "correspondence from Dr. Bradley Phipps, USPTO provisional application 63/848,456, and the "
+  "agency\u2019s own published solicitation pages.\n\n"
+  "What generative AI did not do. It did not generate, estimate, or extrapolate any experimental "
+  "result. Every laboratory value here, including the 122 \u00b5mol/h/mg immobilized turnover "
+  "figure, comes from the signed UNT report. The one figure sourced outside that report, roughly "
+  "3.6 times the standard rate at 80 \u00b0C, is attributed to Dr. Phipps by email and is stated "
+  "with its confounding caveat. Every reference was verified against PubMed by identifier before "
+  "inclusion. No text, data, or citation was accepted without tracing it to a named primary "
+  "source.\n\n"
+  "Responsibility. Michael David Ward reviewed and approved every statement in this submission and "
+  "is responsible for its accuracy, authenticity, and authorship. PlastiBioFuel LLC is fully "
+  "capable of performing the work described. To the best of the applicant\u2019s knowledge, this "
+  "submission does not infringe or violate the rights of any third party.")
+
 forms = [
  ("masthead", "FORMS AND CERTIFICATIONS"),
  ("hero", EYE, "Nothing to sign\nat the pitch stage",
@@ -233,6 +261,9 @@ forms = [
  ("tint", "DUPLICATE FUNDING DISCLOSURE, READY TO USE",
   "Use this wording on any essentially equivalent work certification at full application. It is already reflected in Question 4 of the pitch.",
   DISCLOSURE),
+ ("tint", "GENERATIVE AI USE DISCLOSURE, READY TO USE",
+  "DOE asks every applicant to state the extent of generative AI use and how it was used. Paste this into that field. It is written for a reader who must not confuse the two uses: AI is the engineering method behind the technology, and it was separately used to draft this text.",
+  AI_DISCLOSURE),
  ("callout", "TWO STANDING RULES FOR THIS PACKAGE",
   "1.  Dr. Shengqian Ma is Other Personnel on NSF-style forms, not Senior or Key Personnel. DOE has not published its personnel categories for this opportunity, so apply the same treatment unless the DOE form defines categories differently.\n2.  ARG Petro is offtake discussions and interest. There is no signed letter of intent and no executed offtake agreement. No document in this package may say otherwise."),
  ("footer", "PlastiBioFuel LLC  ·  michael@plastibiofuel.com  ·  SDVOSB, SBA VetCert verified  ·  NAICS 325199, 325193, 541715", CONTACT_R),

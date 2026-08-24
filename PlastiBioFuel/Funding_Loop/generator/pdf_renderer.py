@@ -294,7 +294,10 @@ def build(blocks, path, title_text, accent=T.PINK):
             if len(b) > 2 and b[2]:
                 parts.append([Paragraph(esc(b[2]), S["meta"])])
             if len(b) > 3 and b[3]:
-                q = Table([[Paragraph(esc(b[3]), S["quote"])]], colWidths=[CW - 46], hAlign="LEFT")
+                qs = ParagraphStyle("q", parent=S["quote"], spaceAfter=7)
+                lines = [ln for ln in str(b[3]).split("\n") if ln.strip()]
+                q = Table([[Paragraph(esc(ln), qs)] for ln in lines],
+                          colWidths=[CW - 46], hAlign="LEFT")
                 q.setStyle(TableStyle([("LINEBEFORE", (0,0), (0,-1), 2, C(T.BLUE)),
                                        ("LEFTPADDING", (0,0), (-1,-1), 12), ("RIGHTPADDING", (0,0), (-1,-1), 0),
                                        ("TOPPADDING", (0,0), (-1,-1), 2), ("BOTTOMPADDING", (0,0), (-1,-1), 0)]))

@@ -330,15 +330,16 @@ def build(blocks, path):
             if len(b) > 2 and b[2]:
                 p2 = cell_para(c, first=False, space_before=4, line=1.25); run(p2, b[2], size=8.5, color=T.MUTED)
             if len(b) > 3 and b[3]:
-                p3 = cell_para(c, first=False, space_before=5, line=1.32, )
-                p3.paragraph_format.left_indent = Pt(10)
-                pPr = p3._p.get_or_add_pPr()
-                bd = OxmlElement("w:pBdr")
-                lb = OxmlElement("w:left")
-                lb.set(qn("w:val"), "single"); lb.set(qn("w:sz"), "12")
-                lb.set(qn("w:space"), "6"); lb.set(qn("w:color"), T.BLUE)
-                bd.append(lb); pPr.append(bd)
-                run(p3, b[3], size=10)
+                for i, ln in enumerate(l for l in str(b[3]).split("\n") if l.strip()):
+                    p3 = cell_para(c, first=False, space_before=5 if i == 0 else 7, line=1.32)
+                    p3.paragraph_format.left_indent = Pt(10)
+                    pPr = p3._p.get_or_add_pPr()
+                    bd = OxmlElement("w:pBdr")
+                    lb = OxmlElement("w:left")
+                    lb.set(qn("w:val"), "single"); lb.set(qn("w:sz"), "12")
+                    lb.set(qn("w:space"), "6"); lb.set(qn("w:color"), T.BLUE)
+                    bd.append(lb); pPr.append(bd)
+                    run(p3, ln, size=10)
             para(doc, space_after=10, line=1.0)
 
         elif k == "kvrows":
