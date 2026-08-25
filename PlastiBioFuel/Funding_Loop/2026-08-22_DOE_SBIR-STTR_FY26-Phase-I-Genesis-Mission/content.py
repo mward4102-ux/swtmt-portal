@@ -97,7 +97,7 @@ Q4 = [
   "by PlastiBioFuel. He built the project's simulation and modeling capability and runs it "
   "himself, so the computational work Phase I extends stays inside the company rather than "
   "moving to a subcontractor. PlastiBioFuel is a service-disabled veteran-owned small business "
-  "verified through SBA VetCert and holds USPTO provisional 63/848,456. Its laboratory program "
+  "SDVOSB certified and holds USPTO provisional 63/848,456. Its laboratory program "
   "produced the preliminary data cited here. All work will be performed in the United States."),
  ("Partnerships.",
   "The University of North Texas is our research partner under executed Sponsored Research "
@@ -266,7 +266,7 @@ forms = [
   AI_DISCLOSURE),
  ("callout", "TWO STANDING RULES FOR THIS PACKAGE",
   "1.  Dr. Shengqian Ma is Other Personnel on NSF-style forms, not Senior or Key Personnel. DOE has not published its personnel categories for this opportunity, so apply the same treatment unless the DOE form defines categories differently.\n2.  ARG Petro is offtake discussions and interest. There is no signed letter of intent and no executed offtake agreement. No document in this package may say otherwise."),
- ("footer", "PlastiBioFuel LLC  ·  michael@plastibiofuel.com  ·  SDVOSB, SBA VetCert verified  ·  NAICS 325199, 325193, 541715", CONTACT_R),
+ ("footer", "PlastiBioFuel LLC  ·  michael@plastibiofuel.com  ·  SDVOSB, certified and active in SAM.gov  ·  NAICS 325199, 325193, 541715", CONTACT_R),
 ]
 
 # --------------------------------------------------------- BIBLIOGRAPHY

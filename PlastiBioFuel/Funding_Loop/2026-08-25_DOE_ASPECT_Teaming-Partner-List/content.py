@@ -71,7 +71,7 @@ profile = [
  ("kvrows", [
    ("Investigator Name", "Michael David Ward"),
    ("Organization Name", "PlastiBioFuel LLC"),
-   ("Organization Type", "Small business. Service-disabled veteran-owned, SBA VetCert verified."),
+   ("Organization Type", "Small business. Service-disabled veteran-owned, certified and active in SAM.gov."),
    ("Topic Area", "Chemicals from alternative and waste feedstocks. Post-consumer PET to terephthalic acid and downstream derivatives."),
    ("Website", "plastibiofuel.com"),
    ("Contact Address", "12380 Iveson Drive, Haslet, TX 76052"),
@@ -147,7 +147,7 @@ forms = [
  ("card", "anticipated", "Foreign risk management and research security disclosures", "Full application", "Michael Ward", "Standard for DOE financial assistance. Not yet published for ASPECT."),
  ("callout", "ONE STANDING PERSONNEL RULE",
   "Dr. Shengqian Ma is Other Personnel on NSF-style forms, not Senior or Key Personnel. Apply the same treatment on any ASPECT form unless DOE defines its categories differently."),
- ("footer", "PlastiBioFuel LLC  ·  michael@plastibiofuel.com  ·  SDVOSB, SBA VetCert verified  ·  NAICS 325199, 325193, 541715", CONTACT_R),
+ ("footer", "PlastiBioFuel LLC  ·  michael@plastibiofuel.com  ·  SDVOSB, certified and active in SAM.gov  ·  NAICS 325199, 325193, 541715", CONTACT_R),
 ]
 
 # ----------------------------------------------------------- SUBMISSION

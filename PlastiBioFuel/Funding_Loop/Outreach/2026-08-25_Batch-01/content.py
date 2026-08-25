@@ -19,7 +19,7 @@ B = '<font name="Helvetica-Bold">'
 # ------------------------------------------------------------------ BRIEF
 brief = [
  ("masthead", "OUTREACH BRIEF"),
- ("hero", "PLASTIBIOFUEL LLC  ·  SDVOSB, SBA VETCERT VERIFIED",
+ ("hero", "PLASTIBIOFUEL LLC  ·  SDVOSB",
   "Getting on\nthe radar",
   "Three federal offices whose job is to know companies like this one. No deadlines, no forms, no applications. Each letter asks for one thing an office can grant without a decision."),
  ("stats", [("LETTERS", "3", "Ready to send today"),
@@ -43,7 +43,7 @@ L1_SUBJ = "SDVOSB introduction: enzymatic PET to chemicals, Haslet TX (UEI KQAWZ
 L1 = (
  "Dear Office of Small Business Programs,\n\n"
  "I am writing to introduce PlastiBioFuel LLC, a service-disabled veteran-owned small business "
- "in Haslet, Texas, certified through SBA's Veteran Small Business Certification program. We "
+ "in Haslet, Texas, SDVOSB certified and active in SAM.gov. We "
  "convert post-consumer PET into chemicals using an enzyme immobilized in a covalent organic "
  "framework, with a sponsored research agreement at the University of North Texas.\n\n"
  "Where the work stands: an independent final report from UNT confirms that our enzyme breaks "
@@ -61,7 +61,7 @@ L1 = (
  "Respectfully,\n\n"
  "Michael David Ward\n"
  "Founder and Chief Executive Officer, PlastiBioFuel LLC\n"
- "UEI KQAWZ54RDUM8  |  CAGE 175D6  |  SDVOSB, SBA VetCert verified\n"
+ "UEI KQAWZ54RDUM8  |  CAGE 175D6  |  SDVOSB, certified and active in SAM.gov\n"
  "michael@plastibiofuel.com  |  817-319-7383  |  plastibiofuel.com"
 )
 
@@ -83,7 +83,7 @@ L2 = (
  "Respectfully,\n\n"
  "Michael David Ward\n"
  "Founder and Chief Executive Officer, PlastiBioFuel LLC\n"
- "UEI KQAWZ54RDUM8  |  CAGE 175D6  |  SDVOSB, SBA VetCert verified\n"
+ "UEI KQAWZ54RDUM8  |  CAGE 175D6  |  SDVOSB, certified and active in SAM.gov\n"
  "michael@plastibiofuel.com  |  817-319-7383  |  plastibiofuel.com"
 )
 
@@ -91,7 +91,7 @@ L3_SUBJ = "SDVOSB capability introduction: waste plastic to fuel and chemicals (
 L3 = (
  "Dear Office of Industrial Base Growth,\n\n"
  "PlastiBioFuel LLC is a service-disabled veteran-owned small business in Haslet, Texas, "
- "certified through SBA's Veteran Small Business Certification program. We work on converting "
+ "SDVOSB certified and active in SAM.gov. We work on converting "
  "waste PET plastic into chemicals, and our longer objective is fuel.\n\n"
  "The reason to write your office rather than a science office: fuel and its logistics are a "
  "tonnage problem before they are a chemistry problem, and waste plastic is one of the few "
@@ -106,7 +106,7 @@ L3 = (
  "Respectfully,\n\n"
  "Michael David Ward\n"
  "Founder and Chief Executive Officer, PlastiBioFuel LLC\n"
- "UEI KQAWZ54RDUM8  |  CAGE 175D6  |  SDVOSB, SBA VetCert verified\n"
+ "UEI KQAWZ54RDUM8  |  CAGE 175D6  |  SDVOSB, certified and active in SAM.gov\n"
  "michael@plastibiofuel.com  |  817-319-7383  |  plastibiofuel.com"
 )
 
@@ -135,7 +135,7 @@ snapshot = [
   "One page, written to be forwarded. Every number on it traces to a signed independent report."),
  ("statbar", [("122", "MICROMOL/H/MG TURNOVER, IMMOBILIZED"), ("3", "MILESTONES CLOSED EARLY"), ("1", "PROVISIONAL PATENT")]),
  ("factgrid", [
-   ("ENTITY", "PlastiBioFuel LLC. UEI KQAWZ54RDUM8, CAGE 175D6. Service-disabled veteran-owned small business, certified through SBA's Veteran Small Business Certification program."),
+   ("ENTITY", "PlastiBioFuel LLC. UEI KQAWZ54RDUM8, CAGE 175D6. Service-disabled veteran-owned small business, certified and active in SAM.gov."),
    ("NAICS", "325199 other basic organic chemical manufacturing; 325193 ethyl alcohol manufacturing; 541715 research and development."),
    ("WHAT WE DO", "A PET hydrolase immobilized in a covalent organic framework depolymerizes post-consumer PET. A continuous spiral-flow reactor, designed in simulation, is the intended production form."),
    ("RESEARCH PARTNER", "University of North Texas, Prof. Shengqian Ma, under Sponsored Research Agreement SRA1016. Framework and immobilization chemistry."),
@@ -212,7 +212,7 @@ send = [
  ("p", "Not a grant. A name, a notification list, or an invitation to a vendor session. Those are the things that turn the next application from a cold submission into one from a company somebody already recognizes. Three replies out of ten letters would be a good rate for cold federal outreach, and the ones that answer are usually the ones whose job it is to answer."),
  ("h1", "One rule that protects everything else"),
  ("p", "Never ask any of these offices about a pending proposal, and never imply that an introduction should bear on a review. Say plainly, as all three letters do, that nothing is being asked for on anything pending. Small business offices talk to program offices, and a company that appears to be working an angle is remembered for that."),
- ("footer", "PlastiBioFuel LLC  ·  michael@plastibiofuel.com  ·  SDVOSB, SBA VetCert verified", CONTACT_R),
+ ("footer", "PlastiBioFuel LLC  ·  michael@plastibiofuel.com  ·  SDVOSB", CONTACT_R),
 ]
 
 DOCS = {

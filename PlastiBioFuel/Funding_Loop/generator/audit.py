@@ -64,8 +64,25 @@ def pdf_body(path):
     with body text at page breaks. The document footer starts the same way but is
     followed by a five-digit street number, so a one-or-two-digit lookahead keeps
     real content intact.
+
+    A page number can also butt directly against a numeral that opens the next
+    page, so "PlastiBioFuel LLC" + page 3 + step 7 normalizes to "...llc37". A
+    bare one-or-two-digit strip would swallow the 7 and report real content
+    missing. Only digits that can actually be this document's page number are
+    removed: the full run when it is within the page count, otherwise just the
+    leading digit, otherwise nothing.
     """
-    return re.sub(r"plastibiofuelllc(\d{1,2})(?!\d)", "", norm(pdf_text(path)))
+    npages = max(pages(path), 1)
+
+    def strip(m):
+        run = m.group(1)
+        if int(run) <= npages:
+            return ""
+        if int(run[0]) <= npages:
+            return run[1:]
+        return run
+
+    return re.sub(r"plastibiofuelllc(\d{1,2})(?!\d)", strip, norm(pdf_text(path)))
 
 
 def pages(path):

@@ -6,7 +6,7 @@ Read this file first on every run. Do not rebuild a package for anything already
 
 **Entity:** PlastiBioFuel LLC · UEI KQAWZ54RDUM8 · CAGE 175D6 · SDVOSB (SBA VetCert verified) · NAICS 325199, 325193, 541715
 
-*Certification wording:* SDVOSB status is certified through SBA's Veteran Small Business Certification program and appears in SAM.gov. Write it that way in anything a contracting or small business office will read. SAM.gov is the registration, not the certifying authority.
+*Certification and registration:* **Confirmed active by Michael Ward on 2026-08-25.** SDVOSB certification is complete and SAM.gov registration is active. Both are settled; do not re-open either, do not lead a summary with them, and do not ask him to re-verify them. The public SAM entity endpoint cannot confirm registration status from outside, which is a limitation of the endpoint and not a fact about the company. Write the status as "SDVOSB, certified and active in SAM.gov."
 
 ---
 
@@ -16,6 +16,7 @@ Read this file first on every run. Do not rebuild a package for anything already
 |---|---|---|---|---|---|---|
 | 2026-08-22 | DOE, Office of Technology Commercialization (via ConnectWerx) | No DE-FOA issued; "FY26 Phase I, Genesis Mission" | SBIR/STTR Phase I, Topic 1, Scaling the Biotechnology Revolution | **2026-09-10, 2:00 PM ET** | **Package built** | Pitch-first, two stage. Up to $250,000 ($256,500 with TABA), no cost share. Package at `2026-08-22_DOE_SBIR-STTR_FY26-Phase-I-Genesis-Mission/`. Scope is the computational design layer, adjacent to NSF 328095. |
 | 2026-08-25 | DOE, Office of Critical Minerals and Energy Innovation, for the Alternative Fuels and Feedstocks Office | NOI DE-FOA-0003646; Teaming Partner List TPL-0000073 | ASPECT, Accelerating Scale-up and Pre-piloting of Emerging Chemical Technologies | **No deadline.** NOFO not issued; application deadline TBD | **Package built** | Teaming list only, not an application. Package at `2026-08-25_DOE_ASPECT_Teaming-Partner-List/`. Chemicals from alternative and waste feedstocks, foundational molecules. The list is titled for DE-FOA-0003647 while its body cites DE-FOA-0003646; select it by title. Contacts ASPECT@doe.gov, Josh Messner. Watch the ASPECT page every run for the NOFO itself. |
+| 2026-08-25 | DOE Office of Technology Commercialization, via Oak Ridge National Laboratory | Innovation Crossroads, Cohort 2027 (Lab-Embedded Entrepreneurship Program) | Two-year funded entrepreneurial fellowship | **Applications 2026-09-15 to 2026-10-30, 8:00 PM ET** | Surfaced | $115,000 per year living stipend for 2 years, plus health insurance stipend, professional development allowance, R&D funding for collaboration with ORNL researchers, and lab access. Named topic area **Advanced Fuel and Feedstock technology**: a direct fit. Apply as an individual, 8-page PDF. Eligibility met on the $2M non-government funding cap. **Two open questions before building: the doctoral degree or equivalent experience test, and required relocation to the Knoxville and Oak Ridge area for two years.** That relocation is Michael's decision and it decides whether this is worth writing. **Build on the first run after 2026-09-15.** |
 | (prior) | NSF | NSF 26-510, Research.gov proposal 328095 | SBIR Phase I, subtopic BT10 Synthetic Biology and Metabolic Engineering | 2026-11-04 window | **Submitted** (in preparation, external to this loop) | $304,955. COF-enzyme reusability, monomer-to-ethanol pathway, integrated lab-scale spiral reactor module. Do not build anything that duplicates this scope. |
 
 ---
@@ -120,12 +121,14 @@ Counts are notices actually examined, not search-result totals. Full detail in
 
 ### SAM.gov entity registration, 2026-08-25
 
-**UNVERIFIED, and the distinction matters.** SAM.gov's public entity search returns zero
-rows for UEI KQAWZ54RDUM8, and it also returns zero rows for a control entity that is
-certainly registered and had just taken a federal award. The endpoint is not answering
-entity queries without authentication, so this is *unverified*, not *unregistered*. Never
-record it as the latter on this evidence. Only Michael can settle it by logging in and
-reading the expiration date on the entity record.
+**Resolved. Confirmed active by Michael Ward on 2026-08-25.** SDVOSB certification is complete
+and the SAM.gov registration is active.
+
+Recorded here because a run wasted effort on it: the public SAM entity search endpoint returns
+zero rows even for a control entity that is certainly registered, so registration status simply
+cannot be read from outside without authentication. That is a property of the endpoint. It is not
+evidence about any company, and no future run should treat it as an open question or raise it with
+Michael again.
 
 ---
 
@@ -145,6 +148,24 @@ reading the expiration date on the entity record.
   endpoints return 405 or demand an authentication token.
 - `sbir.gov/opportunities` and `sbir.gov/solicitations` still 404. The working path is
   `sbir.gov/topics`, and it accepts `?keywords=<term>&status=Open`.
+
+---
+
+## Lab-Embedded Entrepreneurship Programs (LEEP)
+
+Surfaced 2026-08-25 and previously untracked by this loop. DOE's Office of Technology
+Commercialization runs LEEP as a set of two-year funded fellowships embedded at national
+laboratories. Innovation Crossroads at Oak Ridge is one node and is in the Active table above.
+
+The other nodes run on their own annual calls and are **not yet verified by this loop**: Cyclotron
+Road at Lawrence Berkeley (which Activate Berkeley is tied to), Chain Reaction Innovations at
+Argonne, and West Gate at NREL. `nrel.gov` did not resolve from this environment on 2026-08-25.
+Verify each node's window on the next run; they are the closest structural match to this company
+that exists in the federal system.
+
+One question to settle before applying anywhere in this family: the Activate FAQ addresses whether
+an applicant may apply to Activate and to a LEEP program in the same cycle. Read that answer before
+committing, because Activate and Innovation Crossroads both open on 2026-09-15.
 
 ---
 
