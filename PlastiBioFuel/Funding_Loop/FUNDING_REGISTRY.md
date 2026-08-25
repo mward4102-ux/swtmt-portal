@@ -13,6 +13,7 @@ Read this file first on every run. Do not rebuild a package for anything already
 | Date | Agency | Announcement | Title | Deadline | Status | Notes |
 |---|---|---|---|---|---|---|
 | 2026-08-22 | DOE, Office of Technology Commercialization (via ConnectWerx) | No DE-FOA issued; "FY26 Phase I, Genesis Mission" | SBIR/STTR Phase I, Topic 1, Scaling the Biotechnology Revolution | **2026-09-10, 2:00 PM ET** | **Package built** | Pitch-first, two stage. Up to $250,000 ($256,500 with TABA), no cost share. Package at `2026-08-22_DOE_SBIR-STTR_FY26-Phase-I-Genesis-Mission/`. Scope is the computational design layer, adjacent to NSF 328095. |
+| 2026-08-25 | DOE, Office of Critical Minerals and Energy Innovation, for the Alternative Fuels and Feedstocks Office | NOI DE-FOA-0003646; Teaming Partner List TPL-0000073 | ASPECT, Accelerating Scale-up and Pre-piloting of Emerging Chemical Technologies | **No deadline.** NOFO not issued; application deadline TBD | **Package built** | Teaming list only, not an application. Package at `2026-08-25_DOE_ASPECT_Teaming-Partner-List/`. Chemicals from alternative and waste feedstocks, foundational molecules. The list is titled for DE-FOA-0003647 while its body cites DE-FOA-0003646; select it by title. Contacts ASPECT@doe.gov, Josh Messner. Watch the ASPECT page every run for the NOFO itself. |
 | (prior) | NSF | NSF 26-510, Research.gov proposal 328095 | SBIR Phase I, subtopic BT10 Synthetic Biology and Metabolic Engineering | 2026-11-04 window | **Submitted** (in preparation, external to this loop) | $304,955. COF-enzyme reusability, monomer-to-ethanol pathway, integrated lab-scale spiral reactor module. Do not build anything that duplicates this scope. |
 
 ---
@@ -31,7 +32,7 @@ Read this file first on every run. Do not rebuild a package for anything already
 | 2026-08-22 | EPA | SBIR annual solicitation | Not posted | Surfaced | No open window on epa.gov/sbir as of this run. EPA SBIR is a contract program on an annual cycle. Recheck next run. |
 | 2026-08-22 | USDA NIFA, DoD (DSIP) | n/a | n/a | Surfaced | Not individually verified this run. DoD DSIP and USDA NIFA carry their own cycles; neither is a near-term fit against the PET-to-ethanol scope without a defense-fuel-logistics framing. Carry forward. |
 
-*Tooling note: `sbir.gov/opportunities` and `sbir.gov/solicitations` both return 404. The working path is `sbir.gov/topics`.*
+*Tooling note: `sbir.gov/opportunities` and `sbir.gov/solicitations` both return 404. The working path is `sbir.gov/topics`. See **Tooling, as of 2026-08-25** below: the SAM.gov and Grants.gov blocks recorded in this section were an artifact of the access path, and both are reachable through the Scrapling connector.*
 
 ### Category 2. Non-SBIR federal grants and FOAs
 
@@ -56,6 +57,92 @@ Read this file first on every run. Do not rebuild a package for anything already
 | 2026-08-22 | Office of the Texas Governor | Texas Product Development and Small Business Incubator Fund | n/a | Passed | The program page at gov.texas.gov returns 404. No open window verifiable on the issuing site. Recheck via the Texas Economic Development office. |
 | 2026-08-22 | Second Service Foundation (formerly StreetShares Foundation), Warrior Rising, Bunker Labs | Military Entrepreneur Challenge and related veteran awards | Rolling, regional | Surfaced | No open, verified national window. Regional Military Entrepreneur Challenge applications open roughly 30 days before each event. Award sizes run $1,000 to $15,000. Worth a run when a Texas regional event is posted. |
 | 2026-08-22 | XPRIZE, Breakthrough Energy, TCEQ, Texas Manufacturing Assistance Center | n/a | n/a | Surfaced | Not individually verified this run. Carry forward. |
+
+---
+
+## Checked and passed, 2026-08-25
+
+Counts are notices actually examined, not search-result totals. Full detail in
+`2026-08-25_DOE_ASPECT_Teaming-Partner-List/00_Run_Summary.md`.
+
+### Category 1. Federal SBIR and STTR
+
+| Date | Agency | Announcement | Deadline | Status | Reason passed |
+|---|---|---|---|---|---|
+| 2026-08-25 | DOE (ConnectWerx) | FY26 Phase I, Genesis Mission | 2026-09-10, 2:00 PM ET | **Package built** | Re-verified on the ConnectWerx page, unchanged, still an Active Solicitation. Do not rebuild. 16 days remained at this run. |
+| 2026-08-25 | DOE (ConnectWerx) | FY25 Phase II | 2026-09-25, 12:00 PM ET | Passed | Ineligible. Prior DOE SBIR/STTR awardees only. Unchanged from 2026-08-22. |
+| 2026-08-25 | DOE OTC | Broader FY26 Phase I, additional technology topics | Not posted | Surfaced | Still not posted. The Genesis Mission page continues to say a broader Phase I "will follow later this summer." Recheck every run. |
+| 2026-08-25 | sbir.gov | All open topics, 337 across all agencies | various | Passed | Keyword "plastic" returns **0 open topics**. "waste" returns 4, two defense topics unrelated and two NSF topics below. "biomanufacturing" returns 2, a DARPA cell-culture topic and ARPA-H UNI-PLAT, neither a fit. |
+| 2026-08-25 | NSF | Emission or Waste Reduction and the Circular Economy; Food Waste Mitigation | Both close 2027-07-07 | Passed | Closest topical match found this run, and passed on duplication: this is the scope of NSF 328095, already in preparation against the 2026-11-04 window. Revisit only if 328095 is declined. |
+| 2026-08-25 | EPA | SBIR annual solicitation | Not posted | Surfaced | No open solicitation. The EPA page's own text is stale: it says the next is "anticipated to open in June 2025" and lists the 2025 Phase I as closed 2024-08-21. Recheck each run; the cycle historically opens in June. |
+| 2026-08-25 | USDA NIFA | USDA-NIFA-SBIR-010774 | Closed 2024-09-17 | Passed | No open window. The NIFA page still shows the FY2025 NOFO and was last updated 2025-05-15. sbir.gov shows 0 open USDA topics. |
+| 2026-08-25 | NASA | All topics | n/a | Passed | 0 open topics on sbir.gov. |
+| 2026-08-25 | DoD (DSIP) | 56 open topics, open 2026-08-26, close 2026-09-23 | 2026-09-23 | Passed | No topic touches plastics, waste conversion, or fuel production. |
+
+### Category 2. Non-SBIR federal grants and FOAs
+
+| Date | Agency | Announcement | Deadline | Status | Reason passed |
+|---|---|---|---|---|---|
+| 2026-08-25 | DOE CMEI / AFFO | ASPECT, DE-FOA-0003646 and TPL-0000073 | None yet | **Selected** | See Active. |
+| 2026-08-25 | ARPA-E | IGNIITE 2026, DE-FOA-0003624 | Full application 2026-08-26, 9:30 AM ET | Passed | Ineligible. Invitation-only. Concept papers closed 2026-05-29 and invite letters went out 2026-07-27. No concept paper was submitted, so there is no path in. Note for a future year: IGNIITE is an early-career program worth a concept paper in the spring window. |
+| 2026-08-25 | ARPA-E | All other listings | n/a | Passed | No other NOFO with a future application deadline. |
+| 2026-08-25 | DOE EERE / CMEI | CMMA Topic Areas 1 to 3; PROSPECT NOI; ITCC RFI | 2026-04-24; TBD; closed 2026-07-10 | Passed | CMMA closed. PROSPECT is education and workforce. The ITCC RFI window closed. |
+| 2026-08-25 | Grants.gov | Keyword "plastic", status posted | n/a | Passed | **Now verified, first time in this loop.** 0 open opportunities. Reached at simpler.grants.gov. |
+
+### Category 3. Federal contracts and BAAs
+
+**Covered for the first time.** Every prior run recorded this category as UNVERIFIED.
+
+| Date | Query | Active | Examined | Status | Reason passed |
+|---|---|---|---|---|---|
+| 2026-08-25 | SAM.gov, NAICS 325199 | 28 | 7 live and future non-award | Passed | Chemical supply buys and one technology-licensing notice. No R&D fit. |
+| 2026-08-25 | SAM.gov, NAICS 325193 | 0 | 0 | Passed | Nothing posted under this code. |
+| 2026-08-25 | SAM.gov, NAICS 541715 | 514 | 37 | Passed | Defense and health R&D. The one biotechnology-titled hit, FRA BAA 693JJ626R000001, was pulled in full: Federal Railroad Administration rail research, set-aside NONE, response through 2027-09-30. No fit. |
+| 2026-08-25 | SAM.gov, "plastic recycling" | 210 | 24 | Passed | Waste-removal services, balers, traffic barriers, printer filament. No R&D. |
+| 2026-08-25 | SAM.gov, "depolymerization" | 0 | 0 | Passed | Nothing. |
+| 2026-08-25 | SAM.gov, "biofuel" | 1 | 0 | Passed | Award notice only. |
+| 2026-08-25 | SAM.gov, "enzymatic catalysis" | 6 | 4 | Passed | Two DOE technology-licensing notices. No fit. |
+
+### Category 4. Texas, foundations, and prizes
+
+| Date | Program | Announcement | Deadline | Status | Reason passed |
+|---|---|---|---|---|---|
+| 2026-08-25 | Activate | US Fellowship, Cohort 2027 | **Opens 2026-09-15** | Surfaced | Confirmed on activate.org/apply. Eligibility re-read and it still fits: first-time hard-tech founder, no more than $2M raised from non-governmental sources, bachelor's plus 4 years of research or engineering experience. **Build on the first run after September 15.** |
+| 2026-08-25 | Cleantech Open | 2026 US Accelerator | n/a | Passed | No open window. Site shows the 2026 program as coming soon and a 2027 interest form. |
+| 2026-08-25 | Office of the Texas Governor / TxEDC | Texas Product Development and Small Business Incubator Fund | n/a | Passed | The gov.texas.gov program page still returns 404. The Texas Economic Development incentives page lists no state program matching a pre-revenue R&D company at this stage. |
+| 2026-08-25 | Second Service Foundation | Military Entrepreneur Challenge and related awards | n/a | **Closed** | The foundation has voluntarily shut down and is transferring its resources into a faith-based nonprofit that has not launched publicly. **Removed from the watch list.** |
+| 2026-08-25 | Warrior Rising | LaunchPoint (SDVET), Business Showers | Rolling | Surfaced | Active programs, no posted national application window or date to work against. Recheck when a Texas event is announced. |
+| 2026-08-25 | XPRIZE | 4 active challenges | various | Passed | Quantum Applications, Water Scarcity, Healthspan, Wildfire. No fit. |
+| 2026-08-25 | Breakthrough Energy | Fellows | n/a | Passed | No open application window published. |
+| 2026-08-25 | TCEQ, Texas Manufacturing Assistance Center | n/a | n/a | Surfaced | **Not individually verified this run.** Carry forward. |
+
+### SAM.gov entity registration, 2026-08-25
+
+**UNVERIFIED, and the distinction matters.** SAM.gov's public entity search returns zero
+rows for UEI KQAWZ54RDUM8, and it also returns zero rows for a control entity that is
+certainly registered and had just taken a federal award. The endpoint is not answering
+entity queries without authentication, so this is *unverified*, not *unregistered*. Never
+record it as the latter on this evidence. Only Michael can settle it by logging in and
+reading the expiration date on the entity record.
+
+---
+
+## Tooling, as of 2026-08-25
+
+- **SAM.gov and Grants.gov are reachable.** The container's HTTPS egress proxy returns 403
+  for both, and the WebFetch tool returns EGRESS_BLOCKED for them and for sbir.gov,
+  epa.gov, energy.gov, and connectwerx.org. The **Scrapling connector reaches all of
+  them**, and every issuing-agency page cited in the 2026-08-25 run was fetched that way.
+  Do not record these two sources as blocked without trying that path first.
+- **SAM.gov search JSON** comes back with unescaped newlines and quotation marks inside
+  description fields. A strict JSON parser fails on it; pull the fields out tolerantly.
+  The list index carries no set-aside or NAICS value, so those need the per-notice detail
+  endpoint `/api/prod/opps/v2/opportunities/{id}` with `Accept: application/hal+json`
+  alone, which returns 406 if other media types are sent with it.
+- **Grants.gov** answers at `simpler.grants.gov` with the query in the URL. The older REST
+  endpoints return 405 or demand an authentication token.
+- `sbir.gov/opportunities` and `sbir.gov/solicitations` still 404. The working path is
+  `sbir.gov/topics`, and it accepts `?keywords=<term>&status=Open`.
 
 ---
 

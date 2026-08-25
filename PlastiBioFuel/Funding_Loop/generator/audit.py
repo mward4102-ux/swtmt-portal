@@ -10,7 +10,7 @@ Exits non-zero on any failure so a run cannot be shipped on a stale build.
 """
 import base64, html, importlib.util, os, re, sys, zipfile, zlib
 
-WORD_LIMITS = {"01": 100, "02": 200, "03": 200, "04": 200}
+WORD_LIMITS = {"01": 100, "02": 200, "03": 200, "04": 200}   # default; a run may declare its own
 BANNED = ["delve", "dive into", "landscape", "tapestry", "testament to",
           "game-changer", "unlock", "elevate", "seamless", "robust",
           "leverage", "supercharge"]
@@ -84,10 +84,14 @@ def main(run_dir):
             fails.append(label)
 
     print("=== pitch word limits ===")
-    for q, limit in WORD_LIMITS.items():
-        count = content._COUNT[q]
-        check(count <= limit, f"Q{q}: {count} / {limit}")
-    print(f"        total {content._TOTAL}")
+    limits = getattr(content, "WORD_LIMITS", WORD_LIMITS)
+    if not limits:
+        print("  ok    none declared for this run")
+    else:
+        for q, limit in limits.items():
+            count = content._COUNT[q]
+            check(count <= limit, f"Q{q}: {count} / {limit}")
+        print(f"        total {content._TOTAL}")
 
     print("\n=== house style ===")
     for f in docx + [p for p in PROSE if os.path.exists(at(p))]:
