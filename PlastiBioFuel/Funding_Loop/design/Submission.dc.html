@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; background: #FFFFFF; }
+    * { box-sizing: border-box; }
+    a { color: #045AA9; text-decoration: none; }
+    a:hover { color: #023A6E; }
+    .disp { font-family: 'Archivo', 'Aptos Display', 'Segoe UI Semibold', Calibri, sans-serif; }
+    .body { font-family: 'Figtree', 'Aptos', Calibri, 'Segoe UI', sans-serif; }
+    .num { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+    .step { font-size: 14.5px; line-height: 1.58; color: #2A2A2A; text-wrap: pretty; }
+    .dot { width: 34px; height: 34px; flex-shrink: 0; border: 1.5px solid #045AA9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Archivo', Calibri, sans-serif; font-weight: 700; font-size: 14px; color: #045AA9; font-variant-numeric: tabular-nums; }
+  </style>
+</helmet>
+
+<div class="body" style="width: 816px; background: #FFFFFF; color: #2A2A2A; padding-bottom: 40px;">
+
+  <div style="background: #045AA9; padding: 18px 56px 16px 56px; display: flex; justify-content: space-between; align-items: baseline;">
+    <div class="disp" style="color: #FFFFFF; font-size: 15px; font-weight: 700; letter-spacing: 0.16em;">PLASTIBIOFUEL</div>
+    <div class="disp" style="color: #9EC8F0; font-size: 11px; font-weight: 600; letter-spacing: 0.20em;">SUBMISSION CHECKLIST</div>
+  </div>
+  <div style="height: 4px; background: {{accent}};"></div>
+
+  <div style="padding: 34px 56px 0 56px;">
+    <div class="disp" style="color: #045AA9; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; margin-bottom: 11px;">DOE SBIR/STTR FY26 PHASE I &middot; GENESIS MISSION</div>
+    <h1 class="disp" style="margin: 0; font-size: 40px; line-height: 1.04; font-weight: 700; letter-spacing: -0.025em;">Fourteen steps to<br>a submitted pitch</h1>
+    <div style="margin-top: 14px; font-size: 15px; line-height: 1.55; color: #4A5561; max-width: 620px;">Steps 1 through 4 are prerequisites and should be done this week. Steps 5 through 14 are the submission itself and take about thirty minutes once the account exists.</div>
+  </div>
+
+  <div style="margin: 24px 56px 0 56px; display: flex; gap: 0; border-top: 2px solid #2A2A2A;">
+    <div style="flex: 1; padding: 16px 20px 16px 0; border-right: 1px solid #E3E8EF;">
+      <div class="disp" style="font-size: 10px; font-weight: 600; letter-spacing: 0.15em; color: #6B7684; margin-bottom: 6px;">DEADLINE</div>
+      <div class="disp num" style="font-size: 22px; font-weight: 700; color: #045AA9;">Sep 10, 2:00 PM ET</div>
+    </div>
+    <div style="flex: 1; padding: 16px 20px; border-right: 1px solid #E3E8EF;">
+      <div class="disp" style="font-size: 10px; font-weight: 600; letter-spacing: 0.15em; color: #6B7684; margin-bottom: 6px;">TIME REQUIRED</div>
+      <div class="disp num" style="font-size: 22px; font-weight: 700; color: #045AA9;">About 30 minutes</div>
+    </div>
+    <div style="flex: 1; padding: 16px 0 16px 20px;">
+      <div class="disp" style="font-size: 10px; font-weight: 600; letter-spacing: 0.15em; color: #6B7684; margin-bottom: 6px;">SIGNATURES NEEDED</div>
+      <div class="disp num" style="font-size: 22px; font-weight: 700; color: {{accent}};">None</div>
+    </div>
+  </div>
+
+  <div style="margin: 34px 56px 0 56px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+      <div class="disp" style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: #FFFFFF; background: #045AA9; padding: 6px 14px;">PREREQUISITES</div>
+      <div style="flex-grow: 1; height: 1px; background: #E3E8EF;"></div>
+      <div class="disp" style="font-size: 12px; font-weight: 600; color: #6B7684;">Do this week</div>
+    </div>
+
+    <div style="display: flex; gap: 18px; margin-bottom: 18px;">
+      <div class="dot">1</div>
+      <div class="step"><span style="font-weight: 600;">Confirm the SAM.gov registration is active</span> and not within 60 days of expiry. Log in at sam.gov and check the entity record for PlastiBioFuel LLC, UEI KQAWZ54RDUM8. DOE warns SAM renewal can take up to 8 weeks, which makes an expiring registration the single biggest schedule risk in this package. The pitch itself does not require SAM, but the full application does and an invitation can arrive quickly.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 18px;">
+      <div class="dot">2</div>
+      <div class="step"><span style="font-weight: 600;">Confirm the SBA Company Registry record</span> is current and retrieve the SBC Control ID at app.www.sbir.gov/company-registration/overview. Under 10 minutes with the UEI in hand. Needed at full application, not at pitch.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 18px;">
+      <div class="dot">3</div>
+      <div class="step"><span style="font-weight: 600;">Request an AMP account</span> at <a href="https://register.ati.org/">register.ati.org</a> using michael@plastibiofuel.com. Never a university student address. Allow one to two business days for approval, which is why this is step 3 and not step 9.</div>
+    </div>
+    <div style="display: flex; gap: 18px;">
+      <div class="dot">4</div>
+      <div class="step"><span style="font-weight: 600;">Read the Pitch Development Guide</span> and note the word limit printed for each of the four questions. The answers are written to 97, 202, 191, and 181 words, 671 total, with Question 1 held under 100. If the Guide allows more, append the optional add-on sentences supplied with each answer. If it allows less, trim at the paragraph boundaries marked in the Pitch Responses document.</div>
+    </div>
+  </div>
+
+  <div style="margin: 36px 56px 0 56px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+      <div class="disp" style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: #FFFFFF; background: #045AA9; padding: 6px 14px;">SUBMISSION</div>
+      <div style="flex-grow: 1; height: 1px; background: #E3E8EF;"></div>
+      <div class="disp" style="font-size: 12px; font-weight: 600; color: #6B7684;">About 30 minutes</div>
+    </div>
+
+    <div style="display: flex; gap: 18px; margin-bottom: 16px;">
+      <div class="dot">5</div>
+      <div class="step">Log in to AMP at <a href="https://sbirsttr-amp.ati.org/dashboard">sbirsttr-amp.ati.org/dashboard</a>.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 16px;">
+      <div class="dot">6</div>
+      <div class="step">In the Open Solicitations section, find FY26 Phase I, Genesis Mission, click Respond, then click Proceed in the pop-up box.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 16px;">
+      <div class="dot">7</div>
+      <div class="step">Enter the project title: Physics-Informed Machine Learning for Design of Continuous Immobilized-Enzyme Reactors Converting Post-Consumer PET to Fuel-Grade Ethanol.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 16px;">
+      <div class="dot">8</div>
+      <div class="step">Select Topic 1, Scaling the Biotechnology Revolution. Select one topic only. Topic and prime small business cannot change between pitch and full application; title and team partners may shift slightly.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 16px;">
+      <div class="dot">9</div>
+      <div class="step">Paste the four answers from the Pitch Responses document into the four open-text fields, in order. Paste, do not retype. Images and video are not enabled.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 16px;">
+      <div class="dot">10</div>
+      <div class="step">Upload PlastiBioFuelBibliography.pdf. Requirements from the solicitation: Adobe PDF only, 5 MB or smaller, printable, no password, no ZIP or other formats, and no special characters in the filename. The supplied file is well under 5 MB and its name uses letters only.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 16px;">
+      <div class="dot">11</div>
+      <div class="step">Complete every field marked with a red asterisk. Do not enter proprietary or business sensitive information beyond what is already in the approved answer text.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 16px;">
+      <div class="dot">12</div>
+      <div class="step">Click Submit Application in the upper-right corner. This fixes the topic selection. Everything else can still be edited, and uploaded files replaced, until 2:00 PM ET on September 10.</div>
+    </div>
+    <div style="display: flex; gap: 18px; margin-bottom: 16px;">
+      <div class="dot">13</div>
+      <div class="step">Confirm receipt. ConnectWerx sends an email confirming the submission was accepted. If no email arrives within a few hours, contact sbir-sttr@connectwerx.org.</div>
+    </div>
+    <div style="display: flex; gap: 18px;">
+      <div class="dot">14</div>
+      <div class="step">Log back in and verify that exactly one pitch is pending for PlastiBioFuel. DOE accepts up to three pitches per company and reviews only the three most recent by timestamp. Withdraw anything unintended before the deadline.</div>
+    </div>
+  </div>
+
+  <div style="margin: 36px 56px 0 56px; background: #FDF0F5; border-left: 4px solid {{accent}}; padding: 20px 24px;">
+    <div class="disp" style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: {{accent}}; margin-bottom: 9px;">WHERE MICHAEL SIGNS</div>
+    <div style="font-size: 14.5px; line-height: 1.58; color: #2A2A2A;">Nowhere, at this stage. The pitch carries no certification, representation, or signature block. The first signature in this program comes at award negotiation, when PlastiBioFuel would enter a funding agreement with DOE and ConnectWerx. If the pitch is invited forward, the full application carries the eligibility and work-share certifications listed in the Forms and Certifications Checklist, signed by Michael Ward as Founder and CEO.</div>
+  </div>
+
+  <div style="margin: 32px 56px 0 56px;">
+    <div class="disp" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: #045AA9; margin-bottom: 16px;">DATES TO HOLD</div>
+    <div style="display: flex; gap: 20px; padding: 14px 0; border-top: 1px solid #E3E8EF;">
+      <div class="disp num" style="width: 172px; flex-shrink: 0; font-size: 14px; font-weight: 700; color: #2A2A2A;">Sep 10, 2026, 2:00 PM ET</div>
+      <div style="font-size: 14px; line-height: 1.55;">Pitch closes. Late submissions are not accepted.</div>
+    </div>
+    <div style="display: flex; gap: 20px; padding: 14px 0; border-top: 1px solid #E3E8EF;">
+      <div class="disp num" style="width: 172px; flex-shrink: 0; font-size: 14px; font-weight: 700; color: #2A2A2A;">After the deadline</div>
+      <div style="font-size: 14px; line-height: 1.55;">ConnectWerx emails the decision. Invited pitches may receive reviewer feedback. Declined pitches receive brief standardized feedback, and there is no resubmission for this opportunity.</div>
+    </div>
+    <div style="display: flex; gap: 20px; padding: 14px 0; border-top: 1px solid #E3E8EF; border-bottom: 1px solid #E3E8EF;">
+      <div class="disp num" style="width: 172px; flex-shrink: 0; font-size: 14px; font-weight: 700; color: #2A2A2A;">Fall 2026</div>
+      <div style="font-size: 14px; line-height: 1.55;">DOE has stated that a broader Phase I opportunity covering additional technology topics will open. That is the next shot if this one does not land, and it is a better fit for the reactor hardware work.</div>
+    </div>
+  </div>
+
+  <div style="margin: 30px 56px 0 56px;">
+    <div class="disp" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: #045AA9; margin-bottom: 12px;">RECORDED OFFICE HOURS</div>
+    <div style="font-size: 13.5px; line-height: 1.6; color: #4A5561;"><span style="font-weight: 600; color: #2A2A2A;">Part I, August 5, 2026.</span> <a href="https://youtu.be/SKzaJ3W3nPM">Video</a> &middot; <a href="https://sbir-sttr.connectwerx.org/wp-content/uploads/2026/08/Presentation-Office-Hours-8.5.pdf">Slides</a> &middot; <a href="https://sbir-sttr.connectwerx.org/wp-content/uploads/2026/08/Transcript-Office-Hours-8.5.pdf">Transcript</a></div>
+    <div style="font-size: 13.5px; line-height: 1.6; color: #4A5561; margin-top: 6px;"><span style="font-weight: 600; color: #2A2A2A;">Part II, August 12, 2026.</span> <a href="https://www.youtube.com/watch?v=JYKvUx3voRI">Video</a> &middot; <a href="https://sbir-sttr.connectwerx.org/wp-content/uploads/2026/08/Phase-I-Pilot-Office-Hours-Webinar_2026.08.12.pdf">Slides</a> &middot; <a href="https://sbir-sttr.connectwerx.org/wp-content/uploads/2026/08/Transcript-Office-Hours-8.12.pdf">Transcript</a></div>
+  </div>
+
+  <div style="border-top: 1px solid #E3E8EF; margin: 26px 56px 0 56px; padding: 12px 0 0 0; display: flex; justify-content: space-between; font-size: 11px; color: #6B7684;">
+    <div>Questions to ConnectWerx: sbir-sttr@connectwerx.org &middot; DOE program feedback: sbir-sttr@hq.doe.gov</div>
+    <div>Opportunity page verified August 22, 2026</div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#D50057","options":["#D50057","#045AA9","#B8860B","#0F766E"]},"$preview":{"width":816,"height":2430}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#D50057' };
+  }
+}
+</script>
+</body>
+</html>

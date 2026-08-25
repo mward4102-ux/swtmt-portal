@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; background: #FFFFFF; }
+    * { box-sizing: border-box; }
+    a { color: #045AA9; text-decoration: none; }
+    a:hover { color: #023A6E; }
+    .disp { font-family: 'Archivo', 'Aptos Display', 'Segoe UI Semibold', Calibri, sans-serif; }
+    .body { font-family: 'Figtree', 'Aptos', Calibri, 'Segoe UI', sans-serif; }
+    .num { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+    .ans { font-size: 15.5px; line-height: 1.62; color: #2A2A2A; margin: 0 0 13px 0; text-wrap: pretty; }
+    .lead { font-family: 'Archivo', 'Aptos Display', Calibri, sans-serif; font-weight: 600; color: #045AA9; }
+    .pill { flex-shrink: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: #FFFFFF; background: #045AA9; padding: 4px 10px; border-radius: 2px; }
+    .qhead { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; border-bottom: 1px solid #E3E8EF; padding-bottom: 9px; margin-bottom: 14px; }
+    .qnum { width: 72px; flex-shrink: 0; font-size: 54px; font-weight: 700; color: #D7E6F5; line-height: 0.86; }
+    .addon { margin-top: 6px; border-left: 2px dashed #C9D6E4; padding: 3px 0 3px 16px; }
+    .addonl { font-size: 9.5px; font-weight: 600; letter-spacing: 0.13em; color: #6B7684; margin-bottom: 5px; }
+    .srow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 7px 0; border-bottom: 1px solid #E6EDF4; }
+  </style>
+</helmet>
+
+<div class="body" style="width: 816px; background: #FFFFFF; color: #2A2A2A; padding-bottom: 40px;">
+
+  <div style="background: #045AA9; padding: 18px 56px 16px 56px; display: flex; justify-content: space-between; align-items: baseline;">
+    <div class="disp" style="color: #FFFFFF; font-size: 15px; font-weight: 700; letter-spacing: 0.16em;">PLASTIBIOFUEL</div>
+    <div class="disp" style="color: #9EC8F0; font-size: 11px; font-weight: 600; letter-spacing: 0.20em;">PITCH RESPONSES</div>
+  </div>
+  <div style="height: 4px; background: {{accent}};"></div>
+
+  <div style="padding: 34px 56px 0 56px;">
+    <div class="disp" style="color: #045AA9; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; margin-bottom: 11px;">DOE SBIR/STTR FY26 PHASE I &middot; GENESIS MISSION</div>
+    <h1 class="disp" style="margin: 0; font-size: 38px; line-height: 1.06; font-weight: 700; letter-spacing: -0.025em;">Topic 1, Scaling the<br>Biotechnology Revolution</h1>
+    <div style="margin-top: 14px; font-size: 15px; line-height: 1.55; color: #4A5561; max-width: 620px;">Copy each answer into the matching open-text field in AMP. Word counts are shown so you can check them against the Pitch Development Guide before pasting. Images and video are not enabled, so all four answers are plain text.</div>
+  </div>
+
+  <div style="margin: 26px 56px 0 56px; border-top: 2px solid #2A2A2A; border-bottom: 1px solid #E3E8EF; padding: 18px 0;">
+    <div class="disp" style="font-size: 10px; font-weight: 600; letter-spacing: 0.15em; color: #045AA9; margin-bottom: 7px;">PROJECT TITLE TO ENTER IN AMP</div>
+    <div class="disp" style="font-size: 18px; line-height: 1.34; font-weight: 600; color: #2A2A2A; max-width: 660px;">Physics-Informed Machine Learning for Design of Continuous Immobilized-Enzyme Reactors Converting Post-Consumer PET to Fuel-Grade Ethanol</div>
+    <div style="margin-top: 12px; display: flex; align-items: center; gap: 9px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.3 3.9L2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>
+      <div style="font-size: 13.5px; color: #2A2A2A;"><span style="font-weight: 600;">Topic selection is permanent.</span> Topic and prime small business cannot change between pitch and full application.</div>
+    </div>
+  </div>
+
+
+  <div style="margin: 34px 56px 0 56px; display: flex; gap: 24px;">
+    <div class="disp num qnum">01</div>
+    <div style="flex-grow: 1;">
+      <div class="qhead">
+        <div class="disp" style="font-size: 19px; font-weight: 600; color: #045AA9;">Summary, Topic, and Mission Alignment</div>
+        <div class="disp num pill">98 WORDS</div>
+      </div>
+      <p class="ans">PlastiBioFuel is building a route from post-consumer PET to fuel-grade ethanol using a PET hydrolase immobilized in a covalent organic framework. The continuous spiral-flow reactor was designed in simulation: flow, channel geometry, and reusability modeled across more than a million runs. Wet-lab work at UNT confirms the enzyme and immobilization chemistry the design depends on, and identifies mass transfer as the limit. Transport is what reactor geometry decides. Phase I closes the gap between the model and hardware, turning it into a design tool with quantified error. That is AI applied to bioreactor design and biomanufacturing, Topic 1.</p>
+    </div>
+  </div>
+
+  <div style="margin: 34px 56px 0 56px; display: flex; gap: 24px;">
+    <div class="disp num qnum">02</div>
+    <div style="flex-grow: 1;">
+      <div class="qhead">
+        <div class="disp" style="font-size: 19px; font-weight: 600; color: #045AA9;">Technical Promise</div>
+        <div class="disp num pill">199 WORDS</div>
+      </div>
+      <p class="ans"><span class="lead">Significance.</span> Enzymatic PET recycling is limited by reactor engineering, not enzyme discovery, and conditions are still chosen one factor at a time.</p>
+      <p class="ans"><span class="lead">Innovation.</span> FAST-PETase was reported by the Alper group at UT Austin in 2022, itself produced by machine learning. PlastiBioFuel did not invent it. Our contributions, under USPTO provisional 63/848,456, are the framework immobilization system, the computationally derived spiral-flow geometry, and the integrated process. Phase I moves machine learning from residue selection to reactor operation.</p>
+      <p class="ans"><span class="lead">Feasibility.</span> Three UNT milestones closed ahead of schedule in a report signed by Prof. Shengqian Ma. Free FAST-PETase breaks real post-consumer water bottle PET to terephthalic acid, confirmed by HPLC against standards. It loads into TAPB-BPDA-COF with no protein detectable at 280 nm. Immobilized turnover measured 122 µmol/h/mg at 24 hours against a 246 to 348 literature range for free enzyme, which UNT attributes to mass transfer down the COF channel and poor pre-treatment. A run at 80 °C gave 3.6 times the standard rate, though water loss leaves it confounded, and the lab reads the gain as substrate access rather than kinetics. Two independent observations, one cause: transport. Phase I quantifies where the model is trustworthy and ranks the experiments that separate transport from kinetics.</p>
+      <div class="addon">
+        <div class="disp addonl">OPTIONAL ADD-ON, ONLY IF THE GUIDE ALLOWS MORE WORDS &middot; 26 WORDS</div>
+        <div style="font-size: 14px; line-height: 1.55; color: #4A5561;">Phase I ends with a measured number rather than a claim: quantified uncertainty on the model's reactor-scale predictions, and a ranked experiment sequence to close it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin: 34px 56px 0 56px; display: flex; gap: 24px;">
+    <div class="disp num qnum">03</div>
+    <div style="flex-grow: 1;">
+      <div class="qhead">
+        <div class="disp" style="font-size: 19px; font-weight: 600; color: #045AA9;">Commercialization Potential</div>
+        <div class="disp num pill">199 WORDS</div>
+      </div>
+      <p class="ans"><span class="lead">Value proposition.</span> The intended product is fuel-grade ethanol from a waste feedstock. Post-consumer PET is abundant, domestically sourced, priced well below agricultural feedstock, and it does not compete with food production. Low carbon fuel standard credit value applies to the finished fuel and is the firmer part of the value case. Federal renewable identification number eligibility remains subject to final renewable-fuel pathway qualification, and we do not assume it.</p>
+      <p class="ans"><span class="lead">Competitive advantage.</span> Pyrolysis carries high energy cost; mechanical recycling degrades polymer every cycle. Enzymatic recyclers returning monomer to virgin-equivalent resin sell into the resin market, so our offtake channel does not overlap theirs. Software vendors modeling bioprocess do not hold the chemistry; we have wet-lab confirmation of the immobilization and enzyme behavior our design depends on. Wet-lab groups iterate hardware one build at a time; our geometry was searched in simulation first. Holding both shortens the bench-to-plant step, where enzymatic routes stall.</p>
+      <p class="ans"><span class="lead">Go to market.</span> We are in offtake discussions with ARG Petro, a regional fuel distributor, and have their interest. Texas puts PET waste aggregation, refining infrastructure, and fuel blending demand in one region. The Phase I output is a sizing and operating envelope for the first modular unit, so the model feeds a capital decision.</p>
+      <div class="addon">
+        <div class="disp addonl">OPTIONAL ADD-ON, ONLY IF THE GUIDE ALLOWS MORE WORDS &middot; 23 WORDS</div>
+        <div style="font-size: 14px; line-height: 1.55; color: #4A5561;">A first modular unit sited near a Texas PET aggregation point is the specific commercial target that Phase I is meant to de-risk.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin: 34px 56px 0 56px; display: flex; gap: 24px;">
+    <div class="disp num qnum">04</div>
+    <div style="flex-grow: 1;">
+      <div class="qhead">
+        <div class="disp" style="font-size: 19px; font-weight: 600; color: #045AA9;">Team Qualifications</div>
+        <div class="disp num pill">197 WORDS</div>
+      </div>
+      <p class="ans"><span class="lead">Company.</span> Michael David Ward, Founder and CEO, is the principal investigator and is primarily employed by PlastiBioFuel. He built the project's simulation and modeling capability and runs it himself, so the computational work Phase I extends stays inside the company rather than moving to a subcontractor. PlastiBioFuel is a service-disabled veteran-owned small business verified through SBA VetCert and holds USPTO provisional 63/848,456. Its laboratory program produced the preliminary data cited here. All work will be performed in the United States.</p>
+      <p class="ans"><span class="lead">Partnerships.</span> The University of North Texas is our research partner under executed Sponsored Research Agreement SRA1016, with a $250,000 extension under negotiation. Dr. Shengqian Ma, Department of Chemistry, leads covalent organic framework and immobilization chemistry; his group has published on enzyme immobilization in covalent organic frameworks. Dr. Joshua Phipps, postdoctoral researcher, runs day-to-day wet lab work. The partnership gives Phase I reactor access, HPLC analytics, and materials characterization with no capital spending.</p>
+      <p class="ans"><span class="lead">Follow-on funding.</span> PlastiBioFuel has a separate NSF SBIR Phase I proposal, Research.gov 328095, submitting against the November 4, 2026 window. That proposal covers wet chemistry and reactor hardware and does not overlap the computational scope proposed here. We disclose it so DOE can confirm there is no duplicate funding.</p>
+      <div class="addon">
+        <div class="disp addonl">OPTIONAL ADD-ON, ONLY IF THE GUIDE ALLOWS MORE WORDS &middot; 19 WORDS</div>
+        <div style="font-size: 14px; line-height: 1.55; color: #4A5561;">Marshall Nadel is a seed investor in PlastiBioFuel, and Patrick Tarlton of the Texas Concrete Association supports business development.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin: 40px 56px 0 56px; background: #F2F7FC; padding: 24px 28px;">
+    <div class="disp" style="font-size: 12px; font-weight: 600; letter-spacing: 0.14em; color: #045AA9; margin-bottom: 16px;">WORD COUNT SUMMARY</div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-bottom: 1px solid #D7E2ED; padding-bottom: 8px; margin-bottom: 4px;">
+      <div class="disp" style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: #6B7684;">QUESTION</div>
+      <div class="disp" style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: #6B7684; text-align: right;">AS WRITTEN</div>
+      <div class="disp" style="font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: #6B7684; text-align: right;">WITH ADD-ON</div>
+    </div>
+    <div class="srow">
+      <div style="font-size: 14px;">01. Summary, Topic, and Mission Alignment</div>
+      <div class="num" style="font-size: 14px; text-align: right;">98</div>
+      <div class="num" style="font-size: 14px; text-align: right; color: #6B7684;">98</div>
+    </div>
+    <div class="srow">
+      <div style="font-size: 14px;">02. Technical Promise</div>
+      <div class="num" style="font-size: 14px; text-align: right;">199</div>
+      <div class="num" style="font-size: 14px; text-align: right; color: #6B7684;">225</div>
+    </div>
+    <div class="srow">
+      <div style="font-size: 14px;">03. Commercialization Potential</div>
+      <div class="num" style="font-size: 14px; text-align: right;">199</div>
+      <div class="num" style="font-size: 14px; text-align: right; color: #6B7684;">222</div>
+    </div>
+    <div class="srow">
+      <div style="font-size: 14px;">04. Team Qualifications</div>
+      <div class="num" style="font-size: 14px; text-align: right;">197</div>
+      <div class="num" style="font-size: 14px; text-align: right; color: #6B7684;">216</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; padding: 10px 0 0 0; border-top: 2px solid #045AA9;">
+      <div class="disp" style="font-size: 15px; font-weight: 700; color: #045AA9;">Total</div>
+      <div class="disp num" style="font-size: 20px; font-weight: 700; text-align: right; color: #045AA9;">693</div>
+      <div class="disp num" style="font-size: 20px; font-weight: 700; text-align: right; color: #6B7684;">761</div>
+    </div>
+    <div style="font-size: 13.5px; line-height: 1.55; color: #4A5561; margin-top: 16px;">Question 1 is held under 100 words. If the Pitch Development Guide sets higher limits, append the add-on sentences. If it sets lower limits, the answers cut cleanly at paragraph boundaries. Drop the Feasibility paragraph from Question 2 last, since it carries the preliminary data that makes the pitch credible.</div>
+  </div>
+  <div style="margin: 24px 56px 0 56px; display: flex; gap: 14px; align-items: flex-start; border-top: 1px solid #E3E8EF; padding-top: 18px;">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5-5 5 5"></path><path d="M12 5v13"></path></svg>
+    <div>
+      <div class="disp" style="font-size: 15px; font-weight: 600; color: #2A2A2A; margin-bottom: 5px;">Optional upload: Bibliography and References Cited</div>
+      <div style="font-size: 14px; line-height: 1.55; color: #4A5561; max-width: 620px;">Prepared and included in this package. Worth uploading: it substantiates the statement that PlastiBioFuel did not invent the enzyme, and it shows the UNT partner's published record in enzyme immobilization in covalent organic frameworks.</div>
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid #E3E8EF; margin: 26px 56px 0 56px; padding: 12px 0 0 0; display: flex; justify-content: space-between; font-size: 11px; color: #6B7684;">
+    <div>PlastiBioFuel LLC &middot; Michael David Ward, Founder and CEO &middot; michael@plastibiofuel.com &middot; 817-319-7383</div>
+    <div class="num">UEI KQAWZ54RDUM8 &middot; CAGE 175D6</div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#D50057","options":["#D50057","#045AA9","#B8860B","#0F766E"]},"$preview":{"width":816,"height":3400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#D50057' };
+  }
+}
+</script>
+</body>
+</html>
