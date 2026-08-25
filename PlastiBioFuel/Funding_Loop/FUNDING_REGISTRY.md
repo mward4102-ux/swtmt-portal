@@ -17,6 +17,7 @@ Read this file first on every run. Do not rebuild a package for anything already
 | 2026-08-22 | DOE, Office of Technology Commercialization (via ConnectWerx) | No DE-FOA issued; "FY26 Phase I, Genesis Mission" | SBIR/STTR Phase I, Topic 1, Scaling the Biotechnology Revolution | **2026-09-10, 2:00 PM ET** | **Package built** | Pitch-first, two stage. Up to $250,000 ($256,500 with TABA), no cost share. Package at `2026-08-22_DOE_SBIR-STTR_FY26-Phase-I-Genesis-Mission/`. Scope is the computational design layer, adjacent to NSF 328095. |
 | 2026-08-25 | DOE, Office of Critical Minerals and Energy Innovation, for the Alternative Fuels and Feedstocks Office | NOI DE-FOA-0003646; Teaming Partner List TPL-0000073 | ASPECT, Accelerating Scale-up and Pre-piloting of Emerging Chemical Technologies | **No deadline.** NOFO not issued; application deadline TBD | **Package built** | Teaming list only, not an application. Package at `2026-08-25_DOE_ASPECT_Teaming-Partner-List/`. Chemicals from alternative and waste feedstocks, foundational molecules. The list is titled for DE-FOA-0003647 while its body cites DE-FOA-0003646; select it by title. Contacts ASPECT@doe.gov, Josh Messner. Watch the ASPECT page every run for the NOFO itself. |
 | 2026-08-25 | DOE Office of Technology Commercialization, via Oak Ridge National Laboratory | Innovation Crossroads, Cohort 2027 (Lab-Embedded Entrepreneurship Program) | Two-year funded entrepreneurial fellowship | **Applications 2026-09-15 to 2026-10-30, 8:00 PM ET** | Surfaced | $115,000 per year living stipend for 2 years, plus health insurance stipend, professional development allowance, R&D funding for collaboration with ORNL researchers, and lab access. Named topic area **Advanced Fuel and Feedstock technology**: a direct fit. Apply as an individual, 8-page PDF. Eligibility met on the $2M non-government funding cap. **Two open questions before building: the doctoral degree or equivalent experience test, and required relocation to the Knoxville and Oak Ridge area for two years.** That relocation is Michael's decision and it decides whether this is worth writing. **Build on the first run after 2026-09-15.** |
+| 2026-08-25 | Private capital, Category 5 | Y Combinator Fall 2026 (late window); SOSV and IndieBio (rolling) | Accelerator equity | **YC late applications open now**, batch Oct to Dec 2026; SOSV rolling | Surfaced | Package at `2026-08-25_Private-Capital_Accelerators/`. YC deal is $500,000 for 7 percent plus an uncapped MFN SAFE, and **YC invests in corporations, so the LLC would have to restructure**, which does not carry the UEI, CAGE, SAM registration, or SDVOSB certification with it. SOSV publishes no terms on its form. **Read `03_Eligibility_Interactions` before applying.** |
 | (prior) | NSF | NSF 26-510, Research.gov proposal 328095 | SBIR Phase I, subtopic BT10 Synthetic Biology and Metabolic Engineering | 2026-11-04 window | **Submitted** (in preparation, external to this loop) | $304,955. COF-enzyme reusability, monomer-to-ethanol pathway, integrated lab-scale spiral reactor module. Do not build anything that duplicates this scope. |
 
 ---
@@ -186,6 +187,51 @@ of War Office of Industrial Base Growth. None is sent yet; all three wait on Mic
 
 NSF is deliberately excluded while proposal 328095 is pending. The reason is in the queue
 file.
+
+---
+
+## Category 5. Private capital, accelerators, and shared labs
+
+Added 2026-08-25. The first four categories are public money. This one is not, and the two
+kinds do not simply add up: every non-dilutive program in this registry that caps outside
+funding counts these dollars against that cap.
+
+Full detail and verified terms are in `2026-08-25_Private-Capital_Accelerators/`. Four
+interactions govern anything built in this category and are set out in that package's
+`03_Eligibility_Interactions`:
+
+1. **Entity form.** Y Combinator invests in corporations. PlastiBioFuel is an LLC. Restructuring
+   creates a new legal person, and UEI KQAWZ54RDUM8, CAGE 175D6, the SAM.gov registration, and
+   the SDVOSB certification do not travel with it automatically. Price this before applying.
+2. **The $2M caps.** Activate and ORNL Innovation Crossroads both cap non-governmental funding
+   at $2M, both measured at application, both opening 2026-09-15. An accelerator check does not
+   break either cap alone; a seed round on top of one does. **Applying to the federal programs
+   first forecloses nothing. Raising first can foreclose them.** Sequence accordingly.
+3. **SBIR ownership.** More than 50 percent must be owned and controlled by US individuals or
+   qualifying small business concerns. A single-digit accelerator stake is not near that line.
+   Cumulative institutional ownership across rounds is the number to watch.
+4. **The provisional patent clock.** 63/848,456 was filed July 2025 and a provisional runs
+   twelve months, which puts the conversion deadline in the past. Whether a non-provisional or
+   PCT was filed governs both diligence and any public disclosure. Open item for Michael and
+   patent counsel; the loop cannot resolve it.
+
+**Sweep this category each run** alongside the other four: accelerators with open or rolling
+windows, shared-lab programs where residency is sponsor funded rather than purchased, and any
+fund whose published thesis actually names waste feedstocks, chemicals, or industrial
+biotechnology. Cold approaches to seed funds are not in the outreach queue and should not be
+added: those funds are introduction-driven, which is what an accelerator is for.
+
+---
+
+## Funnel
+
+`PIPELINE.md` tracks the target of 50 outreaches, 10 conversations, and 2 to 3 pilots or
+letters of intent. Read it after this file and the outreach queue, update it every run, and
+report the funnel in every run summary including the runs where nothing moved.
+
+The rule that keeps it honest: **sent means sent.** A staged draft never advances a stage. As
+of 2026-08-25 eight approaches are written, zero are sent, and every stage therefore reads
+zero.
 
 ---
 
