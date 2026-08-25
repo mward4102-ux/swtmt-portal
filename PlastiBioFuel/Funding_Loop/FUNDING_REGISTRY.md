@@ -6,6 +6,8 @@ Read this file first on every run. Do not rebuild a package for anything already
 
 **Entity:** PlastiBioFuel LLC · UEI KQAWZ54RDUM8 · CAGE 175D6 · SDVOSB (SBA VetCert verified) · NAICS 325199, 325193, 541715
 
+*Certification wording:* SDVOSB status is certified through SBA's Veteran Small Business Certification program and appears in SAM.gov. Write it that way in anything a contracting or small business office will read. SAM.gov is the registration, not the certifying authority.
+
 ---
 
 ## Active
@@ -143,6 +145,26 @@ reading the expiration date on the entity record.
   endpoints return 405 or demand an authentication token.
 - `sbir.gov/opportunities` and `sbir.gov/solicitations` still 404. The working path is
   `sbir.gov/topics`, and it accepts `?keywords=<term>&status=Open`.
+
+---
+
+## Outreach
+
+Strategic outreach runs alongside the builds and has its own record at
+`Outreach/OUTREACH_QUEUE.md`. **Read that file on every run, right after this one.**
+
+One outreach per run, in addition to the run's build and not instead of it. The queue
+carries the cursor, the verified channels, and what came back. The standing constraints
+below govern outreach letters exactly as they govern applications, and two rules matter
+enough to repeat here: never ask a federal office about a pending proposal, and never
+write to an address that was not read off that office's own page.
+
+Batch 01, written 2026-08-25 at `Outreach/2026-08-25_Batch-01/`: DOE Office of Small
+Business Programs, the DOE SBIR/STTR program office with ConnectWerx, and the Department
+of War Office of Industrial Base Growth. None is sent yet; all three wait on Michael.
+
+NSF is deliberately excluded while proposal 328095 is pending. The reason is in the queue
+file.
 
 ---
 
