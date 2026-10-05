@@ -5,7 +5,8 @@
 
 Checks, in order: pitch word limits, house style, the contact of record on every
 document, that every word in each .docx also reaches its .pdf, that upload
-aliases still match their source, and that the one-page brief is still one page.
+aliases still match their source, and that every document stays inside its page limit:
+PAGE_LIMITS from the run's content.py where declared, one page for the brief otherwise.
 Exits non-zero on any failure so a run cannot be shipped on a stale build.
 """
 import base64, html, importlib.util, os, re, sys, zipfile, zlib
@@ -140,9 +141,14 @@ def main(run_dir):
               "text differs" if not same else "filename is not letters only")
 
     print("\n=== page counts ===")
+    caps = getattr(content, "PAGE_LIMITS", {})   # {doc-name: max pages the funder allows}
     for f in sorted(x for x in os.listdir(run_dir) if x.endswith(".pdf")):
         n = pages(at(f))
-        check(not (f.startswith("01_") and n != 1), f"{f}: {n} page(s)", "brief must stay on one page")
+        cap = caps.get(f[:-4])
+        if cap is not None:
+            check(n <= cap, f"{f}: {n} page(s), cap {cap}", "over the page limit the funder publishes")
+        else:
+            check(not (f.startswith("01_") and n != 1), f"{f}: {n} page(s)", "brief must stay on one page")
 
     print("\n" + ("ALL CHECKS PASS" if not fails else f"{len(fails)} FAILURE(S): " + "; ".join(fails)))
     return 1 if fails else 0
