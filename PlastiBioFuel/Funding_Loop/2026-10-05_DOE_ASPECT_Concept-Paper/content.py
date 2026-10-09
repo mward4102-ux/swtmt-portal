@@ -30,13 +30,13 @@ brief = [
  ("factgrid", [
    ("AGENCY", "DOE Office of Critical Minerals and Energy Innovation, Alternative Fuels and Feedstocks Office. On Grants.gov under Golden Field Office."),
    ("ANNOUNCEMENT", "DE-FOA-0003647, Modification 000002 posted 2026-09-23. Cooperative agreement. Concept paper, then Stage 1 by eligibility, then Stage 2 by invitation."),
-   ("PROGRAM TOTAL", "$58,000,000, subject to availability. Topic Area 1 is zero to seven awards at $2M to $10M federal share."),
+   ("PROGRAM TOTAL", "$58,000,000 overall, up to $28,000,000 for Topic Area 1 at $2M to $10M per award, zero to seven awards."),
    ("PERIOD OF PERFORMANCE", "Subtopic 1a is one phase over 12 to 24 months in two budget periods, the first closing on a go or no-go."),
    ("ELIGIBILITY", "Small businesses eligible as prime, which also satisfies the industrial-entity requirement. Higher education eligible as a subrecipient under Topic Area 1."),
    ("SUBMISSION PORTAL", "DOE eXCHANGE, eere-exchange.energy.gov, announcement DE-FOA-0003647. Grants.gov is not a route. Questions to ASPECT@doe.gov, portal support at EERE-ExchangeSupport@hq.doe.gov."),
  ]),
  ("tint", "WINDOW AND FEEDSTOCK ELIGIBILITY VERIFIED", None,
-  "October 5, 2026, by direct fetch of the Grants.gov opportunity detail and the DOE eXCHANGE listing. Feedstock eligibility rests on DOE\'s published webinar transcript, not on Appendix A read verbatim. See step 3 of the Submission Checklist."),
+  "Dates October 5, 2026, by direct fetch of Grants.gov and the DOE eXCHANGE listing. Appendix A read in full October 9, 2026, at NOFO Part 1 pages 58 and 59: sorted municipal solid waste is acceptable and the table is exclusive."),
  ("footer", CONTACT_L, CONTACT_R),
 ]
 
@@ -52,11 +52,14 @@ concept = [
        "et al., Nature 2020, DOI 10.1038/s41586-020-2149-4), which places terephthalic acid an order of magnitude "
        "and more above the one million metric ton global market threshold this NOFO sets. It is a chemical "
        "product, not a fuel, and it is not ethanol."),
- ("p", "The feedstock is post-consumer PET recovered from sorted municipal solid waste, which Appendix A lists as an "
-       "allowable feedstock including the plastic constituents going to landfill. The feedstock is domestic, abundant, "
-       "priced well below agricultural feedstock, and does not compete with food production. Producing terephthalic "
-       "acid from it returns a high-volume monomer to domestic polymer manufacture from material that is currently "
-       "landfilled, which strengthens a domestic supply chain and displaces imported monomer."),
+ ("p", "The feedstock is sorted municipal solid waste, specifically its plastic constituent. Appendix A lists sorted "
+       "municipal solid waste as an acceptable feedstock and defines it as the organic and plastic constituents of the "
+       "municipal solid waste stream going to the landfill. PET is that plastic constituent. The project proposes no "
+       "feedstock outside the Appendix A table, which is exclusive: an application proposing a feedstock the table does "
+       "not identify will not be considered. The material is domestic, abundant, priced well below agricultural "
+       "feedstock, and does not compete with food production. Producing terephthalic acid from it returns a high-volume "
+       "monomer to domestic polymer manufacture from material that is currently landfilled, which strengthens a "
+       "domestic supply chain and displaces imported monomer."),
 
  ("chip", "2. TECHNOLOGY, STATE OF THE ART, AND WHAT IS NEW", "Uniqueness and innovation"),
  ("p", "Enzymatic PET depolymerization is limited by reactor engineering rather than by enzyme discovery. FAST-PETase, "
@@ -102,8 +105,8 @@ concept = [
    ("Budget Period 2, process development",
     "Optimize pre-treatment, enzyme loading, and framework configuration against measured turnover; establish an operating envelope with quantified uncertainty against the simulation model; and recover terephthalic acid to a purity specification acceptable for re-entry into polymer manufacture."),
  ]),
- ("p", "Real post-consumer PET is used throughout. Model compounds are permitted under Subtopic 1a through Budget "
-       "Period 1 only, and this project does not require them."),
+ ("p", "The PET fraction of sorted municipal solid waste is the real feedstock throughout. Model compounds are "
+       "permitted under Subtopic 1a through Budget Period 1 only, and this project does not require them."),
 
  ("chip", "5. RISKS, CHALLENGES, AND MITIGATION", "Technical, regulatory, financial"),
  ("factgrid", [
@@ -207,7 +210,7 @@ submit = [
  ("chip", "CHECKS BEFORE UPLOAD", "Do these first"),
  ("step", 1, '<font name="Helvetica-Bold">Log in to DOE eXCHANGE</font> at eere-exchange.energy.gov and confirm the PlastiBioFuel LLC account works. The system returned from its consolidation outage on 2026-10-04 at 6:00 AM ET. If the account does not exist, create it now rather than on the ninth; portal support is EERE-ExchangeSupport@hq.doe.gov with the NOFO title and DE-FOA-0003647 in the subject line.'),
  ("step", 2, '<font name="Helvetica-Bold">Download NOFO Part 1 and the concept paper template</font> from the Documents section of announcement DE-FOA-0003647. Both are Word files. This container is blocked from retrieving them, which is why steps 2 through 4 are yours rather than the package\'s.'),
- ("step", 3, '<font name="Helvetica-Bold">Read Appendix A and confirm the sorted municipal solid waste line.</font> Feedstock eligibility for post-consumer PET rests on DOE\'s own published webinar transcript, where the NOFO co-manager lists the Appendix A feedstocks and names sorted municipal solid waste including the plastic constituents going to landfill. That webinar was held 2026-09-11 and Modification 000002 updated Appendix A on 2026-09-23, so read the current text. Modification 000002 names only the construction and demolition waste definition as its Appendix A change. Also open the DE-FOA-0003647 Question and Answer Log, last updated 2026-09-24 at 4:51 PM ET, the day after the modification.'),
+("step", 3, '<font name="Helvetica-Bold">Appendix A is settled; spot-check it and read the Q and A log.</font> Appendix A was read in full on 2026-10-09 at pages 58 and 59 of NOFO Part 1 Modification 000002. Sorted municipal solid waste is marked acceptable and defined as the organic and plastic constituents of the municipal solid waste stream going to the landfill, which is why this concept paper names that category rather than post-consumer PET on its own. The table is exclusive: a feedstock it does not identify will not be considered. Spot-check those two pages, then open the DE-FOA-0003647 Question and Answer Log, last updated 2026-09-24 at 4:51 PM ET.'),
  ("step", 4, '<font name="Helvetica-Bold">Check this concept paper against the template\'s field list</font> in NOFO Part 1 section 4.C. The document is written to DOE\'s four published evaluation factors, which is the right content, but the template may want it in a different order or under different headings. Reorder rather than rewrite.'),
  ("chip", "THE SUBMISSION", "About 40 minutes"),
  ("step", 5, 'Find DE-FOA-0003647 in eXCHANGE and click Apply. Enter the project title: ' + TITLE + '.'),
